@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Background Preview — Astrology Website</title>
+
+  <!-- Import map: Three.js + postprocessing via CDN -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Tiro+Devanagari+Sanskrit&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Raleway:wght@300;400;500&family=Josefin+Sans:wght@300;400&family=Playfair+Display:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Italiana&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cosmic:   #050510;
+      --navy:     #0A0A2E;
+      --gold:     #C9A84C;
+      --gold-lt:  #e8c96a;
+      --saffron:  #FF6B1A;
+      --cream:    #F5ECD7;
+      --purple:   #3D1A6E;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: var(--cosmic);
+    }
+
+    /* ── SCENE CONTAINER ── */
+    #scene {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMiIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyMiA0NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48bGluZSB4MT0iMTEiIHkxPSIxIiB4Mj0iMTEiIHkyPSIyMCIgc3Ryb2tlPSIjQzlBODRDIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMSAyMCBDMTEgMTcgNyAxNSA1IDExIEMzLjUgOCA0IDUgNCA1IiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS13aWR0aD0iMS42IiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTEgMjAgQzExIDE3IDE1IDE1IDE3IDExIEMxOC41IDggMTggNSAxOCA1IiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS13aWR0aD0iMS42IiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9IjExLDAgOS4yLDQuNSAxMi44LDQuNSIgZmlsbD0iI0M5QTg0QyIvPjxwb2x5Z29uIHBvaW50cz0iNCw1IDIuNSw4LjUgNS41LDcuNSIgZmlsbD0iI0M5QTg0QyIvPjxwb2x5Z29uIHBvaW50cz0iMTgsNSAxOS41LDguNSAxNi41LDcuNSIgZmlsbD0iI0M5QTg0QyIvPjxsaW5lIHgxPSI0IiB5MT0iMjIiIHgyPSIxOCIgeTI9IjIyIiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48bGluZSB4MT0iMTEiIHkxPSIyMCIgeDI9IjExIiB5Mj0iNDIiIHN0cm9rZT0iI0M5QTg0QyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48Y2lyY2xlIGN4PSIxMSIgY3k9IjQyIiByPSIyIiBmaWxsPSIjQzlBODRDIi8+PC9zdmc+') 6 0, auto;
+    }
+
+    /* ── GHOST CURSOR CANVAS HOST ── */
+    #ghost-host {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── STAR FIELD (CSS) ── */
+    #stars-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    /* ── RADIAL COSMIC GRADIENT ── */
+    .cosmic-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, #1a0a3e 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 20% 80%, #0a0a2e 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 20%, #0f0520 0%, transparent 60%),
+        #050510;
+    }
+
+    /* ── MANDALA RING (SVG background) ── */
+    .mandala-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      opacity: 0.07;
+      width: min(90vw, 90vh);
+      height: min(90vw, 90vh);
+      animation: spin-slow 60s linear infinite;
+      pointer-events: none;
+    }
+
+    .mandala-ring-2 {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      opacity: 0.04;
+      width: min(110vw, 110vh);
+      height: min(110vw, 110vh);
+      animation: spin-slow 90s linear infinite reverse;
+      pointer-events: none;
+    }
+
+    @keyframes spin-slow { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    /* ── CONTENT LAYER ── */
+    .content {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ── OM AURA (background radial glow) ── */
+    .om-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .om-aura {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(180px, 28vw, 340px);
+      height: clamp(180px, 28vw, 340px);
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center,
+        rgba(201,168,76,0.55) 0%,
+        rgba(201,168,76,0.28) 25%,
+        rgba(201,168,76,0.10) 55%,
+        transparent 75%
+      );
+      animation: aura-pulse 3s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes aura-pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 0.75; }
+      50%       { transform: translate(-50%, -50%) scale(1.18); opacity: 1;    }
+    }
+
+    /* ── OM SYMBOL ── */
+    .om-symbol {
+      position: relative;
+      z-index: 1;
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: clamp(48px, 8vw, 96px);
+      color: var(--gold);
+      line-height: 1;
+      animation: om-glow 3s ease-in-out infinite, om-float 6s ease-in-out infinite;
+    }
+
+    @keyframes om-glow {
+      0%, 100% {
+        filter:
+          drop-shadow(0 0 12px  rgba(201,168,76,0.95))
+          drop-shadow(0 0 40px  rgba(201,168,76,0.7))
+          drop-shadow(0 0 80px  rgba(201,168,76,0.35))
+          drop-shadow(0 0 120px rgba(201,168,76,0.15));
+      }
+      50% {
+        filter:
+          drop-shadow(0 0 18px  rgba(255,220,100,1))
+          drop-shadow(0 0 60px  rgba(201,168,76,0.9))
+          drop-shadow(0 0 120px rgba(201,168,76,0.55))
+          drop-shadow(0 0 180px rgba(201,168,76,0.25));
+      }
+    }
+
+    @keyframes om-float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    /* ── SANSKRIT VERSE ── */
+    .sanskrit-verse {
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: clamp(11px, 1.5vw, 16px);
+      color: rgba(201, 168, 76, 0.65);
+      letter-spacing: 3px;
+      margin-bottom: 32px;
+      animation: fade-in 2s ease-out 1s both;
+    }
+
+    /* ── MAIN HEADING ── */
+    .main-heading {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(26px, 4.5vw, 64px);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      animation: fade-up 1s ease-out 0.3s both;
+      text-shadow: 0 0 60px rgba(201,168,76,0.3);
+    }
+
+    /* ── TILAK I ── */
+    .tilak-i {
+      display: inline-block;
+      height: 1.15em;
+      width: 0.74em;
+      object-fit: fill;
+      vertical-align: -0.28em;
+      margin: 0 -0.1em;
+      filter: drop-shadow(0 0 8px rgba(212,43,15,0.6));
+    }
+
+    /* ── TITLE RULE ── */
+    .title-rule {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 20px;
+      animation: fade-in 1s ease-out 0.6s both;
+    }
+
+    /* ── TAGLINE ── */
+    .tagline {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(13px, 1.8vw, 20px);
+      color: var(--cream);
+      opacity: 0.8;
+      letter-spacing: 1px;
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 8px;
+      animation: fade-up 1s ease-out 0.6s both;
+    }
+
+    .tagline em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    /* ── SERVICE TAGS ── */
+    .service-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+      animation: fade-up 1s ease-out 0.9s both;
+    }
+
+    .tag {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(10px, 1.3vw, 13px);
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.35);
+      border-radius: 20px;
+      padding: 5px 14px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: rgba(201,168,76,0.06);
+    }
+
+    /* ── CTA BUTTONS ── */
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fade-up 1s ease-out 1.2s both;
+      pointer-events: all;
+    }
+
+    .btn-primary {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: clamp(10px, 1.3vw, 13px);
+      color: var(--cosmic);
+      background: linear-gradient(135deg, #C9A84C, #e8c96a, #C9A84C);
+      background-size: 200% 200%;
+      border: none;
+      border-radius: 4px;
+      padding: 14px 32px;
+      cursor: pointer;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: gold-shimmer 3s ease-in-out infinite, btn-pulse 2.5s ease-in-out infinite;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(201,168,76,0.6), 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    @keyframes gold-shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50%       { background-position: 100% 50%; }
+    }
+
+    @keyframes btn-pulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(201,168,76,0.3), 0 4px 16px rgba(0,0,0,0.3); }
+      50%       { box-shadow: 0 0 50px rgba(201,168,76,0.6), 0 4px 24px rgba(0,0,0,0.4); }
+    }
+
+    .btn-secondary {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: clamp(10px, 1.3vw, 13px);
+      color: var(--gold);
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.5);
+      border-radius: 4px;
+      padding: 13px 28px;
+      cursor: pointer;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(201,168,76,0.1);
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(201,168,76,0.2);
+    }
+
+    /* ── CONSULTATION NOTE ── */
+    .consult-note {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      font-family: 'EB Garamond', serif;
+      font-size: 11px;
+      color: rgba(201,168,76,0.5);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      animation: fade-in 2s ease-out 2s both;
+      pointer-events: none;
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: fade-in 2s ease-out 2.5s both;
+      pointer-events: none;
+    }
+
+    .scroll-indicator span {
+      font-family: 'EB Garamond', serif;
+      font-size: 9px;
+      color: rgba(201,168,76,0.4);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+      animation: scroll-drop 1.5s ease-in-out infinite;
+    }
+
+    @keyframes scroll-drop {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ── CORNER ORNAMENTS ── */
+    .corner {
+      position: absolute;
+      z-index: 5;
+      width: 60px;
+      height: 60px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    .corner.tl { top: 24px; left: 24px; }
+    .corner.tr { top: 24px; right: 24px; transform: scaleX(-1); }
+    .corner.bl { bottom: 24px; left: 24px; transform: scaleY(-1); }
+    .corner.br { bottom: 24px; right: 24px; transform: scale(-1, -1); }
+
+
+    /* ── ANIMATIONS ── */
+    @keyframes fade-in  { from { opacity: 0; }                           to { opacity: 1; } }
+    @keyframes fade-up  { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── PREVIEW LABEL ── */
+    .preview-badge {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 9999;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-family: 'EB Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 3px;
+      pointer-events: none;
+    }
+
+  </style>
+</head>
+<body>
+
+
+<!-- Preview badge -->
+<div class="preview-badge">Background Preview</div>
+
+
+<!-- Main scene -->
+<div id="scene">
+
+  <!-- Layer 0: Cosmic gradient -->
+  <div class="cosmic-bg"></div>
+
+  <!-- Layer 1: Animated stars -->
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- Layer 2: Rotating mandala rings (SVG inline) -->
+  <svg class="mandala-ring" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="200" r="190" stroke="#C9A84C" stroke-width="0.5"/>
+    <circle cx="200" cy="200" r="170" stroke="#C9A84C" stroke-width="0.3" stroke-dasharray="4 8"/>
+    <circle cx="200" cy="200" r="150" stroke="#C9A84C" stroke-width="0.5"/>
+    <circle cx="200" cy="200" r="130" stroke="#C9A84C" stroke-width="0.3" stroke-dasharray="2 6"/>
+    <circle cx="200" cy="200" r="110" stroke="#C9A84C" stroke-width="0.5"/>
+    <circle cx="200" cy="200" r="90"  stroke="#C9A84C" stroke-width="0.3" stroke-dasharray="3 5"/>
+    <!-- 12 spokes (zodiac wheel feel) -->
+    <line x1="200" y1="10"  x2="200" y2="390" stroke="#C9A84C" stroke-width="0.3" transform="rotate(0 200 200)"/>
+    <line x1="200" y1="10"  x2="200" y2="390" stroke="#C9A84C" stroke-width="0.3" transform="rotate(30 200 200)"/>
+    <line x1="200" y1="10"  x2="200" y2="390" stroke="#C9A84C" stroke-width="0.3" transform="rotate(60 200 200)"/>
+    <line x1="200" y1="10"  x2="200" y2="390" stroke="#C9A84C" stroke-width="0.3" transform="rotate(90 200 200)"/>
+    <line x1="200" y1="10"  x2="200" y2="390" stroke="#C9A84C" stroke-width="0.3" transform="rotate(120 200 200)"/>
+    <line x1="200" y1="10"  x2="200" y2="390" stroke="#C9A84C" stroke-width="0.3" transform="rotate(150 200 200)"/>
+    <!-- 12 dots at rim -->
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(0 200 200)"/>
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(30 200 200)"/>
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(60 200 200)"/>
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(90 200 200)"/>
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(120 200 200)"/>
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(150 200 200)"/>
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(180 200 200)"/>
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(210 200 200)"/>
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(240 200 200)"/>
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(270 200 200)"/>
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(300 200 200)"/>
+    <circle cx="200" cy="12"  r="3" fill="#C9A84C" transform="rotate(330 200 200)"/>
+    <!-- Lotus petals (simplified) -->
+    <ellipse cx="200" cy="115" rx="8" ry="20" fill="none" stroke="#C9A84C" stroke-width="0.4" transform="rotate(0 200 200)"/>
+    <ellipse cx="200" cy="115" rx="8" ry="20" fill="none" stroke="#C9A84C" stroke-width="0.4" transform="rotate(45 200 200)"/>
+    <ellipse cx="200" cy="115" rx="8" ry="20" fill="none" stroke="#C9A84C" stroke-width="0.4" transform="rotate(90 200 200)"/>
+    <ellipse cx="200" cy="115" rx="8" ry="20" fill="none" stroke="#C9A84C" stroke-width="0.4" transform="rotate(135 200 200)"/>
+    <ellipse cx="200" cy="115" rx="8" ry="20" fill="none" stroke="#C9A84C" stroke-width="0.4" transform="rotate(180 200 200)"/>
+    <ellipse cx="200" cy="115" rx="8" ry="20" fill="none" stroke="#C9A84C" stroke-width="0.4" transform="rotate(225 200 200)"/>
+    <ellipse cx="200" cy="115" rx="8" ry="20" fill="none" stroke="#C9A84C" stroke-width="0.4" transform="rotate(270 200 200)"/>
+    <ellipse cx="200" cy="115" rx="8" ry="20" fill="none" stroke="#C9A84C" stroke-width="0.4" transform="rotate(315 200 200)"/>
+  </svg>
+
+  <svg class="mandala-ring-2" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="200" r="195" stroke="#FF6B1A" stroke-width="0.3" stroke-dasharray="1 12"/>
+    <circle cx="200" cy="200" r="175" stroke="#FF6B1A" stroke-width="0.2" stroke-dasharray="3 9"/>
+    <circle cx="200" cy="200" r="155" stroke="#C9A84C" stroke-width="0.3" stroke-dasharray="5 7"/>
+    <!-- Sri Yantra triangle hints -->
+    <polygon points="200,60 360,310 40,310" fill="none" stroke="#C9A84C" stroke-width="0.4"/>
+    <polygon points="200,340 40,90 360,90" fill="none" stroke="#C9A84C" stroke-width="0.4"/>
+  </svg>
+
+  <!-- Corner ornaments -->
+  <svg class="corner tl" viewBox="0 0 60 60" fill="none">
+    <path d="M2 2 L30 2 M2 2 L2 30" stroke="#C9A84C" stroke-width="1.5"/>
+    <path d="M8 2 L8 8 L2 8" stroke="#C9A84C" stroke-width="0.5"/>
+    <circle cx="2" cy="2" r="2" fill="#C9A84C"/>
+  </svg>
+  <svg class="corner tr" viewBox="0 0 60 60" fill="none">
+    <path d="M2 2 L30 2 M2 2 L2 30" stroke="#C9A84C" stroke-width="1.5"/>
+    <path d="M8 2 L8 8 L2 8" stroke="#C9A84C" stroke-width="0.5"/>
+    <circle cx="2" cy="2" r="2" fill="#C9A84C"/>
+  </svg>
+  <svg class="corner bl" viewBox="0 0 60 60" fill="none">
+    <path d="M2 2 L30 2 M2 2 L2 30" stroke="#C9A84C" stroke-width="1.5"/>
+    <path d="M8 2 L8 8 L2 8" stroke="#C9A84C" stroke-width="0.5"/>
+    <circle cx="2" cy="2" r="2" fill="#C9A84C"/>
+  </svg>
+  <svg class="corner br" viewBox="0 0 60 60" fill="none">
+    <path d="M2 2 L30 2 M2 2 L2 30" stroke="#C9A84C" stroke-width="1.5"/>
+    <path d="M8 2 L8 8 L2 8" stroke="#C9A84C" stroke-width="0.5"/>
+    <circle cx="2" cy="2" r="2" fill="#C9A84C"/>
+  </svg>
+
+  <!-- Layer 10: Ghost cursor Three.js canvas -->
+  <div id="ghost-host"></div>
+
+  <!-- Layer 20: Content -->
+  <div class="content">
+    <div class="om-wrap">
+      <div class="om-aura"></div>
+      <div class="om-symbol">ॐ</div>
+    </div>
+    <div class="sanskrit-verse">ॐ तत् सत् &nbsp;·&nbsp; गायत्री मन्त्र &nbsp;·&nbsp; ॐ नमः शिवाय</div>
+    <h1 class="main-heading">
+      Acharya Sum<img class="tilak-i" src="Images/tilak-transparent.png" alt="tilak"/>t
+    </h1>
+    <div class="title-rule"></div>
+    <p class="tagline">
+      Helping you find clarity through the wisdom of<br/>
+      <em>Astrology, Numerology &amp; Vastu Shastra</em>
+    </p>
+    <div class="service-tags">
+      <span class="tag">Astrology</span>
+      <span class="tag">Numerology</span>
+      <span class="tag">Vastu</span>
+      <span class="tag">Tarot</span>
+    </div>
+    <div class="cta-group">
+      <button class="btn-primary">Book Consultation</button>
+      <button class="btn-secondary">Know More</button>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
+  <!-- Bottom note -->
+  <div class="consult-note">📞 Consultation by Prior Appointment &nbsp;·&nbsp; Paid Sessions Only</div>
+
+</div><!-- /scene -->
+
+<script type="module">
+import * as THREE from 'three'
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'
+import { RenderPass }     from 'three/addons/postprocessing/RenderPass.js'
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
+import { ShaderPass }     from 'three/addons/postprocessing/ShaderPass.js'
+
+// ──────────────────────────────────────────────
+// STAR FIELD (canvas 2D — lightweight)
+// ──────────────────────────────────────────────
+const starsCanvas = document.getElementById('stars-canvas')
+const starsCtx    = starsCanvas.getContext('2d')
+let stars = []
+
+function initStars() {
+  starsCanvas.width  = window.innerWidth
+  starsCanvas.height = window.innerHeight
+  stars = Array.from({ length: 280 }, () => ({
+    x:    Math.random() * starsCanvas.width,
+    y:    Math.random() * starsCanvas.height,
+    r:    Math.random() * 1.5 + 0.2,
+    a:    Math.random(),
+    da:   (Math.random() - 0.5) * 0.004,
+    gold: Math.random() < 0.2
+  }))
+}
+
+function drawStars(t) {
+  starsCtx.clearRect(0, 0, starsCanvas.width, starsCanvas.height)
+  stars.forEach(s => {
+    s.a = Math.max(0.05, Math.min(1, s.a + s.da))
+    if (s.a <= 0.05 || s.a >= 1) s.da *= -1
+    starsCtx.beginPath()
+    starsCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
+    starsCtx.fillStyle = s.gold
+      ? `rgba(201,168,76,${s.a * 0.9})`
+      : `rgba(255,255,255,${s.a * 0.7})`
+    starsCtx.fill()
+  })
+}
+
+initStars()
+window.addEventListener('resize', initStars)
+
+
+// ──────────────────────────────────────────────
+// GHOST CURSOR — Three.js
+// ──────────────────────────────────────────────
+const TRAIL_LEN   = 24
+const INERTIA     = 0.08
+const GLOW_COLOR  = '#7B3FD4'
+
+const host   = document.getElementById('ghost-host')
+const scene  = document.getElementById('scene')
+
+const renderer = new THREE.WebGLRenderer({
+  antialias: true, alpha: true, depth: false,
+  stencil: false, premultipliedAlpha: false,
+  preserveDrawingBuffer: false
+})
+renderer.setClearColor(0x000000, 0)
+renderer.domElement.style.cssText = `
+  pointer-events:none;
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  mix-blend-mode:screen;
+  display:block;
+`
+host.appendChild(renderer.domElement)
+
+const threeScene  = new THREE.Scene()
+const camera      = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
+const geom        = new THREE.PlaneGeometry(2, 2)
+
+const trailBuf = Array.from({ length: TRAIL_LEN }, () => new THREE.Vector2(0.5, 0.5))
+let head = 0
+
+const baseColor = new THREE.Color(GLOW_COLOR)
+
+const fragShader = `
+  uniform float iTime;
+  uniform vec3  iResolution;
+  uniform vec2  iMouse;
+  uniform vec2  iPrevMouse[${TRAIL_LEN}];
+  uniform float iOpacity;
+  uniform float iScale;
+  uniform vec3  iBaseColor;
+  uniform float iBrightness;
+  varying vec2  vUv;
+
+  float hash(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123); }
+  float noise(vec2 p){
+    vec2 i=floor(p),f=fract(p);
+    f=f*f*(3.-2.*f);
+    return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);
+  }
+  float fbm(vec2 p){
+    float v=0.;float a=0.5;
+    mat2 m=mat2(cos(.5),sin(.5),-sin(.5),cos(.5));
+    for(int i=0;i<5;i++){v+=a*noise(p);p=m*p*2.;a*=.5;}
+    return v;
+  }
+
+  vec4 blob(vec2 p,vec2 mp,float intensity,float activity){
+    vec2 q=vec2(fbm(p*iScale+iTime*.1),fbm(p*iScale+vec2(5.2,1.3)+iTime*.1));
+    vec2 r=vec2(fbm(p*iScale+q*1.5+iTime*.15),fbm(p*iScale+q*1.5+vec2(8.3,2.8)+iTime*.15));
+    float smoke=fbm(p*iScale+r*0.8);
+    float radius=0.5+0.3*(1./iScale);
+    float dist=1.-smoothstep(0.,radius*activity,length(p-mp));
+    float alpha=pow(smoke,2.5)*dist;
+    vec3 c1=mix(iBaseColor,vec3(1.),0.15);
+    vec3 c2=mix(iBaseColor,vec3(1.,.95,.6),0.3);
+    vec3 col=mix(c1,c2,sin(iTime*.5)*.5+.5);
+    return vec4(col*alpha*intensity,alpha*intensity);
+  }
+
+  void main(){
+    vec2 uv=(gl_FragCoord.xy/iResolution.xy*2.-1.)*vec2(iResolution.x/iResolution.y,1.);
+    vec2 mouse=(iMouse*2.-1.)*vec2(iResolution.x/iResolution.y,1.);
+    vec3 colAcc=vec3(0.);float aAcc=0.;
+    vec4 b=blob(uv,mouse,1.,iOpacity);
+    colAcc+=b.rgb;aAcc+=b.a;
+    for(int i=0;i<${TRAIL_LEN};i++){
+      vec2 pm=(iPrevMouse[i]*2.-1.)*vec2(iResolution.x/iResolution.y,1.);
+      float t=pow(1.-float(i)/float(${TRAIL_LEN}),2.);
+      if(t>0.01){vec4 bt=blob(uv,pm,t*.8,iOpacity);colAcc+=bt.rgb;aAcc+=bt.a;}
+    }
+    colAcc*=iBrightness;
+    float outA=clamp(aAcc*iOpacity,0.,1.);
+    gl_FragColor=vec4(colAcc,outA);
+  }
+`
+
+const vertShader = `varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.0);}`
+
+const mat = new THREE.ShaderMaterial({
+  uniforms: {
+    iTime:       { value: 0 },
+    iResolution: { value: new THREE.Vector3(1, 1, 1) },
+    iMouse:      { value: new THREE.Vector2(0.5, 0.5) },
+    iPrevMouse:  { value: trailBuf.map(v => v.clone()) },
+    iOpacity:    { value: 1.0 },
+    iScale:      { value: 1.0 },
+    iBaseColor:  { value: new THREE.Vector3(baseColor.r, baseColor.g, baseColor.b) },
+    iBrightness: { value: 0.45 },
+  },
+  vertexShader: vertShader,
+  fragmentShader: fragShader,
+  transparent: true, depthTest: false, depthWrite: false,
+})
+
+threeScene.add(new THREE.Mesh(geom, mat))
+
+const composer = new EffectComposer(renderer)
+composer.addPass(new RenderPass(threeScene, camera))
+
+const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.06, 0.5, 0.0)
+composer.addPass(bloom)
+
+const filmGrainShader = {
+  uniforms: { tDiffuse: { value: null }, iTime: { value: 0 }, intensity: { value: 0.04 } },
+  vertexShader: `varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+  fragmentShader: `
+    uniform sampler2D tDiffuse;uniform float iTime;uniform float intensity;varying vec2 vUv;
+    float h(float n){return fract(sin(n)*43758.5453);}
+    void main(){
+      vec4 c=texture2D(tDiffuse,vUv);
+      float n=h(vUv.x*1000.+vUv.y*2000.+iTime)*2.-1.;
+      c.rgb+=n*intensity*c.rgb;gl_FragColor=c;
+    }
+  `
+}
+const filmPass = new ShaderPass(filmGrainShader)
+composer.addPass(filmPass)
+
+// Resize
+function resize() {
+  const w = window.innerWidth, h = window.innerHeight
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
+  renderer.setSize(w, h, false)
+  composer.setSize(w, h)
+  mat.uniforms.iResolution.value.set(w * Math.min(window.devicePixelRatio, 1.5), h * Math.min(window.devicePixelRatio, 1.5), 1)
+  mat.uniforms.iScale.value = Math.max(0.5, Math.min(2.0, Math.min(w, h) / 600))
+  bloom.setSize(w, h)
+}
+resize()
+window.addEventListener('resize', resize)
+
+// Mouse tracking
+const mouse    = new THREE.Vector2(0.5, 0.5)
+const velocity = new THREE.Vector2(0, 0)
+let fadeOpacity = 1.0
+let lastMove = performance.now()
+let isPointerOver = false
+
+scene.addEventListener('pointermove', e => {
+  const r = scene.getBoundingClientRect()
+  mouse.set(
+    THREE.MathUtils.clamp((e.clientX - r.left) / r.width, 0, 1),
+    THREE.MathUtils.clamp(1 - (e.clientY - r.top) / r.height, 0, 1)
+  )
+  isPointerOver = true
+  lastMove = performance.now()
+  fadeOpacity = 1.0
+}, { passive: true })
+
+scene.addEventListener('pointerleave', () => { isPointerOver = false; lastMove = performance.now() }, { passive: true })
+
+
+// Animate
+const start = performance.now()
+function animate() {
+  requestAnimationFrame(animate)
+  const now = performance.now()
+  const t   = (now - start) / 1000
+
+  // Ghost cursor logic
+  if (isPointerOver) {
+    velocity.set(mouse.x - mat.uniforms.iMouse.value.x, mouse.y - mat.uniforms.iMouse.value.y)
+    mat.uniforms.iMouse.value.copy(mouse)
+    fadeOpacity = 1.0
+  } else {
+    velocity.multiplyScalar(INERTIA)
+    mat.uniforms.iMouse.value.add(velocity)
+    const dt = now - lastMove
+    if (dt > 1000) fadeOpacity = Math.max(0, 1 - Math.min(1, (dt - 1000) / 1500))
+  }
+
+  head = (head + 1) % TRAIL_LEN
+  trailBuf[head].copy(mat.uniforms.iMouse.value)
+  const arr = mat.uniforms.iPrevMouse.value
+  for (let i = 0; i < TRAIL_LEN; i++) arr[i].copy(trailBuf[(head - i + TRAIL_LEN) % TRAIL_LEN])
+
+  mat.uniforms.iOpacity.value = fadeOpacity
+  mat.uniforms.iTime.value    = t
+  if (filmPass.uniforms?.iTime) filmPass.uniforms.iTime.value = t
+
+  // Stars
+  drawStars(t)
+
+  composer.render()
+}
+animate()
+</script>
+
+</body>
+</html>

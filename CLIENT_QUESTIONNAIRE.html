@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Questionnaire — TinyAngle Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ─── RESET & BASE ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0f1b3c;
+      --gold:      #c9a044;
+      --gold-lt:   #e8c96a;
+      --cream:     #fef9f0;
+      --light:     #f4f6fb;
+      --border:    #d4d8e8;
+      --text:      #1a1a2e;
+      --muted:     #6b7280;
+      --white:     #ffffff;
+      --line:      #c8ccda;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-size: 9.5pt;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.5;
+    }
+
+    /* ─── PAGE WRAPPER ─────────────────────────────── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: var(--white);
+      position: relative;
+    }
+
+    /* ─── PRINT ────────────────────────────────────── */
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    @media print {
+      body { background: white; }
+      .page { width: 210mm; margin: 0; box-shadow: none; }
+      .no-print { display: none; }
+      .page-break { page-break-before: always; }
+      .avoid-break { page-break-inside: avoid; }
+    }
+
+    @media screen {
+      body { background: #e8eaf0; padding: 20px 0 60px; }
+      .page {
+        box-shadow: 0 4px 40px rgba(0,0,0,0.18);
+        margin-bottom: 24px;
+      }
+      .print-btn {
+        position: fixed; top: 20px; right: 20px; z-index: 999;
+        background: var(--gold); color: var(--navy);
+        border: none; padding: 12px 24px; border-radius: 8px;
+        font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px;
+        cursor: pointer; box-shadow: 0 4px 12px rgba(201,160,68,0.4);
+        letter-spacing: 0.5px;
+      }
+      .print-btn:hover { background: var(--gold-lt); }
+    }
+
+    /* ─── HEADER (repeats on each page) ───────────── */
+    .page-header {
+      background: var(--navy);
+      padding: 14px 28px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-logo img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text .studio-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 14pt;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+    }
+
+    .logo-text .studio-tagline {
+      font-size: 7pt;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    .header-doc-info {
+      text-align: right;
+    }
+
+    .header-doc-info .doc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 11pt;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .header-doc-info .doc-meta {
+      font-size: 7pt;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* ─── PAGE FOOTER ──────────────────────────────── */
+    .page-footer {
+      background: var(--navy);
+      padding: 9px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 2px solid var(--gold);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .footer-contact {
+      font-size: 7pt;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.5px;
+    }
+
+    .footer-contact span { color: var(--gold); margin: 0 6px; }
+
+    .footer-page {
+      font-size: 7pt;
+      color: rgba(255,255,255,0.45);
+      font-weight: 300;
+    }
+
+    /* ─── CONTENT AREA ─────────────────────────────── */
+    .content {
+      padding: 22px 28px 70px;
+    }
+
+    /* ─── COVER PAGE ───────────────────────────────── */
+    .cover-body {
+      padding: 0 28px 70px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cover-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a2f6e 100%);
+      width: 100%;
+      padding: 48px 32px 40px;
+      text-align: center;
+      border-bottom: 4px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover-hero::before {
+      content: '✦';
+      position: absolute; top: 16px; left: 24px;
+      font-size: 22pt; color: rgba(201,160,68,0.2);
+    }
+
+    .cover-hero::after {
+      content: '✦';
+      position: absolute; bottom: 16px; right: 24px;
+      font-size: 22pt; color: rgba(201,160,68,0.2);
+    }
+
+    .cover-ornament {
+      font-size: 28pt;
+      color: var(--gold);
+      opacity: 0.9;
+      line-height: 1;
+      margin-bottom: 14px;
+      letter-spacing: 6px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26pt;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .cover-subtitle {
+      font-size: 9pt;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+
+    .cover-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 28px;
+      opacity: 0.6;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      width: 100%;
+      margin-top: 32px;
+      border: 1px solid rgba(201,160,68,0.25);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .cover-meta-item {
+      padding: 16px 20px;
+      border-right: 1px solid rgba(201,160,68,0.2);
+      text-align: left;
+    }
+
+    .cover-meta-item:last-child { border-right: none; }
+
+    .cover-meta-label {
+      font-size: 6.5pt;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .cover-meta-value {
+      font-size: 8.5pt;
+      color: rgba(255,255,255,0.85);
+      font-weight: 400;
+    }
+
+    .cover-meta-value.blank-field {
+      border-bottom: 1px solid rgba(201,160,68,0.4);
+      padding-bottom: 2px;
+      min-width: 100px;
+      display: inline-block;
+      min-height: 14px;
+    }
+
+    .cover-instructions {
+      width: 100%;
+      margin-top: 28px;
+      background: var(--cream);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+    }
+
+    .cover-instructions h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 10pt;
+      color: var(--navy);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .cover-instructions ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cover-instructions ul li {
+      font-size: 8.5pt;
+      color: #374151;
+      padding: 3px 0 3px 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .cover-instructions ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 9pt;
+    }
+
+    .cover-notice {
+      width: 100%;
+      margin-top: 16px;
+      background: #fff8e1;
+      border: 1px solid #f5c842;
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .cover-notice .notice-icon {
+      font-size: 14pt;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .cover-notice p {
+      font-size: 8pt;
+      color: #78350f;
+      line-height: 1.6;
+    }
+
+    .cover-notice strong { color: #92400e; }
+
+    /* ─── SECTION HEADER ───────────────────────────── */
+    .section-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 9px 16px 8px;
+      border-radius: 4px 4px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+
+    .section-header:first-child { margin-top: 0; }
+
+    .section-badge {
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 7pt;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 11pt;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.3px;
+    }
+
+    .section-body {
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      padding: 16px 18px 12px;
+      background: var(--white);
+      margin-bottom: 4px;
+    }
+
+    /* ─── QUESTION ─────────────────────────────────── */
+    .question {
+      margin-bottom: 16px;
+    }
+
+    .question:last-child { margin-bottom: 4px; }
+
+    .q-label {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 3px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      line-height: 1.4;
+    }
+
+    .q-num {
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 6.5pt;
+      font-weight: 700;
+      padding: 2px 5px;
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .q-hint {
+      font-size: 7.5pt;
+      color: var(--muted);
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 4px;
+      padding-left: 26px;
+      line-height: 1.4;
+    }
+
+    /* ─── ANSWER LINES ─────────────────────────────── */
+    .answer-line {
+      border-bottom: 1px solid var(--line);
+      height: 20px;
+      margin-bottom: 6px;
+      width: 100%;
+    }
+
+    .answer-lines-2 .answer-line { margin-bottom: 6px; }
+    .answer-lines-3 .answer-line { margin-bottom: 6px; }
+    .answer-lines-4 .answer-line { margin-bottom: 6px; }
+
+    .answer-area {
+      padding-left: 26px;
+    }
+
+    /* ─── CHECKBOXES ───────────────────────────────── */
+    .checkbox-group {
+      padding-left: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      margin-top: 4px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 8.5pt;
+      color: var(--text);
+      padding: 3px 0;
+    }
+
+    .checkbox-box {
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--navy);
+      border-radius: 2px;
+      flex-shrink: 0;
+      display: inline-block;
+    }
+
+    .checkbox-group.stacked { flex-direction: column; gap: 4px; }
+
+    /* ─── TABLES ───────────────────────────────────── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+      font-size: 8pt;
+    }
+
+    .data-table th {
+      background: var(--navy);
+      color: var(--white);
+      padding: 7px 10px;
+      text-align: left;
+      font-weight: 500;
+      font-size: 7.5pt;
+      letter-spacing: 0.3px;
+      border: 1px solid #1e2f5e;
+    }
+
+    .data-table td {
+      border: 1px solid var(--border);
+      padding: 0;
+    }
+
+    .data-table td .cell-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 4px 8px 2px;
+      min-height: 32px;
+    }
+
+    .data-table td .cell-line {
+      border-bottom: 1px solid var(--line);
+      height: 18px;
+      width: 100%;
+    }
+
+    .data-table tr:nth-child(even) td { background: var(--light); }
+
+    /* ─── INFO BOX ─────────────────────────────────── */
+    .info-box {
+      background: var(--cream);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 10px 14px;
+      margin: 10px 0;
+      font-size: 8pt;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+
+    .info-box strong { color: var(--navy); }
+
+    /* ─── URGENT TABLE ─────────────────────────────── */
+    .urgent-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8pt;
+      margin-top: 8px;
+    }
+
+    .urgent-table th {
+      background: #7f1d1d;
+      color: white;
+      padding: 7px 10px;
+      text-align: left;
+      font-weight: 500;
+      font-size: 7.5pt;
+    }
+
+    .urgent-table td {
+      border: 1px solid #fecaca;
+      padding: 8px 10px;
+      vertical-align: top;
+      background: #fff5f5;
+    }
+
+    .urgent-table tr:nth-child(even) td { background: #fff; }
+
+    .urgent-tag {
+      display: inline-block;
+      background: #dc2626;
+      color: white;
+      font-size: 6.5pt;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── CHECKLIST ────────────────────────────────── */
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin-top: 6px;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 5px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 8.5pt;
+      line-height: 1.4;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .checklist li .checkbox-box { margin-top: 1px; }
+
+    .checklist-group-title {
+      font-weight: 600;
+      font-size: 8.5pt;
+      color: var(--navy);
+      margin: 12px 0 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-size: 7.5pt;
+    }
+
+    /* ─── TWO-COL ──────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ─── DIVIDER LINE ─────────────────────────────── */
+    .section-divider {
+      border: none;
+      border-top: 2px dashed var(--border);
+      margin: 20px 0;
+    }
+
+    /* ─── SIGNATURE BLOCK ──────────────────────────── */
+    .sig-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .sig-item label {
+      font-size: 7.5pt;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    .sig-item .sig-line {
+      border-bottom: 1px solid var(--text);
+      height: 1px;
+    }
+
+    .sig-item .sig-label {
+      font-size: 7pt;
+      color: var(--muted);
+      margin-top: 4px;
+      text-align: center;
+    }
+
+    /* ─── GOLD RULE ────────────────────────────────── */
+    .gold-rule {
+      border: none;
+      border-top: 1px solid var(--gold);
+      opacity: 0.4;
+      margin: 14px 0;
+    }
+
+  </style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">⬇ Save as PDF</button>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 1 — COVER PAGE
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="header-logo">
+      <img src="Images/TinyAngle_Logo.jpeg" alt="TinyAngle Studio" />
+      <div class="logo-text">
+        <span class="studio-name">TinyAngle Studio</span>
+        <span class="studio-tagline">Digital Design &amp; Development</span>
+      </div>
+    </div>
+    <div class="header-doc-info">
+      <div class="doc-title">Client Questionnaire</div>
+      <div class="doc-meta">Confidential — Version 2.0 &nbsp;|&nbsp; May 2026</div>
+    </div>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-hero">
+      <div class="cover-ornament">✦ ॐ ✦</div>
+      <div class="cover-title">Website Discovery<br/>Questionnaire</div>
+      <div class="cover-subtitle">Astrology &nbsp;·&nbsp; Numerology &nbsp;·&nbsp; Vastu &nbsp;·&nbsp; Tarot</div>
+      <div class="cover-divider"></div>
+
+      <div class="cover-meta-grid">
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Prepared For</div>
+          <div class="cover-meta-value">
+            <span class="blank-field">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Date Issued</div>
+          <div class="cover-meta-value">8 May 2026</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Return By</div>
+          <div class="cover-meta-value">
+            <span class="blank-field">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-instructions">
+      <h3>How to Complete This Form</h3>
+      <ul>
+        <li>Fill in every section as completely as possible — blank fields slow down the project.</li>
+        <li>For multiple-choice questions, tick all options that apply.</li>
+        <li>If a question does not apply, write <strong>"N/A"</strong> rather than leaving it blank.</li>
+        <li>For tables (Services, Products, Testimonials), add rows on separate paper if needed.</li>
+        <li>Financial details (PAN, bank account) must be shared via secure channel — not email.</li>
+        <li>Return the completed form to <strong>tinyanglestudio@gmail.com</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="cover-notice">
+      <div class="notice-icon">⚠️</div>
+      <p><strong>Time-Sensitive:</strong> Razorpay KYC takes 3–7 days and WhatsApp Business API approval takes 1–4 weeks. These must be started <strong>immediately</strong> — before the website build is complete — to avoid launch delays. See the last page for details.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-contact">
+      tinyanglestudio@gmail.com
+      <span>|</span>
+      Confidential Client Document
+    </div>
+    <div class="footer-page">Page 1 of 8</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 2 — SECTIONS A & B
+══════════════════════════════════════════════════════════ -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="header-logo">
+      <img src="Images/TinyAngle_Logo.jpeg" alt="TinyAngle Studio" />
+      <div class="logo-text">
+        <span class="studio-name">TinyAngle Studio</span>
+        <span class="studio-tagline">Digital Design &amp; Development</span>
+      </div>
+    </div>
+    <div class="header-doc-info">
+      <div class="doc-title">Client Questionnaire</div>
+      <div class="doc-meta">Business Identity &amp; Contact</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- SECTION A -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section A</span>
+      <span class="section-title">Business Identity</span>
+    </div>
+    <div class="section-body">
+
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">A1</span> What is your full name?</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">A2</span> What is your professional title?</div>
+        <div class="q-hint">We suggest: Astrologer | Numerologist | Vastu Consultant — confirm or modify below.</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">A3</span> What is your business / brand name? (if different from your name)</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">A4</span> Write a short tagline — 1 to 2 lines that describe what you do and the value you offer.</div>
+        <div class="answer-area">
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">A5</span> Years of experience?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">A6</span> Do you have a professional logo? (circle) &nbsp; Yes &nbsp; / &nbsp; No</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">A7</span> Certifications or qualifications you hold (list all):</div>
+        <div class="answer-area">
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+      </div>
+
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">A8</span> Key achievements — e.g. "10,000+ consultations", "Featured in Times of India" etc.:</div>
+        <div class="answer-area">
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+      </div>
+
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">A9</span> Do you have a professional photo for the About section? (circle) &nbsp; Yes &nbsp; / &nbsp; No</div>
+        <div class="q-hint">High resolution, well-lit, clean background preferred — minimum 1000×1000px.</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+
+    </div><!-- /section-body -->
+
+    <!-- SECTION B -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section B</span>
+      <span class="section-title">Contact &amp; Social Media</span>
+    </div>
+    <div class="section-body">
+
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">B1</span> Primary phone number (displayed on website)</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">B2</span> WhatsApp number (floating button)</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">B3</span> Email address for bookings / inquiries</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">B4</span> City / State you are based in</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">B5</span> YouTube channel URL</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">B6</span> Instagram profile URL</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">B7</span> Facebook page URL</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">B8</span> Any other social media? (Twitter/X, LinkedIn, Telegram, etc.)</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+
+    </div><!-- /section-body -->
+
+  </div><!-- /content -->
+  <div class="page-footer">
+    <div class="footer-contact">tinyanglestudio@gmail.com <span>|</span> Confidential Client Document</div>
+    <div class="footer-page">Page 2 of 8</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 3 — SECTIONS C & D
+══════════════════════════════════════════════════════════ -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="header-logo">
+      <img src="Images/TinyAngle_Logo.jpeg" alt="TinyAngle Studio" />
+      <div class="logo-text">
+        <span class="studio-name">TinyAngle Studio</span>
+        <span class="studio-tagline">Digital Design &amp; Development</span>
+      </div>
+    </div>
+    <div class="header-doc-info">
+      <div class="doc-title">Client Questionnaire</div>
+      <div class="doc-meta">Services &amp; Products</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- SECTION C -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section C</span>
+      <span class="section-title">Consultation Services</span>
+    </div>
+    <div class="section-body">
+
+      <div class="question">
+        <div class="q-label"><span class="q-num">C1</span> List all consultation services you offer:</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:24%">Service Name</th>
+              <th style="width:28%">Short Description (1–2 lines)</th>
+              <th style="width:12%">Duration</th>
+              <th style="width:14%">Price (₹)</th>
+              <th style="width:22%">Video Call Available?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="two-col" style="margin-top:12px">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">C2</span> Display prices on website or "Contact for Pricing"?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">C3</span> Do you offer combo / package deals?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">C4</span> Calendly account — Username if yes</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">C5</span> Available days &amp; hours for consultations</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">C6</span> Refund / cancellation policy (displayed on booking page):</div>
+        <div class="answer-area">
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECTION D -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section D</span>
+      <span class="section-title">Products (Shop)</span>
+    </div>
+    <div class="section-body">
+
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">D1</span> Do you want to sell products on the website? (circle) &nbsp; Yes &nbsp; / &nbsp; No</div>
+        <div class="q-hint">If No, skip to Section E.</div>
+      </div>
+
+      <div class="question">
+        <div class="q-label"><span class="q-num">D2</span> List products for sale:</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:26%">Product Name</th>
+              <th style="width:18%">Type (Physical/Digital)</th>
+              <th style="width:28%">Description</th>
+              <th style="width:14%">Price (₹)</th>
+              <th style="width:14%">Stock Qty</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="two-col" style="margin-top:10px">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">D3</span> Physical products — ship across India? Any state restrictions?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">D4</span> Digital products — instant download or manually sent?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <div class="footer-contact">tinyanglestudio@gmail.com <span>|</span> Confidential Client Document</div>
+    <div class="footer-page">Page 3 of 8</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 4 — SECTIONS E, F & G
+══════════════════════════════════════════════════════════ -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="header-logo">
+      <img src="Images/TinyAngle_Logo.jpeg" alt="TinyAngle Studio" />
+      <div class="logo-text">
+        <span class="studio-name">TinyAngle Studio</span>
+        <span class="studio-tagline">Digital Design &amp; Development</span>
+      </div>
+    </div>
+    <div class="header-doc-info">
+      <div class="doc-title">Client Questionnaire</div>
+      <div class="doc-meta">Payments, Videos &amp; Content</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- SECTION E -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section E</span>
+      <span class="section-title">Payment Settings</span>
+    </div>
+    <div class="section-body">
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">E1</span> Razorpay account? &nbsp; Yes / No &nbsp; — KYC done?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">E2</span> Razorpay Key ID (starts with rzp_)</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">E3</span> Which payment methods should be enabled? (tick all that apply)</div>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><span class="checkbox-box"></span> UPI (GPay, PhonePe, BHIM)</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Credit / Debit Cards</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Net Banking</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Wallets (Paytm)</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> EMI</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> All of the above</label>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">E4</span> Payment at time of booking (before session) or after?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">E5</span> Razorpay display name (business or personal name)</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION F -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section F</span>
+      <span class="section-title">Video Content (YouTube / Instagram / Facebook)</span>
+    </div>
+    <div class="section-body">
+      <div class="question">
+        <div class="q-label"><span class="q-num">F1</span> YouTube videos to display (up to 8 — add title + URL):</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:30%">Video Title</th>
+              <th style="width:50%">YouTube URL</th>
+              <th style="width:20%">Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="two-col" style="margin-top:10px">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">F2</span> Instagram reels / videos to display (URLs):</div>
+          <div class="answer-area">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+          </div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">F3</span> Facebook videos to display (URLs):</div>
+          <div class="answer-area">
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">F4</span> Custom thumbnails for videos, or use auto-generated YouTube thumbnails?</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+    </div>
+
+    <!-- SECTION G -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section G</span>
+      <span class="section-title">Content &amp; Language</span>
+    </div>
+    <div class="section-body">
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">G1</span> Website language — English only or include Hindi?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">G2</span> Want a Blog section on the website? &nbsp; Yes / No</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">G3</span> Preferred Sanskrit shloka for the hero section (e.g. Gayatri Mantra):</div>
+        <div class="answer-area">
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+      </div>
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">G4</span> Write your "About Me" section in your own words (we will format and edit it):</div>
+        <div class="answer-area">
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <div class="footer-contact">tinyanglestudio@gmail.com <span>|</span> Confidential Client Document</div>
+    <div class="footer-page">Page 4 of 8</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 5 — SECTIONS H, I & J
+══════════════════════════════════════════════════════════ -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="header-logo">
+      <img src="Images/TinyAngle_Logo.jpeg" alt="TinyAngle Studio" />
+      <div class="logo-text">
+        <span class="studio-name">TinyAngle Studio</span>
+        <span class="studio-tagline">Digital Design &amp; Development</span>
+      </div>
+    </div>
+    <div class="header-doc-info">
+      <div class="doc-title">Client Questionnaire</div>
+      <div class="doc-meta">Testimonials, Design &amp; Domain</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- SECTION H -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section H</span>
+      <span class="section-title">Client Testimonials</span>
+    </div>
+    <div class="section-body">
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">H1</span> You have permission to display these reviews publicly? (circle) &nbsp; Yes &nbsp; / &nbsp; No</div>
+      </div>
+      <div class="question">
+        <div class="q-label"><span class="q-num">H2</span> Share 6–10 client testimonials (add rows if needed):</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:18%">Client Name</th>
+              <th style="width:13%">City</th>
+              <th style="width:8%">Rating</th>
+              <th style="width:38%">Review Text</th>
+              <th style="width:15%">Service Taken</th>
+              <th style="width:8%">Photo?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION I -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section I</span>
+      <span class="section-title">Design Preferences</span>
+    </div>
+    <div class="section-body">
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">I1</span> Reference websites you like the look and feel of (any industry):</div>
+        <div class="answer-area">
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">I2</span> Colors to prefer or avoid:</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">I3</span> Dark cosmic theme or warm saffron/earthy theme?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">I4</span> Which Indian elements do you want on the website? (tick all that apply)</div>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><span class="checkbox-box"></span> Om (ॐ) in the hero section</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Sanskrit verse in hero</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Rotating mandala background</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Zodiac wheel animation</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Lotus flower service reveals</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Sri Yantra section divider</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Diya / glow light effects on cards</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Constellation line art</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Vastu compass / directions graphic</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION J -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section J</span>
+      <span class="section-title">Domain &amp; Hosting</span>
+    </div>
+    <div class="section-body">
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">J1</span> Existing domain name &amp; registrar (if any)</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">J2</span> Preferred domain name (if no domain yet)</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">J3</span> Existing website to replace? URL:</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">J4</span> Open to Vercel hosting (recommended, free)?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <div class="footer-contact">tinyanglestudio@gmail.com <span>|</span> Confidential Client Document</div>
+    <div class="footer-page">Page 5 of 8</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 6 — SECTIONS K, L & N
+══════════════════════════════════════════════════════════ -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="header-logo">
+      <img src="Images/TinyAngle_Logo.jpeg" alt="TinyAngle Studio" />
+      <div class="logo-text">
+        <span class="studio-name">TinyAngle Studio</span>
+        <span class="studio-tagline">Digital Design &amp; Development</span>
+      </div>
+    </div>
+    <div class="header-doc-info">
+      <div class="doc-title">Client Questionnaire</div>
+      <div class="doc-meta">Booking, Legal &amp; Payments</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- SECTION K -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section K</span>
+      <span class="section-title">Booking &amp; Calendar</span>
+    </div>
+    <div class="section-body">
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">K1</span> Which Gmail account should be linked to Google Calendar &amp; Meet?</div>
+        <div class="q-hint">Appointments will appear in this calendar. Google Meet links will be created from this account.</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">K2</span> How should clients be reminded? (tick all that apply)</div>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><span class="checkbox-box"></span> Email only</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> WhatsApp only</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Both Email + WhatsApp (recommended)</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> No reminders needed</label>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">K3</span> How many hours before session should reminder be sent?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">K4</span> Minimum notice period before booking? (e.g. 24 hours)</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">K5</span> Can clients reschedule on their own, or must they contact you?</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+    </div>
+
+    <!-- SECTION L -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section L</span>
+      <span class="section-title">Legal &amp; Compliance</span>
+    </div>
+    <div class="section-body">
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">L1</span> Do you want a Disclaimer on the website? (circle) &nbsp; Yes &nbsp; / &nbsp; No</div>
+        <div class="q-hint">e.g. "Astrology and Numerology are for guidance only and not a substitute for professional medical or legal advice."</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">L2</span> Pages required: (tick all — all three recommended)</div>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><span class="checkbox-box"></span> Privacy Policy (required if collecting user data)</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Terms &amp; Conditions</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Refund Policy</label>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">L3</span> GST number (if GST registered)</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">L4</span> PAN number (required for Razorpay KYC)</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+      <div class="info-box">
+        <strong>Note on financial documents:</strong> Bank account details, PAN card copy and Aadhaar should NOT be shared over email. These will be collected via a secure encrypted channel. Please have them ready when requested.
+      </div>
+    </div>
+
+    <!-- SECTION N -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section N</span>
+      <span class="section-title">Email &amp; Notifications</span>
+    </div>
+    <div class="section-body">
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">N1</span> Email address to receive alerts for new bookings and orders:</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">N2</span> Branded sender email? (e.g. noreply@yourname.com) &nbsp; Yes / No</div>
+          <div class="q-hint">Requires owning a domain — much more professional than Gmail.</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">N3</span> Send shipping updates to customers by email? &nbsp; Yes / No</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <div class="footer-contact">tinyanglestudio@gmail.com <span>|</span> Confidential Client Document</div>
+    <div class="footer-page">Page 6 of 8</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 7 — SECTIONS O, P, Q & M
+══════════════════════════════════════════════════════════ -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="header-logo">
+      <img src="Images/TinyAngle_Logo.jpeg" alt="TinyAngle Studio" />
+      <div class="logo-text">
+        <span class="studio-name">TinyAngle Studio</span>
+        <span class="studio-tagline">Digital Design &amp; Development</span>
+      </div>
+    </div>
+    <div class="header-doc-info">
+      <div class="doc-title">Client Questionnaire</div>
+      <div class="doc-meta">Staff Access, Analytics &amp; Future Plans</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- SECTION O -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section O</span>
+      <span class="section-title">FAQs &amp; Additional Content</span>
+    </div>
+    <div class="section-body">
+      <div class="question">
+        <div class="q-label"><span class="q-num">O1</span> List 5–8 Frequently Asked Questions (FAQs) with answers your clients commonly ask:</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:44%">Question</th>
+              <th style="width:56%">Answer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td></tr>
+            <tr><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td><td><div class="cell-lines"><div class="cell-line"></div><div class="cell-line"></div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION P -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section P</span>
+      <span class="section-title">Staff &amp; Admin Access</span>
+    </div>
+    <div class="section-body">
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">P1</span> Will anyone else (assistant, team member) need access to the admin panel? &nbsp; Yes / No</div>
+        <div class="answer-area"><div class="answer-line"></div></div>
+      </div>
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">P2</span> If yes — what level of access do they need?</div>
+          <div class="checkbox-group stacked">
+            <label class="checkbox-item"><span class="checkbox-box"></span> Full admin (edit everything)</label>
+            <label class="checkbox-item"><span class="checkbox-box"></span> View bookings &amp; orders only</label>
+            <label class="checkbox-item"><span class="checkbox-box"></span> Other (specify below)</label>
+          </div>
+          <div class="answer-area" style="margin-top:6px"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">P3</span> How many extra admin users at launch?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION Q -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section Q</span>
+      <span class="section-title">Analytics &amp; Marketing</span>
+    </div>
+    <div class="section-body">
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">Q1</span> Do you run or plan to run paid ads on Facebook or Instagram?</div>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><span class="checkbox-box"></span> Yes, already running</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> Plan to in future</label>
+          <label class="checkbox-item"><span class="checkbox-box"></span> No</label>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">Q2</span> Google Analytics account exists? &nbsp; Yes / No</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">Q3</span> Facebook Business Manager account? &nbsp; Yes / No</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">Q4</span> Keywords you want to rank for on Google:</div>
+        <div class="q-hint">e.g. "best astrologer in Mumbai", "Vastu consultant online India"</div>
+        <div class="answer-area">
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION M -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Section M</span>
+      <span class="section-title">Future Requirements</span>
+    </div>
+    <div class="section-body">
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">M1</span> Plan to offer online courses or recorded sessions?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">M2</span> Plan for membership or subscription plans?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">M3</span> Multiple language support needed in future?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+        <div class="question avoid-break">
+          <div class="q-label"><span class="q-num">M4</span> Mobile app required in the future?</div>
+          <div class="answer-area"><div class="answer-line"></div></div>
+        </div>
+      </div>
+      <div class="question avoid-break">
+        <div class="q-label"><span class="q-num">M5</span> Any other requirement or feature not covered in this form?</div>
+        <div class="answer-area">
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <div class="footer-contact">tinyanglestudio@gmail.com <span>|</span> Confidential Client Document</div>
+    <div class="footer-page">Page 7 of 8</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 8 — ASSETS CHECKLIST & TIME-SENSITIVE ITEMS
+══════════════════════════════════════════════════════════ -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="header-logo">
+      <img src="Images/TinyAngle_Logo.jpeg" alt="TinyAngle Studio" />
+      <div class="logo-text">
+        <span class="studio-name">TinyAngle Studio</span>
+        <span class="studio-tagline">Digital Design &amp; Development</span>
+      </div>
+    </div>
+    <div class="header-doc-info">
+      <div class="doc-title">Client Questionnaire</div>
+      <div class="doc-meta">Assets Checklist &amp; Time-Sensitive Actions</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ASSETS TO COLLECT -->
+    <div class="section-header avoid-break">
+      <span class="section-badge">Checklist</span>
+      <span class="section-title">Documents &amp; Assets to Provide</span>
+    </div>
+    <div class="section-body">
+
+      <div class="checklist-group-title">Branding &amp; Identity</div>
+      <ul class="checklist">
+        <li><span class="checkbox-box"></span>Professional logo — PNG with transparent background, high resolution</li>
+        <li><span class="checkbox-box"></span>Professional photo of consultant — minimum 1000×1000 px, well-lit, clean background</li>
+        <li><span class="checkbox-box"></span>Existing brand guidelines (colors, fonts) — if available</li>
+      </ul>
+
+      <div class="checklist-group-title">Products &amp; Content</div>
+      <ul class="checklist">
+        <li><span class="checkbox-box"></span>Photos of all physical products being sold (high resolution)</li>
+        <li><span class="checkbox-box"></span>Digital product files — PDFs, reports, charts to be sold as downloads</li>
+        <li><span class="checkbox-box"></span>Existing marketing materials, brochures or flyers (any format)</li>
+        <li><span class="checkbox-box"></span>Client testimonial photos — optional but strongly recommended</li>
+        <li><span class="checkbox-box"></span>Indian artwork or spiritual images you legally own the rights to</li>
+        <li><span class="checkbox-box"></span>Existing blog articles or written content you want published</li>
+      </ul>
+
+      <div class="checklist-group-title">Legal &amp; Financial (via secure channel only — not email)</div>
+      <ul class="checklist">
+        <li><span class="checkbox-box"></span>PAN card copy — required for Razorpay KYC</li>
+        <li><span class="checkbox-box"></span>Bank account details — account number, IFSC, bank name (for Razorpay settlements)</li>
+        <li><span class="checkbox-box"></span>GST certificate — if GST registered</li>
+        <li><span class="checkbox-box"></span>Aadhaar card or business registration proof</li>
+        <li><span class="checkbox-box"></span>Cancelled cheque or latest bank statement</li>
+      </ul>
+
+      <div class="checklist-group-title">Accounts to Create Before Build Begins</div>
+      <ul class="checklist">
+        <li><span class="checkbox-box"></span>Razorpay account — submit KYC documents immediately (takes 3–7 business days)</li>
+        <li><span class="checkbox-box"></span>Calendly account — Standard plan at $10/month</li>
+        <li><span class="checkbox-box"></span>Google Cloud account — for Calendar and Meet API setup</li>
+        <li><span class="checkbox-box"></span>Domain purchase — if not already owned</li>
+      </ul>
+
+    </div>
+
+    <!-- TIME-SENSITIVE -->
+    <div class="section-header avoid-break" style="margin-top:18px; background: #7f1d1d;">
+      <span class="section-badge" style="background: #fca5a5; color: #7f1d1d;">Urgent</span>
+      <span class="section-title">Time-Sensitive Items — Start These Now</span>
+    </div>
+    <div class="section-body" style="border-color: #fecaca;">
+      <div class="info-box" style="border-color: #dc2626; background: #fff5f5;">
+        These items have external approval wait times and <strong>cannot be rushed</strong>. They must be initiated before or at the start of website development to avoid blocking the launch date.
+      </div>
+      <table class="urgent-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Who Initiates</th>
+            <th>Time Required</th>
+            <th>Why Critical</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Razorpay KYC verification</strong></td>
+            <td>Client</td>
+            <td><span class="urgent-tag">3–7 days</span></td>
+            <td>Cannot accept live payments without KYC approval</td>
+          </tr>
+          <tr>
+            <td><strong>WhatsApp Business API (Twilio)</strong></td>
+            <td>TinyAngle Studio</td>
+            <td><span class="urgent-tag">1–4 weeks</span></td>
+            <td>Meta approval is slow — no automated WhatsApp without this</td>
+          </tr>
+          <tr>
+            <td><strong>Domain DNS setup</strong></td>
+            <td>Client / TinyAngle</td>
+            <td><span class="urgent-tag">24–48 hours</span></td>
+            <td>Email domain verification needed for branded emails</td>
+          </tr>
+          <tr>
+            <td><strong>Google Calendar API setup</strong></td>
+            <td>TinyAngle Studio</td>
+            <td><span class="urgent-tag">1–2 days</span></td>
+            <td>Needs Google account credentials from client to configure</td>
+          </tr>
+          <tr>
+            <td><strong>Calendly account creation + event types</strong></td>
+            <td>Client</td>
+            <td><span class="urgent-tag">Same day</span></td>
+            <td>Each service needs its own Calendly event type configured</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SIGNATURE BLOCK -->
+    <div style="margin-top: 28px;">
+      <div class="sig-block">
+        <div class="sig-item">
+          <label>Client Signature</label>
+          <div class="sig-line"></div>
+          <div class="sig-label">Signature</div>
+        </div>
+        <div class="sig-item">
+          <label>Full Name</label>
+          <div class="sig-line"></div>
+          <div class="sig-label">Print Name</div>
+        </div>
+        <div class="sig-item">
+          <label>Date Completed</label>
+          <div class="sig-line"></div>
+          <div class="sig-label">DD / MM / YYYY</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; text-align: center; font-size: 7.5pt; color: var(--muted); line-height: 1.8;">
+        Return completed form to &nbsp;<strong style="color:var(--navy)">tinyanglestudio@gmail.com</strong>&nbsp; with subject line: <em>"Client Questionnaire — [Your Name]"</em><br/>
+        Financial documents must be shared via a secure channel — do not email sensitive documents.<br/>
+        <span style="color: var(--gold); font-size: 11pt; letter-spacing: 4px;">✦ &nbsp; ॐ &nbsp; ✦</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <div class="footer-contact">tinyanglestudio@gmail.com <span>|</span> © 2026 TinyAngle Studio. All rights reserved.</div>
+    <div class="footer-page">Page 8 of 8</div>
+  </div>
+</div>
+
+</body>
+</html>
