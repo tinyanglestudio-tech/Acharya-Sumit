@@ -34,7 +34,7 @@ export default function IncludesMarquee({
   return (
     <div className="mt-14 w-full">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-6 px-6 max-w-7xl mx-auto">
+      <div className="flex items-center gap-4 mb-6">
         <h3
           className="font-cinzel font-bold text-white"
           style={{ fontSize: '13px', letterSpacing: '3px', textTransform: 'uppercase' }}

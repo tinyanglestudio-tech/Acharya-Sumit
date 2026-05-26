@@ -163,8 +163,8 @@ export default function VastuSection() {
         </div>
       </div>
 
-      {/* Full-width includes marquee */}
-      <div className="relative z-10">
+      {/* Includes marquee — constrained to content width */}
+      <div className="relative z-10 max-w-7xl mx-auto">
         <IncludesMarquee items={INCLUDES} accentColor={COLOR2} duration={32} />
       </div>
     </section>
