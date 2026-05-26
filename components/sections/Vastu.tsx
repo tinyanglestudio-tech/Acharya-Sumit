@@ -5,65 +5,92 @@ import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import IncludesMarquee, { IncludeCard } from '@/components/ui/IncludesMarquee'
 
-const COLOR = '#2D7A4F'
+const COLOR  = '#2D7A4F'
 const COLOR2 = '#3d9963'
 
-const DIRECTIONS = [
-  { dir: 'N',  angle: 270, color: '#4A90D9', element: 'Water · जल',   benefit: 'Career & Opportunities' },
-  { dir: 'NE', angle: 315, color: '#E8D5A3', element: 'Space · आकाश', benefit: 'Wisdom & Spirituality' },
-  { dir: 'E',  angle: 0,   color: '#5CB85C', element: 'Wood · वायु',   benefit: 'Health & Beginnings' },
-  { dir: 'SE', angle: 45,  color: '#FF6B1A', element: 'Fire · अग्नि',  benefit: 'Wealth & Prosperity' },
+/* ── All 8 Vastu directions ─────────────────────────────── */
+const ALL_DIRECTIONS = [
+  {
+    dir: 'N',  full: 'North',       sanskrit: 'उत्तर',   angle: 270,
+    color: '#4A90D9',
+    element: 'Water', elementHi: 'जल',      elementSymbol: '💧',
+    deity: 'Kubera',  deityHi: 'कुबेर',
+    significance: 'Career, Wealth & New Opportunities',
+    signHi: 'करिअर, संपत्ती व नवीन संधी',
+    idealFor: 'Study · Living Room · Locker / Safe',
+  },
+  {
+    dir: 'NE', full: 'North-East',  sanskrit: 'ईशान',    angle: 315,
+    color: '#C9A84C',
+    element: 'Space', elementHi: 'आकाश',    elementSymbol: '✨',
+    deity: 'Shiva',   deityHi: 'महादेव',
+    significance: 'Wisdom, Spirituality & Divine Blessings',
+    signHi: 'ज्ञान, अध्यात्म व दैवी आशीर्वाद',
+    idealFor: 'Pooja Room · Meditation · Open / Light Space',
+  },
+  {
+    dir: 'E',  full: 'East',        sanskrit: 'पूर्व',   angle: 0,
+    color: '#5CB85C',
+    element: 'Wood',  elementHi: 'वायु',    elementSymbol: '🌿',
+    deity: 'Indra',   deityHi: 'इंद्र',
+    significance: 'Health, New Beginnings & Vitality',
+    signHi: 'आरोग्य, नवी सुरुवात व चैतन्य',
+    idealFor: 'Main Entrance · Living Room · Balcony',
+  },
+  {
+    dir: 'SE', full: 'South-East',  sanskrit: 'आग्नेय',  angle: 45,
+    color: '#FF6B1A',
+    element: 'Fire',  elementHi: 'अग्नि',   elementSymbol: '🔥',
+    deity: 'Agni',    deityHi: 'अग्निदेव',
+    significance: 'Wealth, Prosperity & Cooking Energy',
+    signHi: 'संपत्ती, समृद्धी व स्वयंपाकघर ऊर्जा',
+    idealFor: 'Kitchen · Electrical Panels · Generator',
+  },
+  {
+    dir: 'S',  full: 'South',       sanskrit: 'दक्षिण',  angle: 90,
+    color: '#D9534F',
+    element: 'Earth', elementHi: 'पृथ्वी',  elementSymbol: '⛰️',
+    deity: 'Yama',    deityHi: 'यमराज',
+    significance: 'Fame, Recognition & Career Stability',
+    signHi: 'कीर्ती, मान्यता व करिअर स्थैर्य',
+    idealFor: 'Master Bedroom · Heavy Storage · Staircase',
+  },
+  {
+    dir: 'SW', full: 'South-West',  sanskrit: 'नैऋत्य',  angle: 135,
+    color: '#A0522D',
+    element: 'Earth', elementHi: 'पृथ्वी',  elementSymbol: '🌍',
+    deity: 'Nirriti', deityHi: 'निऋती',
+    significance: 'Relationships, Stability & Long-term Support',
+    signHi: 'नाते, स्थिरता व दीर्घकालीन आधार',
+    idealFor: 'Master Bedroom · Marriage Corner · Basement',
+  },
+  {
+    dir: 'W',  full: 'West',        sanskrit: 'पश्चिम',  angle: 180,
+    color: '#7BAFD4',
+    element: 'Water', elementHi: 'जल',      elementSymbol: '🌊',
+    deity: 'Varuna',  deityHi: 'वरुण',
+    significance: "Gains, Learning & Children's Prosperity",
+    signHi: 'लाभ, शिक्षण व मुलांची समृद्धी',
+    idealFor: "Children's Room · Dining Room · Bathroom",
+  },
+  {
+    dir: 'NW', full: 'North-West',  sanskrit: 'वायव्य',  angle: 225,
+    color: '#9B9B9B',
+    element: 'Air',   elementHi: 'वायु',    elementSymbol: '🌬️',
+    deity: 'Vayu',    deityHi: 'वायुदेव',
+    significance: 'Social Connections, Movement & Support',
+    signHi: 'सामाजिक संबंध, गती व सहाय्य',
+    idealFor: 'Guest Room · Garage · Storage / Toilet',
+  },
 ]
 
 const INCLUDES: IncludeCard[] = [
-  {
-    label: 'Full Home / Office Analysis',
-    labelMr: 'घर / कार्यालय विश्लेषण',
-    symbol: 'ग',
-    symbolFont: "'Tiro Devanagari Sanskrit', serif",
-    gradient: 'radial-gradient(ellipse at 45% 35%, #072812 0%, #020f07 100%)',
-    glowColor: '#020f07',
-  },
-  {
-    label: 'Direction & Zone Mapping',
-    labelMr: 'दिशा व क्षेत्र नकाशा',
-    symbol: '⊕',
-    symbolFont: 'serif',
-    gradient: 'radial-gradient(ellipse at 55% 40%, #062210 0%, #020c06 100%)',
-    glowColor: '#020c06',
-  },
-  {
-    label: 'Five Elements Balance',
-    labelMr: 'पंचमहाभूत संतुलन',
-    symbol: 'प',
-    symbolFont: "'Tiro Devanagari Sanskrit', serif",
-    gradient: 'radial-gradient(ellipse at 40% 45%, #082e14 0%, #031108 100%)',
-    glowColor: '#031108',
-  },
-  {
-    label: 'Entrance & Bedroom Guide',
-    labelMr: 'प्रवेशद्वार व शयनकक्ष',
-    symbol: 'ॐ',
-    symbolFont: "'Tiro Devanagari Sanskrit', serif",
-    gradient: 'radial-gradient(ellipse at 50% 35%, #062610 0%, #020f06 100%)',
-    glowColor: '#020f06',
-  },
-  {
-    label: 'Kitchen & Study Setup',
-    labelMr: 'स्वयंपाकघर व अभ्यासकक्ष',
-    symbol: '△',
-    symbolFont: 'serif',
-    gradient: 'radial-gradient(ellipse at 45% 40%, #072a12 0%, #031008 100%)',
-    glowColor: '#031008',
-  },
-  {
-    label: 'Simple Practical Remedies',
-    labelMr: 'सोपे व व्यावहारिक उपाय',
-    symbol: '◈',
-    symbolFont: 'serif',
-    gradient: 'radial-gradient(ellipse at 55% 35%, #062412 0%, #020e07 100%)',
-    glowColor: '#020e07',
-  },
+  { label: 'Full Home / Office Analysis',  labelMr: 'घर / कार्यालय विश्लेषण', symbol: 'ग', symbolFont: "'Tiro Devanagari Sanskrit', serif", gradient: 'radial-gradient(ellipse at 45% 35%, #072812 0%, #020f07 100%)', glowColor: '#020f07' },
+  { label: 'Direction & Zone Mapping',     labelMr: 'दिशा व क्षेत्र नकाशा',   symbol: '⊕', symbolFont: 'serif',                                gradient: 'radial-gradient(ellipse at 55% 40%, #062210 0%, #020c06 100%)', glowColor: '#020c06' },
+  { label: 'Five Elements Balance',        labelMr: 'पंचमहाभूत संतुलन',        symbol: 'प', symbolFont: "'Tiro Devanagari Sanskrit', serif", gradient: 'radial-gradient(ellipse at 40% 45%, #082e14 0%, #031108 100%)', glowColor: '#031108' },
+  { label: 'Entrance & Bedroom Guide',     labelMr: 'प्रवेशद्वार व शयनकक्ष',   symbol: 'ॐ', symbolFont: "'Tiro Devanagari Sanskrit', serif", gradient: 'radial-gradient(ellipse at 50% 35%, #062610 0%, #020f06 100%)', glowColor: '#020f06' },
+  { label: 'Kitchen & Study Setup',        labelMr: 'स्वयंपाकघर व अभ्यासकक्ष', symbol: '△', symbolFont: 'serif',                                gradient: 'radial-gradient(ellipse at 45% 40%, #072a12 0%, #031008 100%)', glowColor: '#031008' },
+  { label: 'Simple Practical Remedies',    labelMr: 'सोपे व व्यावहारिक उपाय',  symbol: '◈', symbolFont: 'serif',                                gradient: 'radial-gradient(ellipse at 55% 35%, #062412 0%, #020e07 100%)', glowColor: '#020e07' },
 ]
 
 export default function VastuSection() {
@@ -74,20 +101,21 @@ export default function VastuSection() {
     <section id="vastu" ref={ref} className="relative overflow-hidden py-28 px-6"
       style={{ background: 'linear-gradient(180deg, #050510 0%, #020D06 60%, #050510 100%)' }}>
 
+      {/* Glow */}
       <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 rounded-full"
         style={{ width: '800px', height: '800px', background: 'radial-gradient(ellipse at center, rgba(45,122,79,0.09) 0%, transparent 65%)' }} />
 
       <div className="max-w-7xl mx-auto relative z-10">
+
+        {/* ── Top 2-col: Mandala + Content ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
           {/* LEFT — Visual */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1 }} className="flex flex-col items-center">
-
             <div className="relative flex items-center justify-center" style={{ width: '340px', height: '340px', maxWidth: '80vw' }}>
               <VastuMandala />
             </div>
-
             <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
               className="mt-8 rounded-[4px] px-8 py-6 text-center w-full max-w-xs"
@@ -103,7 +131,6 @@ export default function VastuSection() {
                 Book Session · बुक करा
               </Link>
             </motion.div>
-
             {/* Watermark below fee box */}
             <div className="mt-4 w-full max-w-xs overflow-hidden text-center select-none pointer-events-none" aria-hidden>
               <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(36px,4.5vw,54px)', color: '#3d9963', opacity: 0.18, lineHeight: 1, display: 'block', letterSpacing: '-1px' }}>
@@ -115,7 +142,6 @@ export default function VastuSection() {
           {/* RIGHT — Content */}
           <motion.div initial={{ opacity: 0, x: 50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.15 }}>
-
             <p className="font-cinzel uppercase mb-1" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(61,153,99,0.85)' }}>
               Ancient Architecture Science · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>वास्तुशास्त्र</span>
             </p>
@@ -127,7 +153,6 @@ export default function VastuSection() {
             </p>
             <div style={{ width: '60px', height: '2px', background: 'linear-gradient(90deg, #2D7A4F, transparent)', marginBottom: '20px' }} />
 
-            {/* Sanskrit quote */}
             <div className="mb-6 p-4 rounded-[4px]" style={{ border: '1px solid rgba(45,122,79,0.25)', background: 'rgba(45,122,79,0.06)' }}>
               <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(17px,2vw,24px)', color: '#C9A84C', lineHeight: 1.4, marginBottom: '6px' }}>
                 वास्तुना सुखमाप्नोति
@@ -137,33 +162,96 @@ export default function VastuSection() {
               </p>
             </div>
 
-            <p className="mb-6" style={{ fontSize: 'clamp(15px, 1.7vw, 18px)', color: 'rgba(245,236,215,0.7)', lineHeight: 1.8 }}>
+            <p style={{ fontSize: 'clamp(15px, 1.7vw, 18px)', color: 'rgba(245,236,215,0.7)', lineHeight: 1.8 }}>
               Vastu Shastra aligns the energies of your home or workplace with the five elements
               (<em style={{ color: 'rgba(61,153,99,0.8)' }}>Pancha Bhuta · पंचमहाभूत</em>) and cosmic directions.
               Most corrections require no structural changes — simple practical remedies can transform
               the energy of any space.
             </p>
+          </motion.div>
+        </div>
 
-            {/* Directions mini reference */}
-            <div className="grid grid-cols-2 gap-2">
-              {DIRECTIONS.map(({ dir, color, element, benefit }) => (
-                <div key={dir} className="flex items-center gap-3 p-3 rounded-[3px]"
-                  style={{ border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 font-cinzel font-bold"
-                    style={{ background: `${color}18`, border: `1px solid ${color}50`, color, fontSize: '11px' }}>{dir}</div>
-                  <div>
-                    <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '11px', color: 'rgba(245,236,215,0.7)' }}>{element}</div>
-                    <div style={{ fontSize: '11px', color: 'rgba(245,236,215,0.35)' }}>{benefit}</div>
+        {/* ── Eight Sacred Directions ─────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.3 }}
+          className="mt-20"
+        >
+          {/* Header */}
+          <div className="flex items-center gap-4 mb-3">
+            <div style={{ flex: 1, height: '1px', background: 'rgba(45,122,79,0.25)' }} />
+            <h3 className="font-cinzel font-bold text-white" style={{ fontSize: '13px', letterSpacing: '3.5px', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+              Eight Sacred Directions
+            </h3>
+            <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '14px', color: 'rgba(61,153,99,0.6)', whiteSpace: 'nowrap' }}>
+              · अष्ट दिशा
+            </span>
+            <div style={{ flex: 1, height: '1px', background: 'rgba(45,122,79,0.25)' }} />
+          </div>
+          <p className="text-center mb-10" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(245,236,215,0.35)' }}>
+            Each direction is governed by a ruling deity, a cosmic element, and carries distinct life significance.
+          </p>
+
+          {/* Compass + Cards layout */}
+          <div className="flex flex-col xl:flex-row gap-12 items-center xl:items-start">
+
+            {/* Compass rose SVG */}
+            <div className="flex-shrink-0 flex items-center justify-center" style={{ width: '300px', height: '300px' }}>
+              <VastuCompass directions={ALL_DIRECTIONS} />
+            </div>
+
+            {/* Direction cards — 2x4 grid */}
+            <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+              {ALL_DIRECTIONS.map((d, i) => (
+                <motion.div
+                  key={d.dir}
+                  initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.45, delay: 0.4 + i * 0.07 }}
+                  className="flex gap-0 rounded-[5px] overflow-hidden"
+                  style={{ border: `1px solid ${d.color}25`, background: 'rgba(5,5,16,0.7)' }}
+                >
+                  {/* Colored left bar */}
+                  <div className="flex-shrink-0 flex flex-col items-center justify-center px-3 py-4"
+                    style={{ background: `${d.color}14`, borderRight: `1px solid ${d.color}22`, minWidth: '60px' }}>
+                    <div className="font-cinzel font-bold" style={{ fontSize: '15px', color: d.color, lineHeight: 1 }}>{d.dir}</div>
+                    <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '11px', color: `${d.color}80`, marginTop: '4px', textAlign: 'center' }}>{d.sanskrit}</div>
+                    <div style={{ fontSize: '16px', marginTop: '6px' }}>{d.elementSymbol}</div>
                   </div>
-                </div>
+
+                  {/* Content */}
+                  <div className="flex-1 px-4 py-3">
+                    <div className="flex items-center justify-between mb-1">
+                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', fontWeight: 700, color: 'rgba(245,236,215,0.9)' }}>{d.full}</span>
+                      <span className="font-cinzel" style={{ fontSize: '9px', letterSpacing: '1px', color: `${d.color}`, background: `${d.color}18`, padding: '2px 8px', borderRadius: '10px', border: `1px solid ${d.color}30` }}>
+                        {d.element} · {d.elementHi}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2 mb-2">
+                      <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '10px', color: 'rgba(201,168,76,0.5)' }}>{d.deityHi}</span>
+                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '10px', color: 'rgba(245,236,215,0.25)' }}>· {d.deity}</span>
+                    </div>
+
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: 'rgba(245,236,215,0.7)', lineHeight: 1.45, marginBottom: '5px', fontWeight: 500 }}>
+                      {d.significance}
+                    </p>
+                    <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '11px', color: `${d.color}70`, lineHeight: 1.4, marginBottom: '6px' }}>
+                      {d.signHi}
+                    </p>
+
+                    <div className="flex items-center gap-1 flex-wrap">
+                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '9.5px', color: 'rgba(245,236,215,0.25)', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Ideal for:</span>
+                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '9.5px', color: `${d.color}65` }}>{d.idealFor}</span>
+                    </div>
+                  </div>
+                </motion.div>
               ))}
             </div>
-          </motion.div>
-
-        </div>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Includes marquee — constrained to content width */}
+      {/* Includes marquee */}
       <div className="relative z-10 max-w-7xl mx-auto">
         <IncludesMarquee items={INCLUDES} accentColor={COLOR2} duration={32} />
       </div>
@@ -171,12 +259,85 @@ export default function VastuSection() {
   )
 }
 
+/* ── Compass Rose SVG ───────────────────────────────────── */
+function VastuCompass({ directions }: { directions: typeof ALL_DIRECTIONS }) {
+  const cx = 150, cy = 150, outerR = 138, innerR = 58, labelR = 122, deityR = 80
+
+  return (
+    <svg width="300" height="300" viewBox="0 0 300 300" fill="none">
+      {/* Outer ring */}
+      <circle cx={cx} cy={cy} r={outerR} stroke="#2D7A4F" strokeWidth="0.8" opacity="0.5" />
+      <circle cx={cx} cy={cy} r={innerR} stroke="#C9A84C" strokeWidth="0.5" opacity="0.4" strokeDasharray="3 5" />
+
+      {/* 8 coloured sectors */}
+      {directions.map((d, i) => {
+        const startDeg = i * 45 - 22.5 - 90
+        const endDeg   = startDeg + 45
+        const s = startDeg * Math.PI / 180
+        const e = endDeg   * Math.PI / 180
+        const x1 = cx + outerR * Math.cos(s), y1 = cy + outerR * Math.sin(s)
+        const x2 = cx + outerR * Math.cos(e), y2 = cy + outerR * Math.sin(e)
+        const xi1 = cx + innerR * Math.cos(s), yi1 = cy + innerR * Math.sin(s)
+        const xi2 = cx + innerR * Math.cos(e), yi2 = cy + innerR * Math.sin(e)
+        const path = `M ${xi1} ${yi1} L ${x1} ${y1} A ${outerR} ${outerR} 0 0 1 ${x2} ${y2} L ${xi2} ${yi2} A ${innerR} ${innerR} 0 0 0 ${xi1} ${yi1} Z`
+        const mid = (startDeg + 22.5) * Math.PI / 180
+        const lx = cx + labelR * Math.cos(mid), ly = cy + labelR * Math.sin(mid)
+        return (
+          <g key={d.dir}>
+            <path d={path} fill={d.color} fillOpacity="0.13" stroke={d.color} strokeWidth="0.5" strokeOpacity="0.4" />
+            {/* Direction label */}
+            <text x={lx} y={ly} textAnchor="middle" dominantBaseline="middle"
+              fontSize="12" fill={d.color} opacity="0.92"
+              style={{ fontFamily: "'Cinzel', serif", fontWeight: '700' }}>
+              {d.dir}
+            </text>
+            {/* Sanskrit name */}
+            <text x={cx + deityR * Math.cos(mid)} y={cy + deityR * Math.sin(mid)}
+              textAnchor="middle" dominantBaseline="middle"
+              fontSize="7.5" fill={d.color} opacity="0.55"
+              style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>
+              {d.sanskrit}
+            </text>
+          </g>
+        )
+      })}
+
+      {/* Dividing lines between sectors */}
+      {[0,45,90,135,180,225,270,315].map((a, i) => {
+        const rad = (a - 90) * Math.PI / 180
+        return (
+          <line key={i}
+            x1={cx + innerR * Math.cos(rad)} y1={cy + innerR * Math.sin(rad)}
+            x2={cx + outerR * Math.cos(rad)} y2={cy + outerR * Math.sin(rad)}
+            stroke="rgba(45,122,79,0.35)" strokeWidth="0.7"
+          />
+        )
+      })}
+
+      {/* Cross lines through center */}
+      <line x1={cx} y1={cy - outerR} x2={cx} y2={cy + outerR} stroke="#2D7A4F" strokeWidth="0.4" opacity="0.3" />
+      <line x1={cx - outerR} y1={cy} x2={cx + outerR} y2={cy} stroke="#2D7A4F" strokeWidth="0.4" opacity="0.3" />
+      <line x1={cx - outerR * 0.707} y1={cy - outerR * 0.707} x2={cx + outerR * 0.707} y2={cy + outerR * 0.707} stroke="#2D7A4F" strokeWidth="0.3" opacity="0.2" />
+      <line x1={cx + outerR * 0.707} y1={cy - outerR * 0.707} x2={cx - outerR * 0.707} y2={cy + outerR * 0.707} stroke="#2D7A4F" strokeWidth="0.3" opacity="0.2" />
+
+      {/* Centre Om */}
+      <circle cx={cx} cy={cy} r="28" fill="rgba(5,5,16,0.9)" stroke="#C9A84C" strokeWidth="0.6" strokeOpacity="0.5" />
+      <text x={cx} y={cy + 2} textAnchor="middle" dominantBaseline="middle"
+        fontSize="26" fill="#C9A84C" opacity="0.85"
+        style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>
+        ॐ
+      </text>
+    </svg>
+  )
+}
+
+/* ── Original Vastu Mandala (kept for visual panel) ─────── */
 function VastuMandala() {
   const dirs = [
-    { label: 'N', angle: 270, color: '#4A90D9' }, { label: 'NE', angle: 315, color: '#E8D5A3' },
+    { label: 'N', angle: 270, color: '#4A90D9' }, { label: 'NE', angle: 315, color: '#C9A84C' },
     { label: 'E', angle: 0,   color: '#5CB85C' }, { label: 'SE', angle: 45,  color: '#FF6B1A' },
     { label: 'S', angle: 90,  color: '#D9534F' }, { label: 'SW', angle: 135, color: '#A0522D' },
-    { label: 'W', angle: 180, color: '#AAAAAA' }, { label: 'NW', angle: 225, color: '#888888' },
+    { label: 'W', angle: 180, color: '#7BAFD4' }, { label: 'NW', angle: 225, color: '#9B9B9B' },
   ]
   return (
     <svg width="340" height="340" viewBox="0 0 380 380" fill="none">
