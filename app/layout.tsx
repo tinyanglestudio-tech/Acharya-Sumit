@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Cinzel, EB_Garamond } from 'next/font/google'
+import { Cinzel, DM_Sans } from 'next/font/google'
 import './globals.css'
 
 const cinzel = Cinzel({
@@ -9,11 +9,11 @@ const cinzel = Cinzel({
   display: 'swap',
 })
 
-const garamond = EB_Garamond({
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '500', '600'],
   style: ['normal', 'italic'],
-  variable: '--font-garamond',
+  variable: '--font-garamond', // reuse same variable — no class renames needed
   display: 'swap',
 })
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cinzel.variable} ${garamond.variable}`}>
+    <html lang="en" className={`${cinzel.variable} ${dmSans.variable}`}>
       <head>
         {/* Tiro Devanagari Sanskrit — not in next/font catalog */}
         <link
