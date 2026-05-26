@@ -5,7 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import products from '@/data/products.json'
 
-type Filter = 'all' | 'service' | 'product'
+type Filter = 'product' | 'service'
 
 const BADGE_COLORS: Record<string, { bg: string; text: string }> = {
   'Most Popular': { bg: 'rgba(201,168,76,0.15)', text: '#C9A84C' },
@@ -19,13 +19,11 @@ const TYPE_COLOR: Record<string, string> = {
 }
 
 export default function ShopPreview() {
-  const [filter, setFilter] = useState<Filter>('all')
+  const [filter, setFilter] = useState<Filter>('product')
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
-  const visible = filter === 'all'
-    ? products
-    : products.filter(p => p.type === filter)
+  const visible = products.filter(p => p.type === filter)
 
   return (
     <section
@@ -89,7 +87,7 @@ export default function ShopPreview() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="flex justify-center gap-3 mb-12"
         >
-          {(['all', 'service', 'product'] as Filter[]).map(f => (
+          {([['product', 'Products'], ['service', 'Consultations']] as [Filter, string][]).map(([f, label]) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
@@ -105,7 +103,7 @@ export default function ShopPreview() {
                 fontWeight: filter === f ? '700' : '400',
               }}
             >
-              {f === 'all' ? 'All' : f === 'service' ? 'Services' : 'Products'}
+              {label}
             </button>
           ))}
         </motion.div>
