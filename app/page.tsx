@@ -11,6 +11,7 @@ import NumerologySection from '@/components/sections/Numerology'
 import VastuSection from '@/components/sections/Vastu'
 import TarotSection from '@/components/sections/Tarot'
 import ShopPreview from '@/components/sections/ShopPreview'
+import BookNowBanner from '@/components/sections/BookNowBanner'
 
 const StarField   = dynamic(() => import('@/components/animations/StarField'),   { ssr: false })
 const GhostCursor = dynamic(() => import('@/components/animations/GhostCursor'), { ssr: false })
@@ -60,6 +61,9 @@ export default function HomePage() {
 
       {/* ── SHOP — Consultations & Products ── */}
       <ShopPreview />
+
+      {/* ── BOOK NOW — CTA conversion banner ── */}
+      <BookNowBanner />
     </div>
   )
 }
