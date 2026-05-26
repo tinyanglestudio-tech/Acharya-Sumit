@@ -1,0 +1,78 @@
+[
+  {
+    "id": "astrology",
+    "slug": "astrology",
+    "title": "Vedic Astrology",
+    "subtitle": "Decode Your Destiny Through the Stars",
+    "tagline": "Your birth chart is a cosmic blueprint — let us help you read it.",
+    "color": "#7B3FD4",
+    "price": 1500,
+    "duration": "60 mins",
+    "description": "Vedic astrology, known as Jyotish Shastra, is the sacred science of light. By studying the precise positions of the sun, moon, and planets at the moment of your birth, Acharya Sumit reveals the patterns and potentials woven into your life's journey.",
+    "includes": [
+      "Birth chart (Kundali) analysis",
+      "Planetary period (Dasha) reading",
+      "Career & financial insights",
+      "Relationship compatibility",
+      "Auspicious timing (Muhurta)",
+      "Remedies & gemstone guidance"
+    ]
+  },
+  {
+    "id": "numerology",
+    "slug": "numerology",
+    "title": "Numerology",
+    "subtitle": "The Hidden Power of Your Numbers",
+    "tagline": "Every name, every date holds a vibration. Learn yours.",
+    "color": "#C9A84C",
+    "price": 1200,
+    "duration": "45 mins",
+    "description": "Numbers are the language of the universe. Numerology decodes the vibrations hidden in your name and birth date to reveal your life path, destiny number, personality traits, and the cosmic cycles influencing your life right now.",
+    "includes": [
+      "Life Path number analysis",
+      "Destiny & soul urge numbers",
+      "Name vibration analysis",
+      "Personal year & cycles",
+      "Lucky numbers & colors",
+      "Name correction guidance"
+    ]
+  },
+  {
+    "id": "vastu",
+    "slug": "vastu",
+    "title": "Vastu Shastra",
+    "subtitle": "Harmonise Your Space, Transform Your Life",
+    "tagline": "When your home is in harmony with the cosmos, everything flows.",
+    "color": "#2D7A4F",
+    "price": 2500,
+    "duration": "90 mins",
+    "description": "Vastu Shastra is the ancient Indian science of architecture and spatial energy. Acharya Sumit analyzes the five elemental energies (Pancha Bhuta) in your home or office to identify imbalances and provide remedies that invite prosperity, health, and peace.",
+    "includes": [
+      "Full home/office analysis",
+      "Direction & zone mapping",
+      "Five elements (Pancha Bhuta) balance",
+      "Entrance & bedroom guidance",
+      "Kitchen & study optimization",
+      "Simple, practical remedies"
+    ]
+  },
+  {
+    "id": "tarot",
+    "slug": "tarot",
+    "title": "Tarot Reading",
+    "subtitle": "Illuminate Your Path with Ancient Wisdom",
+    "tagline": "The cards reveal what the mind already knows but hasn't voiced.",
+    "color": "#8B1A1A",
+    "price": 800,
+    "duration": "30 mins",
+    "description": "Tarot is not about predicting a fixed future — it is a mirror for your inner wisdom. Through expertly guided spreads, Acharya Sumit helps you gain clarity on relationships, career choices, emotional blocks, and the direction your soul is calling you toward.",
+    "includes": [
+      "3-card & Celtic Cross spreads",
+      "Career & financial guidance",
+      "Love & relationship clarity",
+      "Obstacle identification",
+      "Spiritual path insights",
+      "Actionable guidance"
+    ]
+  }
+]

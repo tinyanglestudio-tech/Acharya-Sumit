@@ -27,3 +27,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# desktop clutter
+"Recycle Bin - Shortcut.lnk"
+Recycle\ Bin\ -\ Shortcut.lnk
+dev-server.log
+dev-server.err.log
+Base44*/

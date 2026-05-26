@@ -3,19 +3,32 @@
 import dynamic from 'next/dynamic'
 import MandalaRings from '@/components/animations/MandalaRings'
 import HeroSection from '@/components/sections/HeroSection'
+import Navbar from '@/components/ui/Navbar'
+import ServicesReveal from '@/components/sections/ServicesReveal'
+import AstrologySection from '@/components/sections/Astrology'
+import NumerologySection from '@/components/sections/Numerology'
+import VastuSection from '@/components/sections/Vastu'
+import TarotSection from '@/components/sections/Tarot'
 
-const StarField   = dynamic(() => import('@/components/animations/StarField'),  { ssr: false })
+const StarField   = dynamic(() => import('@/components/animations/StarField'),   { ssr: false })
 const GhostCursor = dynamic(() => import('@/components/animations/GhostCursor'), { ssr: false })
 
 export default function HomePage() {
   return (
-    <main
-      className="relative w-screen h-screen overflow-hidden"
+    <div
+      className="relative bg-cosmic"
       style={{ cursor: "url('/trishul-cursor.svg') 6 0, auto" }}
     >
-      {/* Layer 0 — cosmic radial gradient */}
+      {/* Fixed navbar — sits above everything */}
+      <Navbar />
+
+      {/* Ghost cursor glow (fixed, follows mouse) */}
+      <GhostCursor color="#7B3FD4" brightness={0.45} zIndex={10} />
+
+      {/* ── HERO — full viewport height ── */}
       <div
-        className="absolute inset-0 z-0"
+        id="home"
+        className="relative w-screen h-screen overflow-hidden"
         style={{
           background: `
             radial-gradient(ellipse 80% 60% at 50% 40%, #1a0a3e 0%, transparent 70%),
@@ -24,35 +37,26 @@ export default function HomePage() {
             #050510
           `,
         }}
-      />
+      >
+        <StarField />
+        <MandalaRings />
+        <CornerOrnaments />
+        <HeroSection />
+      </div>
 
-      {/* Layer 1 — star field */}
-      <StarField />
+      {/* ── SERVICES OVERVIEW ── */}
+      <ServicesReveal />
 
-      {/* Layer 2 — rotating mandala rings */}
-      <MandalaRings />
-
-      {/* Layer 3 — corner ornaments */}
-      <CornerOrnaments />
-
-      {/* Layer 10 — ghost cursor glow */}
-      <GhostCursor
-        color="#7B3FD4"
-        bloomStrength={0.06}
-        bloomRadius={0.5}
-        brightness={0.45}
-        inertia={0.08}
-        trailLength={24}
-        grainIntensity={0.04}
-        zIndex={10}
-      />
-
-      {/* Layer 20 — hero content */}
-      <HeroSection />
-    </main>
+      {/* ── INDIVIDUAL SERVICE SECTIONS ── */}
+      <AstrologySection />
+      <NumerologySection />
+      <VastuSection />
+      <TarotSection />
+    </div>
   )
 }
 
+/* ── Corner gold ornaments ─────────────────────────── */
 function CornerOrnaments() {
   const corners = [
     { cls: 'top-6 left-6',     transform: '' },
