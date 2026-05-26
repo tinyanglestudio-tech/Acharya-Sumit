@@ -77,13 +77,6 @@ export default function VastuSection() {
       <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 rounded-full"
         style={{ width: '800px', height: '800px', background: 'radial-gradient(ellipse at center, rgba(45,122,79,0.09) 0%, transparent 65%)' }} />
 
-      {/* Devanagari watermark */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-end overflow-hidden opacity-[0.04] select-none" aria-hidden>
-        <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(100px,14vw,200px)', color: '#2D7A4F', lineHeight: 1, writingMode: 'vertical-rl', marginRight: '-20px' }}>
-          वास्तुशास्त्र
-        </span>
-      </div>
-
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
@@ -110,6 +103,13 @@ export default function VastuSection() {
                 Book Session · बुक करा
               </Link>
             </motion.div>
+
+            {/* Watermark below fee box */}
+            <div className="mt-4 w-full max-w-xs overflow-hidden text-center select-none pointer-events-none" aria-hidden>
+              <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(36px,4.5vw,54px)', color: '#3d9963', opacity: 0.18, lineHeight: 1, display: 'block', letterSpacing: '-1px' }}>
+                वास्तुशास्त्र
+              </span>
+            </div>
           </motion.div>
 
           {/* RIGHT — Content */}

@@ -26,7 +26,7 @@ export default function IncludesMarquee({
   accentColor,
   duration = 36,
   heading   = "What's Included",
-  headingMr = 'काय मिळते',
+  headingMr = 'काय समाविष्ट आहे?',
 }: Props) {
   // Duplicate for seamless loop — need enough cards to fill viewport twice
   const doubled = [...items, ...items, ...items, ...items]

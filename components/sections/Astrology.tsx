@@ -72,11 +72,6 @@ export default function AstrologySection() {
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
         style={{ width: '900px', height: '900px', background: 'radial-gradient(ellipse at center, rgba(123,63,212,0.1) 0%, transparent 65%)' }} />
 
-      {/* Devanagari watermark */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-end overflow-hidden opacity-[0.055] select-none" aria-hidden>
-        <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(180px,25vw,340px)', color: '#7B3FD4', lineHeight: 1, marginRight: '-40px' }}>ज्योतिष</span>
-      </div>
-
       {/* Faint zodiac ring background */}
       <div className="pointer-events-none absolute top-1/2 right-[-180px] -translate-y-1/2 opacity-[0.06]" style={{ width: '640px', height: '640px' }}>
         <ZodiacRingSvg size={640} />
@@ -113,6 +108,13 @@ export default function AstrologySection() {
                 Book Session · बुक करा
               </Link>
             </motion.div>
+
+            {/* Watermark below fee box */}
+            <div className="mt-4 w-full max-w-xs overflow-hidden text-center select-none pointer-events-none" aria-hidden>
+              <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(40px,5vw,60px)', color: '#7B3FD4', opacity: 0.18, lineHeight: 1, display: 'block', letterSpacing: '-1px' }}>
+                ज्योतिषशास्त्र
+              </span>
+            </div>
           </motion.div>
 
           {/* RIGHT — Content */}

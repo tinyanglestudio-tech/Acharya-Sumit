@@ -69,13 +69,6 @@ export default function NumerologySection() {
       <div className="pointer-events-none absolute top-1/2 right-1/4 -translate-y-1/2 rounded-full"
         style={{ width: '800px', height: '800px', background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 65%)' }} />
 
-      {/* Devanagari watermark */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-start overflow-hidden opacity-[0.045] select-none" aria-hidden>
-        <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(100px,16vw,220px)', color: '#C9A84C', lineHeight: 1, marginLeft: '-20px', writingMode: 'vertical-rl' }}>
-          अंकशास्त्र
-        </span>
-      </div>
-
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
@@ -135,6 +128,13 @@ export default function NumerologySection() {
                 Book Session · बुक करा
               </Link>
             </motion.div>
+
+            {/* Watermark below fee box */}
+            <div className="mt-4 w-full max-w-xs overflow-hidden text-center select-none pointer-events-none" aria-hidden>
+              <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(40px,5vw,60px)', color: '#C9A84C', opacity: 0.18, lineHeight: 1, display: 'block', letterSpacing: '-1px' }}>
+                अंकशास्त्र
+              </span>
+            </div>
           </motion.div>
 
         </div>
