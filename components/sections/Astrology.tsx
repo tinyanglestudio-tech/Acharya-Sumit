@@ -3,17 +3,62 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
+import IncludesMarquee, { IncludeCard } from '@/components/ui/IncludesMarquee'
+
+const COLOR = '#7B3FD4'
+
+const INCLUDES: IncludeCard[] = [
+  {
+    label: 'Birth Chart (Kundali) Analysis',
+    labelMr: 'जन्मकुंडली विश्लेषण',
+    symbol: '☿',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 40% 35%, #2a0a5e 0%, #0d0520 100%)',
+    glowColor: '#0d0520',
+  },
+  {
+    label: 'Planetary Period (Dasha) Reading',
+    labelMr: 'दशा विश्लेषण',
+    symbol: '♄',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 60% 40%, #1a0845 0%, #080318 100%)',
+    glowColor: '#080318',
+  },
+  {
+    label: 'Career & Financial Insights',
+    labelMr: 'करिअर व आर्थिक मार्गदर्शन',
+    symbol: '☉',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 50% 30%, #2d1060 0%, #0a0420 100%)',
+    glowColor: '#0a0420',
+  },
+  {
+    label: 'Relationship Compatibility',
+    labelMr: 'विवाह जुळवणी',
+    symbol: '♀',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 40% 50%, #1e0a50 0%, #09031c 100%)',
+    glowColor: '#09031c',
+  },
+  {
+    label: 'Auspicious Timing (Muhurta)',
+    labelMr: 'शुभ मुहूर्त',
+    symbol: '☽',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 55% 35%, #250d55 0%, #0b0420 100%)',
+    glowColor: '#0b0420',
+  },
+  {
+    label: 'Remedies & Gemstone Guidance',
+    labelMr: 'उपाय व रत्न मार्गदर्शन',
+    symbol: '♃',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 45% 40%, #1c0848 0%, #08031a 100%)',
+    glowColor: '#08031a',
+  },
+]
 
 const ZODIAC_SIGNS = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓']
-
-const INCLUDES = [
-  { icon: '🪐', label: 'Birth Chart (Kundali) Analysis',   labelMr: 'जन्मकुंडली विश्लेषण' },
-  { icon: '⏳', label: 'Planetary Period (Dasha) Reading', labelMr: 'दशा विश्लेषण' },
-  { icon: '💼', label: 'Career & Financial Insights',      labelMr: 'करिअर व आर्थिक मार्गदर्शन' },
-  { icon: '❤️', label: 'Relationship Compatibility',       labelMr: 'विवाह जुळवणी' },
-  { icon: '⏰', label: 'Auspicious Timing (Muhurta)',      labelMr: 'शुभ मुहूर्त' },
-  { icon: '💎', label: 'Remedies & Gemstone Guidance',     labelMr: 'उपाय व रत्न मार्गदर्शन' },
-]
 
 export default function AstrologySection() {
   const ref = useRef(null)
@@ -60,7 +105,7 @@ export default function AstrologySection() {
                 Consultation Fee ·{' '}
                 <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सल्लामसलत शुल्क</span>
               </p>
-              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: '#7B3FD4' }}>₹1,500</div>
+              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: COLOR }}>₹1,500</div>
               <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.4)', marginTop: '4px' }}>60 min · Online / In-person</p>
               <Link href="/booking"
                 className="mt-5 inline-block font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-125"
@@ -74,7 +119,6 @@ export default function AstrologySection() {
           <motion.div initial={{ opacity: 0, x: 50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.15 }}>
 
-            {/* Labels */}
             <p className="font-cinzel uppercase mb-1" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(123,63,212,0.85)' }}>
               Sacred Science of Light · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>ज्योतिषशास्त्र</span>
             </p>
@@ -96,41 +140,19 @@ export default function AstrologySection() {
               </p>
             </div>
 
-            {/* Short description */}
-            <p className="mb-8" style={{ fontSize: 'clamp(15px, 1.7vw, 18px)', color: 'rgba(245,236,215,0.7)', lineHeight: 1.8 }}>
+            <p className="mb-4" style={{ fontSize: 'clamp(15px, 1.7vw, 18px)', color: 'rgba(245,236,215,0.7)', lineHeight: 1.8 }}>
               By studying the precise positions of the sun, moon, and planets at the exact moment of your birth,
               Acharya Sumit reveals the karmic patterns woven into your destiny — and guides you toward clarity,
               purpose, and right action.
             </p>
-
-            {/* What's Included — PROMINENT */}
-            <div className="mb-2 flex items-center gap-3">
-              <h3 className="font-cinzel font-bold text-white" style={{ fontSize: '13px', letterSpacing: '3px', textTransform: 'uppercase' }}>
-                What&apos;s Included
-              </h3>
-              <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.5)' }}>· काय समाविष्ट आहे</span>
-            </div>
-            <div style={{ width: '100%', height: '1px', background: 'rgba(123,63,212,0.3)', marginBottom: '16px' }} />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {INCLUDES.map(({ icon, label, labelMr }, i) => (
-                <motion.div key={i}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.45, delay: 0.4 + i * 0.08 }}
-                  className="flex items-center gap-4 p-4 rounded-[4px] group"
-                  style={{ border: '1px solid rgba(123,63,212,0.3)', background: 'rgba(123,63,212,0.08)' }}>
-                  <span className="text-[28px] flex-shrink-0 leading-none">{icon}</span>
-                  <div>
-                    <div className="font-cinzel text-white" style={{ fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.3px', lineHeight: 1.3 }}>{label}</div>
-                    <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '12px', color: 'rgba(201,168,76,0.6)', marginTop: '3px' }}>{labelMr}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
         </div>
+      </div>
+
+      {/* Full-width includes marquee */}
+      <div className="relative z-10">
+        <IncludesMarquee items={INCLUDES} accentColor={COLOR} duration={34} />
       </div>
     </section>
   )

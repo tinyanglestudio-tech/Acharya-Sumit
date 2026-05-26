@@ -3,14 +3,59 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
+import IncludesMarquee, { IncludeCard } from '@/components/ui/IncludesMarquee'
 
-const INCLUDES = [
-  { icon: '🔢', label: 'Life Path Number',      labelMr: 'जीवन मार्ग अंक' },
-  { icon: '🌟', label: 'Destiny Number',         labelMr: 'भाग्य अंक' },
-  { icon: '💫', label: 'Soul Urge Number',       labelMr: 'आत्मा इच्छा अंक' },
-  { icon: '📅', label: 'Personal Year Cycle',    labelMr: 'वैयक्तिक वर्ष चक्र' },
-  { icon: '✏️', label: 'Name Correction',        labelMr: 'नाव सुधारणा' },
-  { icon: '🍀', label: 'Lucky Numbers & Colors', labelMr: 'शुभ अंक आणि रंग' },
+const COLOR = '#C9A84C'
+
+const INCLUDES: IncludeCard[] = [
+  {
+    label: 'Life Path Number',
+    labelMr: 'जीवन मार्ग अंक',
+    symbol: '१',
+    symbolFont: "'Tiro Devanagari Sanskrit', serif",
+    gradient: 'radial-gradient(ellipse at 45% 35%, #2a1e00 0%, #100b00 100%)',
+    glowColor: '#100b00',
+  },
+  {
+    label: 'Destiny Number',
+    labelMr: 'भाग्य अंक',
+    symbol: '७',
+    symbolFont: "'Tiro Devanagari Sanskrit', serif",
+    gradient: 'radial-gradient(ellipse at 55% 40%, #261a00 0%, #0e0900 100%)',
+    glowColor: '#0e0900',
+  },
+  {
+    label: 'Soul Urge Number',
+    labelMr: 'आत्मा इच्छा अंक',
+    symbol: '∞',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 40% 45%, #2e2000 0%, #120d00 100%)',
+    glowColor: '#120d00',
+  },
+  {
+    label: 'Personal Year Cycle',
+    labelMr: 'वैयक्तिक वर्ष चक्र',
+    symbol: '९',
+    symbolFont: "'Tiro Devanagari Sanskrit', serif",
+    gradient: 'radial-gradient(ellipse at 50% 35%, #221800 0%, #0d0800 100%)',
+    glowColor: '#0d0800',
+  },
+  {
+    label: 'Name Correction',
+    labelMr: 'नाव सुधारणा',
+    symbol: 'अ',
+    symbolFont: "'Tiro Devanagari Sanskrit', serif",
+    gradient: 'radial-gradient(ellipse at 45% 40%, #281c00 0%, #0f0a00 100%)',
+    glowColor: '#0f0a00',
+  },
+  {
+    label: 'Lucky Numbers & Colors',
+    labelMr: 'शुभ अंक आणि रंग',
+    symbol: '३',
+    symbolFont: "'Tiro Devanagari Sanskrit', serif",
+    gradient: 'radial-gradient(ellipse at 55% 35%, #241a00 0%, #0d0800 100%)',
+    glowColor: '#0d0800',
+  },
 ]
 
 export default function NumerologySection() {
@@ -59,36 +104,12 @@ export default function NumerologySection() {
               </p>
             </div>
 
-            <p className="mb-8" style={{ fontSize: 'clamp(15px, 1.7vw, 18px)', color: 'rgba(245,236,215,0.7)', lineHeight: 1.8 }}>
+            <p className="mb-4" style={{ fontSize: 'clamp(15px, 1.7vw, 18px)', color: 'rgba(245,236,215,0.7)', lineHeight: 1.8 }}>
               Every name, every date of birth carries a unique cosmic vibration. Numerology decodes
               these hidden patterns to reveal your life path, soul purpose, and the timing of major
               life chapters — with practical guidance on name corrections and aligning your choices
               with your highest vibration.
             </p>
-
-            {/* What's Included */}
-            <div className="mb-2 flex items-center gap-3">
-              <h3 className="font-cinzel font-bold text-white" style={{ fontSize: '13px', letterSpacing: '3px', textTransform: 'uppercase' }}>What&apos;s Included</h3>
-              <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.5)' }}>· काय मिळते</span>
-            </div>
-            <div style={{ width: '100%', height: '1px', background: 'rgba(201,168,76,0.25)', marginBottom: '16px' }} />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {INCLUDES.map(({ icon, label, labelMr }, i) => (
-                <motion.div key={i}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.45, delay: 0.4 + i * 0.08 }}
-                  className="flex items-center gap-4 p-4 rounded-[4px]"
-                  style={{ border: '1px solid rgba(201,168,76,0.28)', background: 'rgba(201,168,76,0.06)' }}>
-                  <span className="text-[28px] flex-shrink-0 leading-none">{icon}</span>
-                  <div>
-                    <div className="font-cinzel text-white" style={{ fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.3px', lineHeight: 1.3 }}>{label}</div>
-                    <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '12px', color: 'rgba(201,168,76,0.6)', marginTop: '3px' }}>{labelMr}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
           {/* RIGHT — Visual */}
@@ -106,7 +127,7 @@ export default function NumerologySection() {
               <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(201,168,76,0.45)', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Consultation Fee · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सल्ला शुल्क</span>
               </p>
-              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: '#C9A84C' }}>₹1,200</div>
+              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: COLOR }}>₹1,200</div>
               <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.4)', marginTop: '4px' }}>45 min · Online / In-person</p>
               <Link href="/booking"
                 className="mt-5 inline-block font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-110"
@@ -117,6 +138,11 @@ export default function NumerologySection() {
           </motion.div>
 
         </div>
+      </div>
+
+      {/* Full-width includes marquee */}
+      <div className="relative z-10">
+        <IncludesMarquee items={INCLUDES} accentColor={COLOR} duration={30} />
       </div>
     </section>
   )

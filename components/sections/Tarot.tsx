@@ -3,14 +3,60 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
+import IncludesMarquee, { IncludeCard } from '@/components/ui/IncludesMarquee'
 
-const INCLUDES = [
-  { icon: '🃏', label: '3-Card & Celtic Cross Spreads', labelMr: 'तीन पत्ते व सेल्टिक क्रॉस' },
-  { icon: '💼', label: 'Career & Financial Guidance',   labelMr: 'करिअर व आर्थिक मार्गदर्शन' },
-  { icon: '❤️', label: 'Love & Relationship Insights',  labelMr: 'प्रेम व नाते विश्लेषण' },
-  { icon: '🧱', label: 'Obstacle Identification',       labelMr: 'अडथळे शोधणे' },
-  { icon: '✨', label: 'Spiritual Path Insights',       labelMr: 'आध्यात्मिक मार्ग' },
-  { icon: '📋', label: 'Actionable Guidance',           labelMr: 'व्यावहारिक मार्गदर्शन' },
+const COLOR = '#B22222'
+const COLOR2 = '#8B1A1A'
+
+const INCLUDES: IncludeCard[] = [
+  {
+    label: '3-Card & Celtic Cross Spreads',
+    labelMr: 'तीन पत्ते व सेल्टिक क्रॉस',
+    symbol: '✦',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 45% 35%, #2a0505 0%, #100202 100%)',
+    glowColor: '#100202',
+  },
+  {
+    label: 'Career & Financial Guidance',
+    labelMr: 'करिअर व आर्थिक मार्गदर्शन',
+    symbol: '☽',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 55% 40%, #220404 0%, #0d0202 100%)',
+    glowColor: '#0d0202',
+  },
+  {
+    label: 'Love & Relationship Insights',
+    labelMr: 'प्रेम व नाते विश्लेषण',
+    symbol: '♡',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 40% 45%, #2e0606 0%, #120202 100%)',
+    glowColor: '#120202',
+  },
+  {
+    label: 'Obstacle Identification',
+    labelMr: 'अडथळे शोधणे',
+    symbol: '⊗',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 50% 35%, #250505 0%, #0f0101 100%)',
+    glowColor: '#0f0101',
+  },
+  {
+    label: 'Spiritual Path Insights',
+    labelMr: 'आध्यात्मिक मार्ग',
+    symbol: '★',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 45% 40%, #280606 0%, #110202 100%)',
+    glowColor: '#110202',
+  },
+  {
+    label: 'Actionable Guidance',
+    labelMr: 'व्यावहारिक मार्गदर्शन',
+    symbol: '⊕',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 55% 35%, #230505 0%, #0e0101 100%)',
+    glowColor: '#0e0101',
+  },
 ]
 
 const CARDS = [
@@ -35,7 +81,7 @@ export default function TarotSection() {
 
       {/* Devanagari watermark */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-start opacity-[0.05] select-none overflow-hidden" aria-hidden>
-        <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(160px,22vw,300px)', color: '#8B1A1A', lineHeight: 1, marginLeft: '-20px' }}>
+        <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(160px,22vw,300px)', color: COLOR2, lineHeight: 1, marginLeft: '-20px' }}>
           तारोट
         </span>
       </div>
@@ -68,35 +114,11 @@ export default function TarotSection() {
               </p>
             </div>
 
-            <p className="mb-6" style={{ fontSize: 'clamp(15px, 1.7vw, 18px)', color: 'rgba(245,236,215,0.7)', lineHeight: 1.8 }}>
+            <p className="mb-4" style={{ fontSize: 'clamp(15px, 1.7vw, 18px)', color: 'rgba(245,236,215,0.7)', lineHeight: 1.8 }}>
               Tarot is a profound mirror for your subconscious wisdom. Each of the 78 cards carries
               centuries of archetypal symbolism — through expertly guided spreads, Acharya Sumit helps
               you gain clarity on love, career, and your highest path.
             </p>
-
-            {/* What's Included */}
-            <div className="mb-2 flex items-center gap-3">
-              <h3 className="font-cinzel font-bold text-white" style={{ fontSize: '13px', letterSpacing: '3px', textTransform: 'uppercase' }}>What&apos;s Included</h3>
-              <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.5)' }}>· काय मिळते</span>
-            </div>
-            <div style={{ width: '100%', height: '1px', background: 'rgba(139,26,26,0.3)', marginBottom: '16px' }} />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {INCLUDES.map(({ icon, label, labelMr }, i) => (
-                <motion.div key={i}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.45, delay: 0.4 + i * 0.08 }}
-                  className="flex items-center gap-4 p-4 rounded-[4px]"
-                  style={{ border: '1px solid rgba(139,26,26,0.3)', background: 'rgba(139,26,26,0.07)' }}>
-                  <span className="text-[28px] flex-shrink-0 leading-none">{icon}</span>
-                  <div>
-                    <div className="font-cinzel text-white" style={{ fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.3px', lineHeight: 1.3 }}>{label}</div>
-                    <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '12px', color: 'rgba(201,168,76,0.6)', marginTop: '3px' }}>{labelMr}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
           {/* RIGHT — Visual */}
@@ -115,17 +137,22 @@ export default function TarotSection() {
               <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(201,168,76,0.45)', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Consultation Fee · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सल्ला शुल्क</span>
               </p>
-              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: '#B22222' }}>₹800</div>
+              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: COLOR }}>₹800</div>
               <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.4)', marginTop: '4px' }}>30 min · Online / In-person</p>
               <Link href="/booking"
                 className="mt-5 inline-block font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-125"
-                style={{ fontSize: '12px', letterSpacing: '2px', color: '#fff', background: 'linear-gradient(135deg, #8B1A1A, #B22222)', padding: '12px 32px', borderRadius: '3px' }}>
+                style={{ fontSize: '12px', letterSpacing: '2px', color: '#fff', background: `linear-gradient(135deg, ${COLOR2}, ${COLOR})`, padding: '12px 32px', borderRadius: '3px' }}>
                 Book Session · बुक करा
               </Link>
             </motion.div>
           </motion.div>
 
         </div>
+      </div>
+
+      {/* Full-width includes marquee */}
+      <div className="relative z-10">
+        <IncludesMarquee items={INCLUDES} accentColor={COLOR} duration={28} />
       </div>
     </section>
   )

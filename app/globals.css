@@ -125,6 +125,22 @@ html, body {
     btn-pulse    2.5s ease-in-out infinite;
 }
 
+/* ── MARQUEE ─────────────────────────────────────── */
+
+@keyframes marquee-rtl {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-rtl var(--marquee-dur, 36s) linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
 /* ── ANIMATION DELAYS ────────────────────────────── */
 .delay-200  { animation-delay: 0.2s; }
 .delay-400  { animation-delay: 0.4s; }

@@ -3,6 +3,10 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
+import IncludesMarquee, { IncludeCard } from '@/components/ui/IncludesMarquee'
+
+const COLOR = '#2D7A4F'
+const COLOR2 = '#3d9963'
 
 const DIRECTIONS = [
   { dir: 'N',  angle: 270, color: '#4A90D9', element: 'Water · जल',   benefit: 'Career & Opportunities' },
@@ -11,13 +15,55 @@ const DIRECTIONS = [
   { dir: 'SE', angle: 45,  color: '#FF6B1A', element: 'Fire · अग्नि',  benefit: 'Wealth & Prosperity' },
 ]
 
-const INCLUDES = [
-  { icon: '🏠', label: 'Full Home / Office Analysis', labelMr: 'घर / कार्यालय विश्लेषण' },
-  { icon: '🧭', label: 'Direction & Zone Mapping',    labelMr: 'दिशा व क्षेत्र नकाशा' },
-  { icon: '🔥', label: 'Five Elements Balance',       labelMr: 'पंचमहाभूत संतुलन' },
-  { icon: '🚪', label: 'Entrance & Bedroom Guide',    labelMr: 'प्रवेशद्वार व शयनकक्ष' },
-  { icon: '🍳', label: 'Kitchen & Study Setup',       labelMr: 'स्वयंपाकघर व अभ्यासकक्ष' },
-  { icon: '🛠️', label: 'Simple Practical Remedies',  labelMr: 'सोपे व व्यावहारिक उपाय' },
+const INCLUDES: IncludeCard[] = [
+  {
+    label: 'Full Home / Office Analysis',
+    labelMr: 'घर / कार्यालय विश्लेषण',
+    symbol: 'ग',
+    symbolFont: "'Tiro Devanagari Sanskrit', serif",
+    gradient: 'radial-gradient(ellipse at 45% 35%, #072812 0%, #020f07 100%)',
+    glowColor: '#020f07',
+  },
+  {
+    label: 'Direction & Zone Mapping',
+    labelMr: 'दिशा व क्षेत्र नकाशा',
+    symbol: '⊕',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 55% 40%, #062210 0%, #020c06 100%)',
+    glowColor: '#020c06',
+  },
+  {
+    label: 'Five Elements Balance',
+    labelMr: 'पंचमहाभूत संतुलन',
+    symbol: 'प',
+    symbolFont: "'Tiro Devanagari Sanskrit', serif",
+    gradient: 'radial-gradient(ellipse at 40% 45%, #082e14 0%, #031108 100%)',
+    glowColor: '#031108',
+  },
+  {
+    label: 'Entrance & Bedroom Guide',
+    labelMr: 'प्रवेशद्वार व शयनकक्ष',
+    symbol: 'ॐ',
+    symbolFont: "'Tiro Devanagari Sanskrit', serif",
+    gradient: 'radial-gradient(ellipse at 50% 35%, #062610 0%, #020f06 100%)',
+    glowColor: '#020f06',
+  },
+  {
+    label: 'Kitchen & Study Setup',
+    labelMr: 'स्वयंपाकघर व अभ्यासकक्ष',
+    symbol: '△',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 45% 40%, #072a12 0%, #031008 100%)',
+    glowColor: '#031008',
+  },
+  {
+    label: 'Simple Practical Remedies',
+    labelMr: 'सोपे व व्यावहारिक उपाय',
+    symbol: '◈',
+    symbolFont: 'serif',
+    gradient: 'radial-gradient(ellipse at 55% 35%, #062412 0%, #020e07 100%)',
+    glowColor: '#020e07',
+  },
 ]
 
 export default function VastuSection() {
@@ -56,7 +102,7 @@ export default function VastuSection() {
               <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(201,168,76,0.45)', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Consultation Fee · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सल्ला शुल्क</span>
               </p>
-              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: '#3d9963' }}>₹2,500</div>
+              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: COLOR2 }}>₹2,500</div>
               <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.4)', marginTop: '4px' }}>90 min · Site visit / Online</p>
               <Link href="/booking"
                 className="mt-5 inline-block font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-125"
@@ -99,7 +145,7 @@ export default function VastuSection() {
             </p>
 
             {/* Directions mini reference */}
-            <div className="grid grid-cols-2 gap-2 mb-6">
+            <div className="grid grid-cols-2 gap-2">
               {DIRECTIONS.map(({ dir, color, element, benefit }) => (
                 <div key={dir} className="flex items-center gap-3 p-3 rounded-[3px]"
                   style={{ border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
@@ -112,33 +158,14 @@ export default function VastuSection() {
                 </div>
               ))}
             </div>
-
-            {/* What's Included */}
-            <div className="mb-2 flex items-center gap-3">
-              <h3 className="font-cinzel font-bold text-white" style={{ fontSize: '13px', letterSpacing: '3px', textTransform: 'uppercase' }}>What&apos;s Included</h3>
-              <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.5)' }}>· काय मिळते</span>
-            </div>
-            <div style={{ width: '100%', height: '1px', background: 'rgba(45,122,79,0.3)', marginBottom: '16px' }} />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {INCLUDES.map(({ icon, label, labelMr }, i) => (
-                <motion.div key={i}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.45, delay: 0.4 + i * 0.08 }}
-                  className="flex items-center gap-4 p-4 rounded-[4px]"
-                  style={{ border: '1px solid rgba(45,122,79,0.3)', background: 'rgba(45,122,79,0.07)' }}>
-                  <span className="text-[28px] flex-shrink-0 leading-none">{icon}</span>
-                  <div>
-                    <div className="font-cinzel text-white" style={{ fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.3px', lineHeight: 1.3 }}>{label}</div>
-                    <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '12px', color: 'rgba(61,153,99,0.65)', marginTop: '3px' }}>{labelMr}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
         </div>
+      </div>
+
+      {/* Full-width includes marquee */}
+      <div className="relative z-10">
+        <IncludesMarquee items={INCLUDES} accentColor={COLOR2} duration={32} />
       </div>
     </section>
   )
