@@ -12,10 +12,10 @@ const STATS = [
 ]
 
 const SERVICES_QUICK = [
-  { name: 'Vedic Astrology', nameMr: 'ज्योतिषशास्त्र', price: '₹1,500', color: '#7B3FD4', href: '#astrology' },
-  { name: 'Numerology',      nameMr: 'अंकशास्त्र',     price: '₹1,200', color: '#C9A84C', href: '#numerology' },
-  { name: 'Vastu Shastra',   nameMr: 'वास्तुशास्त्र',  price: '₹2,500', color: '#2D7A4F', href: '#vastu' },
-  { name: 'Tarot Reading',   nameMr: 'तारोट वाचन',     price: '₹800',   color: '#B22222', href: '#tarot' },
+  { name: 'Vedic Astrology', nameMr: 'ज्योतिषशास्त्र', price: '₹1,500', color: '#7B3FD4', href: '/#astrology' },
+  { name: 'Numerology',      nameMr: 'अंकशास्त्र',     price: '₹1,200', color: '#C9A84C', href: '/#numerology' },
+  { name: 'Vastu Shastra',   nameMr: 'वास्तुशास्त्र',  price: '₹2,500', color: '#2D7A4F', href: '/#vastu' },
+  { name: 'Tarot Reading',   nameMr: 'तारोट वाचन',     price: '₹800',   color: '#B22222', href: '/#tarot' },
 ]
 
 export default function BookNowBanner() {
@@ -53,8 +53,8 @@ export default function BookNowBanner() {
             <div key={i} className="flex flex-col items-center justify-center py-6 px-4 text-center"
               style={{ background: 'rgba(5,5,16,0.6)', borderRight: i < 3 ? '1px solid rgba(201,168,76,0.1)' : 'none' }}>
               <div className="font-cinzel font-bold" style={{ fontSize: 'clamp(22px,3vw,32px)', color: '#C9A84C', lineHeight: 1 }}>{value}</div>
-              <div className="font-cinzel text-white mt-1" style={{ fontSize: '10px', letterSpacing: '1.5px', textTransform: 'uppercase' }}>{label}</div>
-              <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '11px', color: 'rgba(201,168,76,0.45)', marginTop: '3px' }}>{labelMr}</div>
+              <div className="font-cinzel text-white mt-1" style={{ fontSize: '13px', letterSpacing: '1.5px', textTransform: 'uppercase' }}>{label}</div>
+              <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.45)', marginTop: '3px' }}>{labelMr}</div>
             </div>
           ))}
         </motion.div>
@@ -111,7 +111,7 @@ export default function BookNowBanner() {
           initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.25 }}>
 
-          <p className="font-cinzel text-center mb-5" style={{ fontSize: '10px', letterSpacing: '3.5px', textTransform: 'uppercase', color: 'rgba(245,236,215,0.3)' }}>
+          <p className="font-cinzel text-center mb-5" style={{ fontSize: '13px', letterSpacing: '3.5px', textTransform: 'uppercase', color: 'rgba(245,236,215,0.3)' }}>
             Select a Service
           </p>
 
@@ -128,8 +128,8 @@ export default function BookNowBanner() {
                   <div className="font-cinzel font-bold mb-1" style={{ fontSize: 'clamp(18px,2vw,24px)', color, lineHeight: 1 }}>
                     {price}
                   </div>
-                  <div className="font-cinzel text-white font-semibold" style={{ fontSize: '11.5px', letterSpacing: '0.5px', marginBottom: '3px' }}>{name}</div>
-                  <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '11px', color: `${color}80` }}>{nameMr}</div>
+                  <div className="font-cinzel text-white font-semibold" style={{ fontSize: '14px', letterSpacing: '0.5px', marginBottom: '3px' }}>{name}</div>
+                  <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: `${color}80` }}>{nameMr}</div>
                 </Link>
               </motion.div>
             ))}
@@ -141,7 +141,7 @@ export default function BookNowBanner() {
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-10"
-          style={{ fontSize: '12px', color: 'rgba(245,236,215,0.25)', letterSpacing: '0.5px' }}>
+          style={{ fontSize: '14px', color: 'rgba(245,236,215,0.25)', letterSpacing: '0.5px' }}>
           Sessions available online & in-person · Confidential & private ·{' '}
           <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>गोपनीय सल्ला</span>
         </motion.p>

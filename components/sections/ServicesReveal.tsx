@@ -16,7 +16,7 @@ const SERVICES = [
     border: 'rgba(123,63,212,0.3)',
     price: '₹1,500',
     duration: '60 min',
-    href: '#astrology',
+    href: '/#astrology',
     questions: [
       'Why do the same patterns keep repeating in my life?',
       'What do my planets reveal about career, love & timing?',
@@ -33,7 +33,7 @@ const SERVICES = [
     border: 'rgba(201,168,76,0.3)',
     price: '₹1,200',
     duration: '45 min',
-    href: '#numerology',
+    href: '/#numerology',
     questions: [
       'Does my name or birth date carry a hidden vibration?',
       'Which numbers govern my luck and major life cycles?',
@@ -50,7 +50,7 @@ const SERVICES = [
     border: 'rgba(61,153,99,0.3)',
     price: '₹2,500',
     duration: '90 min',
-    href: '#vastu',
+    href: '/#vastu',
     questions: [
       'Why does my home feel heavy despite being clean?',
       'Can space energy be affecting my finances or health?',
@@ -67,7 +67,7 @@ const SERVICES = [
     border: 'rgba(178,34,34,0.3)',
     price: '₹800',
     duration: '30 min',
-    href: '#tarot',
+    href: '/#tarot',
     questions: [
       'I need clarity on a decision I have been avoiding.',
       'What is the energy around my relationship right now?',
@@ -131,7 +131,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: '10px',
+              fontSize: '13px',
               letterSpacing: '2px',
               textTransform: 'uppercase',
               color: `${svc.color}99`,
@@ -184,7 +184,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             <span
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: '11px',
+                fontSize: '13px',
                 color: `${svc.color}55`,
                 letterSpacing: '1.5px',
                 textTransform: 'uppercase',
@@ -267,7 +267,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           <div
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: '11px',
+              fontSize: '13px',
               color: 'rgba(245,236,215,0.3)',
               letterSpacing: '2px',
               textTransform: 'uppercase',
@@ -279,7 +279,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           <div
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: '12px',
+              fontSize: '14px',
               color: 'rgba(245,236,215,0.25)',
             }}
           >
@@ -294,7 +294,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             onClick={e => e.stopPropagation()}
             className="font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-125"
             style={{
-              fontSize: '11px',
+              fontSize: '13px',
               letterSpacing: '2px',
               color: '#fff',
               background: `linear-gradient(135deg, ${svc.color}cc, ${svc.color})`,
@@ -312,7 +312,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             onClick={() => setFlipped(false)}
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: '11px',
+              fontSize: '13px',
               color: `${svc.color}50`,
               letterSpacing: '1px',
               background: 'none',

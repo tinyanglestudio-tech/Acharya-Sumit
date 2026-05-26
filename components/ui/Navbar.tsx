@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 const NAV_LINKS = [
-  { href: '#services',   label: 'Services' },
-  { href: '#about',      label: 'About' },
+  { href: '/#services',  label: 'Services' },
+  { href: '/#about',     label: 'About' },
   { href: '/blog',       label: 'Blog' },
   { href: '/shop',       label: 'Shop' },
   { href: '/media',      label: 'Media' },
@@ -61,7 +61,7 @@ export default function Navbar() {
               key={href}
               href={href}
               className="font-cinzel uppercase transition-colors duration-200 hover:text-gold"
-              style={{ fontSize: '12px', letterSpacing: '2px', color: 'rgba(245,236,215,0.65)' }}
+              style={{ fontSize: '14px', letterSpacing: '2px', color: 'rgba(245,236,215,0.65)' }}
             >
               {label}
             </Link>
@@ -113,7 +113,7 @@ export default function Navbar() {
               key={href}
               href={href}
               className="font-cinzel uppercase text-cream/65 hover:text-gold transition-colors"
-              style={{ fontSize: '13px', letterSpacing: '2px' }}
+              style={{ fontSize: '15px', letterSpacing: '2px' }}
               onClick={() => setOpen(false)}
             >
               {label}

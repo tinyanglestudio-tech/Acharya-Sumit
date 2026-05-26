@@ -3,13 +3,13 @@
 import Link from 'next/link'
 
 const NAV_LINKS = [
-  { label: 'Home',       labelMr: 'मुख्यपृष्ठ',   href: '#home' },
-  { label: 'Services',   labelMr: 'सेवा',          href: '#services' },
-  { label: 'Astrology',  labelMr: 'ज्योतिष',       href: '#astrology' },
-  { label: 'Numerology', labelMr: 'अंकशास्त्र',    href: '#numerology' },
-  { label: 'Vastu',      labelMr: 'वास्तुशास्त्र', href: '#vastu' },
-  { label: 'Tarot',      labelMr: 'तारोट',         href: '#tarot' },
-  { label: 'Shop',       labelMr: 'दुकान',          href: '#shop' },
+  { label: 'Home',       labelMr: 'मुख्यपृष्ठ',   href: '/' },
+  { label: 'Services',   labelMr: 'सेवा',          href: '/#services' },
+  { label: 'Astrology',  labelMr: 'ज्योतिष',       href: '/#astrology' },
+  { label: 'Numerology', labelMr: 'अंकशास्त्र',    href: '/#numerology' },
+  { label: 'Vastu',      labelMr: 'वास्तुशास्त्र', href: '/#vastu' },
+  { label: 'Tarot',      labelMr: 'तारोट',         href: '/#tarot' },
+  { label: 'Shop',       labelMr: 'दुकान',          href: '/#shop' },
 ]
 
 const QUICK_LINKS = [
@@ -82,7 +82,7 @@ export default function Footer() {
               <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '38px', color: '#C9A84C', lineHeight: 1, filter: 'drop-shadow(0 0 12px rgba(201,168,76,0.4))' }}>ॐ</span>
               <div>
                 <div className="font-cinzel font-bold text-white" style={{ fontSize: '15px', letterSpacing: '2px' }}>ACHARYA SUMIT</div>
-                <div style={{ fontSize: '10px', letterSpacing: '1.5px', color: 'rgba(201,168,76,0.55)', textTransform: 'uppercase' }}>Astrologer · Numerologist · Vastu</div>
+                <div style={{ fontSize: '12px', letterSpacing: '1.5px', color: 'rgba(201,168,76,0.55)', textTransform: 'uppercase' }}>Astrologer · Numerologist · Vastu</div>
               </div>
             </div>
 
@@ -110,18 +110,18 @@ export default function Footer() {
 
           {/* Col 2 — Navigation */}
           <div>
-            <h4 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase' }}>Navigation</h4>
+            <h4 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: '13px', letterSpacing: '3px', textTransform: 'uppercase' }}>Navigation</h4>
             <div style={{ width: '36px', height: '1px', background: '#C9A84C', opacity: 0.4, marginBottom: '16px' }} />
             <ul className="space-y-3">
               {NAV_LINKS.map(({ label, labelMr, href }) => (
                 <li key={label}>
                   <Link href={href}
                     className="group flex items-baseline gap-2 transition-colors duration-200"
-                    style={{ color: 'rgba(245,236,215,0.45)', fontSize: '13px' }}
+                    style={{ color: 'rgba(245,236,215,0.45)', fontSize: '15px' }}
                     onMouseEnter={e => (e.currentTarget.style.color = 'rgba(201,168,76,0.85)')}
                     onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,236,215,0.45)')}>
-                    <span className="font-cinzel" style={{ fontSize: '12px' }}>{label}</span>
-                    <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '11px', color: 'rgba(201,168,76,0.3)' }}>· {labelMr}</span>
+                    <span className="font-cinzel" style={{ fontSize: '14px' }}>{label}</span>
+                    <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.3)' }}>· {labelMr}</span>
                   </Link>
                 </li>
               ))}
@@ -130,14 +130,14 @@ export default function Footer() {
 
           {/* Col 3 — Quick Links */}
           <div>
-            <h4 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase' }}>Quick Links</h4>
+            <h4 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: '13px', letterSpacing: '3px', textTransform: 'uppercase' }}>Quick Links</h4>
             <div style={{ width: '36px', height: '1px', background: '#C9A84C', opacity: 0.4, marginBottom: '16px' }} />
             <ul className="space-y-3">
               {QUICK_LINKS.map(({ label, href }) => (
                 <li key={label}>
                   <Link href={href}
                     className="font-cinzel transition-colors duration-200"
-                    style={{ fontSize: '12px', color: 'rgba(245,236,215,0.45)' }}
+                    style={{ fontSize: '14px', color: 'rgba(245,236,215,0.45)' }}
                     onMouseEnter={e => (e.currentTarget.style.color = 'rgba(201,168,76,0.85)')}
                     onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,236,215,0.45)')}>
                     {label}
@@ -149,12 +149,12 @@ export default function Footer() {
 
           {/* Col 4 — Contact + CTA */}
           <div>
-            <h4 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase' }}>Contact</h4>
+            <h4 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: '13px', letterSpacing: '3px', textTransform: 'uppercase' }}>Contact</h4>
             <div style={{ width: '36px', height: '1px', background: '#C9A84C', opacity: 0.4, marginBottom: '16px' }} />
 
             <div className="space-y-4 mb-6">
               <div>
-                <div className="font-cinzel text-white" style={{ fontSize: '10px', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '4px' }}>WhatsApp</div>
+                <div className="font-cinzel text-white" style={{ fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '4px' }}>WhatsApp</div>
                 <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer"
                   style={{ fontSize: '13.5px', color: 'rgba(37,211,102,0.75)', textDecoration: 'none' }}
                   onMouseEnter={e => (e.currentTarget.style.color = '#25D366')}
@@ -163,7 +163,7 @@ export default function Footer() {
                 </a>
               </div>
               <div>
-                <div className="font-cinzel text-white" style={{ fontSize: '10px', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '4px' }}>Email</div>
+                <div className="font-cinzel text-white" style={{ fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '4px' }}>Email</div>
                 <a href="mailto:acharya@example.com"
                   style={{ fontSize: '13px', color: 'rgba(245,236,215,0.5)', textDecoration: 'none' }}
                   onMouseEnter={e => (e.currentTarget.style.color = 'rgba(201,168,76,0.85)')}
@@ -172,14 +172,14 @@ export default function Footer() {
                 </a>
               </div>
               <div>
-                <div className="font-cinzel text-white" style={{ fontSize: '10px', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '4px' }}>Sessions</div>
+                <div className="font-cinzel text-white" style={{ fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '4px' }}>Sessions</div>
                 <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.45)', lineHeight: 1.6 }}>Online · In-person<br />Mon – Sat, 9 AM – 7 PM</p>
               </div>
             </div>
 
             <Link href="/booking"
               className="inline-block font-cinzel font-bold uppercase transition-all duration-300 hover:brightness-115 hover:scale-[1.02]"
-              style={{ fontSize: '11px', letterSpacing: '2px', color: '#050510', background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', padding: '11px 24px', borderRadius: '3px', boxShadow: '0 0 24px rgba(201,168,76,0.2)' }}>
+              style={{ fontSize: '13px', letterSpacing: '2px', color: '#050510', background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', padding: '12px 28px', borderRadius: '3px', boxShadow: '0 0 24px rgba(201,168,76,0.2)' }}>
               Book Now · बुक करा
             </Link>
           </div>
@@ -194,13 +194,13 @@ export default function Footer() {
 
         {/* ── Bottom bar ── */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p style={{ fontSize: '11.5px', color: 'rgba(245,236,215,0.25)', letterSpacing: '0.3px' }}>
+          <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.25)', letterSpacing: '0.3px' }}>
             © {year} Acharya Sumit. All rights reserved.
           </p>
-          <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '12px', color: 'rgba(201,168,76,0.25)', textAlign: 'center' }}>
+          <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.25)', textAlign: 'center' }}>
             सर्व हक्क राखीव · ज्योतिष · अंकशास्त्र · वास्तुशास्त्र · तारोट
           </p>
-          <p style={{ fontSize: '11px', color: 'rgba(245,236,215,0.18)', letterSpacing: '0.5px' }}>
+          <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.18)', letterSpacing: '0.5px' }}>
             Designed by{' '}
             <a href="https://tinyanglestudio.com" target="_blank" rel="noopener noreferrer"
               style={{ color: 'rgba(201,168,76,0.35)', textDecoration: 'none' }}
