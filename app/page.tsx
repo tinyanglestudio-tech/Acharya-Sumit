@@ -4,11 +4,13 @@ import dynamic from 'next/dynamic'
 import MandalaRings from '@/components/animations/MandalaRings'
 import HeroSection from '@/components/sections/HeroSection'
 import Navbar from '@/components/ui/Navbar'
+import VedicHeritage from '@/components/sections/VedicHeritage'
 import ServicesReveal from '@/components/sections/ServicesReveal'
 import AstrologySection from '@/components/sections/Astrology'
 import NumerologySection from '@/components/sections/Numerology'
 import VastuSection from '@/components/sections/Vastu'
 import TarotSection from '@/components/sections/Tarot'
+import ShopPreview from '@/components/sections/ShopPreview'
 
 const StarField   = dynamic(() => import('@/components/animations/StarField'),   { ssr: false })
 const GhostCursor = dynamic(() => import('@/components/animations/GhostCursor'), { ssr: false })
@@ -19,10 +21,10 @@ export default function HomePage() {
       className="relative bg-cosmic"
       style={{ cursor: "url('/trishul-cursor.svg') 6 0, auto" }}
     >
-      {/* Fixed navbar — sits above everything */}
+      {/* Fixed navbar */}
       <Navbar />
 
-      {/* Ghost cursor glow (fixed, follows mouse) */}
+      {/* Ghost cursor glow */}
       <GhostCursor color="#7B3FD4" brightness={0.45} zIndex={10} />
 
       {/* ── HERO — full viewport height ── */}
@@ -44,7 +46,10 @@ export default function HomePage() {
         <HeroSection />
       </div>
 
-      {/* ── SERVICES OVERVIEW ── */}
+      {/* ── VEDIC HERITAGE — Sanskrit verse carousel ── */}
+      <VedicHeritage />
+
+      {/* ── SERVICES OVERVIEW — 4-card grid ── */}
       <ServicesReveal />
 
       {/* ── INDIVIDUAL SERVICE SECTIONS ── */}
@@ -52,6 +57,9 @@ export default function HomePage() {
       <NumerologySection />
       <VastuSection />
       <TarotSection />
+
+      {/* ── SHOP — Consultations & Products ── */}
+      <ShopPreview />
     </div>
   )
 }
