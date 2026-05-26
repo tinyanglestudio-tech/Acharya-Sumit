@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cinzel, DM_Sans } from 'next/font/google'
 import './globals.css'
+import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 
 const cinzel = Cinzel({
   subsets: ['latin'],
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-cosmic text-cream antialiased">
         {children}
+        <FloatingWhatsApp />
       </body>
     </html>
   )
