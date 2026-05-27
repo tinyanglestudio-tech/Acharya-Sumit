@@ -119,12 +119,15 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           {/* Service name */}
           <h3
             className="font-cinzel font-bold text-white"
-            style={{ fontSize: '19px', letterSpacing: '1px', lineHeight: 1.2, marginBottom: '10px' }}
+            style={{ fontSize: '19px', letterSpacing: '1px', lineHeight: 1.2, marginBottom: '4px' }}
           >
             {svc.title}
           </h3>
+          <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '15px', color: svc.color, marginBottom: '10px', lineHeight: 1.3 }}>
+            {svc.titleMr}
+          </p>
           <div
-            style={{ width: '32px', height: '2px', background: svc.color, opacity: 0.6, marginBottom: '22px', borderRadius: '1px' }}
+            style={{ width: '32px', height: '2px', background: svc.color, opacity: 0.8, marginBottom: '20px', borderRadius: '1px' }}
           />
 
           {/* Label */}
@@ -236,8 +239,8 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           <p
             style={{
               fontFamily: "'Tiro Devanagari Sanskrit', serif",
-              fontSize: '13px',
-              color: `${svc.color}CC`,
+              fontSize: '16px',
+              color: svc.color,
               marginBottom: '10px',
             }}
           >

@@ -83,7 +83,7 @@ export default function BookingPage() {
             <h2 className="font-cinzel font-bold text-white mb-3" style={{ fontSize: 'clamp(24px,3.5vw,40px)', letterSpacing: '2px' }}>
               Booking Received
             </h2>
-            <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '18px', color: 'rgba(201,168,76,0.6)', marginBottom: '20px' }}>
+            <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '18px', color: '#C9A84C', marginBottom: '20px' }}>
               आपली विनंती प्राप्त झाली
             </p>
             <div className="p-6 rounded-[6px] mb-8 text-left" style={{ border: '1px solid rgba(201,168,76,0.2)', background: 'rgba(201,168,76,0.05)' }}>
@@ -122,19 +122,19 @@ export default function BookingPage() {
         style={{ background: 'linear-gradient(180deg, #050510 0%, #0a0820 100%)' }}>
         <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
           style={{ width: '800px', height: '400px', background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 65%)' }} />
-        <p className="font-cinzel uppercase mb-2 relative z-10" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(201,168,76,0.55)' }}>
+        <p className="font-cinzel uppercase mb-2 relative z-10" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(201,168,76,0.92)' }}>
           Reserve Your Session · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>बुकिंग करा</span>
         </p>
         <h1 className="font-cinzel font-bold text-white relative z-10" style={{ fontSize: 'clamp(28px,5vw,56px)', letterSpacing: '2px', marginBottom: '8px' }}>
           Book a Consultation
         </h1>
-        <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(14px,1.6vw,18px)', color: 'rgba(201,168,76,0.5)', position: 'relative', zIndex: 10 }}>
+        <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(16px,1.8vw,20px)', color: '#C9A84C', position: 'relative', zIndex: 10 }}>
           ज्ञानाचा प्रकाश, जीवनाची दिशा
         </p>
         <div className="relative z-10 flex items-center justify-center gap-4 mt-5">
-          <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.4))' }} />
-          <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '20px', color: 'rgba(201,168,76,0.4)' }}>ॐ</span>
-          <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, rgba(201,168,76,0.4), transparent)' }} />
+          <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.6))' }} />
+          <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '20px', color: 'rgba(201,168,76,0.9)' }}>ॐ</span>
+          <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, rgba(201,168,76,0.6), transparent)' }} />
         </div>
       </div>
 
@@ -167,11 +167,11 @@ export default function BookingPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-cinzel font-bold text-white" style={{ fontSize: '15px', letterSpacing: '0.5px' }}>{svc.name}</div>
-                        <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: `${svc.color}80` }}>{svc.nameMr}</div>
+                        <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '14px', color: svc.color }}>{svc.nameMr}</div>
                       </div>
                       <div className="text-right flex-shrink-0">
                         <div className="font-cinzel font-bold" style={{ fontSize: '16px', color: svc.color }}>{svc.price}</div>
-                        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(245,236,215,0.35)' }}>{svc.duration}</div>
+                        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(245,236,215,0.75)' }}>{svc.duration}</div>
                       </div>
                     </button>
                   ))}
@@ -222,7 +222,7 @@ export default function BookingPage() {
 
                   {/* Online / In-person */}
                   <div>
-                    <label style={labelStyle}>Session Format <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.45)' }}>सत्र प्रकार</span></label>
+                    <label style={labelStyle}>Session Format <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '14px', color: '#C9A84C' }}>सत्र प्रकार</span></label>
                     <div className="flex gap-3 mt-2">
                       {[['online', 'Online', '💻'], ['inperson', 'In-Person', '🏛️']] .map(([val, lbl, ico]) => (
                         <button type="button" key={val}
@@ -283,7 +283,7 @@ export default function BookingPage() {
                 <label className="flex items-start gap-3 cursor-pointer mb-6">
                   <input type="checkbox" checked={form.agree} onChange={e => set('agree', e.target.checked)}
                     style={{ marginTop: '3px', accentColor: '#C9A84C', width: '16px', height: '16px', flexShrink: 0 }} />
-                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '15px', color: 'rgba(245,236,215,0.5)', lineHeight: 1.6 }}>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '15px', color: 'rgba(245,236,215,0.88)', lineHeight: 1.6 }}>
                     I understand this is a paid consultation and agree to the{' '}
                     <Link href="/terms" style={{ color: 'rgba(201,168,76,0.7)', textDecoration: 'underline' }}>Terms of Service</Link>
                     {' '}and{' '}
@@ -324,11 +324,11 @@ export default function BookingPage() {
                     <span style={{ fontSize: '28px', color: selectedSvc.color }}>{selectedSvc.symbol}</span>
                     <div>
                       <div className="font-cinzel font-bold text-white" style={{ fontSize: '16px' }}>{selectedSvc.name}</div>
-                      <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: `${selectedSvc.color}70` }}>{selectedSvc.nameMr}</div>
+                      <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '15px', color: selectedSvc.color }}>{selectedSvc.nameMr}</div>
                     </div>
                   </div>
                   <div className="flex justify-between items-center pt-3" style={{ borderTop: `1px solid ${selectedSvc.color}20` }}>
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(245,236,215,0.4)' }}>{selectedSvc.duration} · {form.sessionType === 'online' ? 'Online' : 'In-Person'}</span>
+                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(245,236,215,0.82)' }}>{selectedSvc.duration} · {form.sessionType === 'online' ? 'Online' : 'In-Person'}</span>
                     <span className="font-cinzel font-bold" style={{ fontSize: '18px', color: selectedSvc.color }}>{selectedSvc.price}</span>
                   </div>
                 </div>
@@ -336,7 +336,7 @@ export default function BookingPage() {
 
               {/* What to expect */}
               <div className="p-5 rounded-[6px]" style={{ border: '1px solid rgba(201,168,76,0.15)', background: 'rgba(201,168,76,0.04)' }}>
-                <p className="font-cinzel uppercase mb-4" style={{ fontSize: '12px', letterSpacing: '2.5px', color: 'rgba(201,168,76,0.55)' }}>
+                <p className="font-cinzel uppercase mb-4" style={{ fontSize: '12px', letterSpacing: '2.5px', color: 'rgba(201,168,76,0.92)' }}>
                   What to Expect
                 </p>
                 {[
@@ -348,14 +348,14 @@ export default function BookingPage() {
                 ].map(([ico, txt], i) => (
                   <div key={i} className="flex items-start gap-3 mb-3">
                     <span style={{ fontSize: '15px', flexShrink: 0 }}>{ico}</span>
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(245,236,215,0.5)', lineHeight: 1.55 }}>{txt}</span>
+                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(245,236,215,0.88)', lineHeight: 1.55 }}>{txt}</span>
                   </div>
                 ))}
               </div>
 
               {/* Contact */}
               <div className="p-5 rounded-[6px]" style={{ border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
-                <p className="font-cinzel uppercase mb-4" style={{ fontSize: '12px', letterSpacing: '2.5px', color: 'rgba(245,236,215,0.35)' }}>
+                <p className="font-cinzel uppercase mb-4" style={{ fontSize: '12px', letterSpacing: '2.5px', color: 'rgba(245,236,215,0.88)' }}>
                   Prefer to reach out directly?
                 </p>
                 <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer"
@@ -363,27 +363,27 @@ export default function BookingPage() {
                   <span style={{ fontSize: '18px' }}>💬</span>
                   <div>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: '#25D366', fontWeight: 600 }}>WhatsApp</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(245,236,215,0.35)' }}>+91 99999 99999</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(245,236,215,0.82)' }}>+91 99999 99999</div>
                   </div>
                 </a>
                 <a href="mailto:acharya@example.com"
                   className="flex items-center gap-3 transition-opacity hover:opacity-80">
                   <span style={{ fontSize: '18px' }}>✉️</span>
                   <div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(201,168,76,0.7)', fontWeight: 500 }}>Email</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(245,236,215,0.35)' }}>acharya@example.com</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(201,168,76,0.95)', fontWeight: 500 }}>Email</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(245,236,215,0.82)' }}>acharya@example.com</div>
                   </div>
                 </a>
               </div>
 
               {/* Office hours */}
               <div className="p-5 rounded-[6px]" style={{ border: '1px solid rgba(255,255,255,0.05)', background: 'rgba(255,255,255,0.015)' }}>
-                <p className="font-cinzel uppercase mb-3" style={{ fontSize: '12px', letterSpacing: '2.5px', color: 'rgba(245,236,215,0.3)' }}>
+                <p className="font-cinzel uppercase mb-3" style={{ fontSize: '12px', letterSpacing: '2.5px', color: 'rgba(245,236,215,0.88)' }}>
                   Session Hours
                 </p>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(245,236,215,0.45)', lineHeight: 1.8 }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(245,236,215,0.88)', lineHeight: 1.8 }}>
                   Mon – Sat &nbsp;·&nbsp; 9:00 AM – 7:00 PM<br />
-                  <span style={{ fontSize: '13px', color: 'rgba(245,236,215,0.25)' }}>Sunday by special appointment</span>
+                  <span style={{ fontSize: '13px', color: 'rgba(245,236,215,0.72)' }}>Sunday by special appointment</span>
                 </div>
               </div>
             </aside>
@@ -403,17 +403,17 @@ function SectionLabel({ step, title, titleMr }: { step: string; title: string; t
   return (
     <div className="flex items-center gap-4">
       <span className="font-cinzel font-bold flex-shrink-0"
-        style={{ fontSize: '13px', color: 'rgba(201,168,76,0.4)', letterSpacing: '1px' }}>
+        style={{ fontSize: '13px', color: 'rgba(201,168,76,0.9)', letterSpacing: '1px' }}>
         {step}
       </span>
-      <div style={{ flex: 1, height: '1px', background: 'rgba(201,168,76,0.12)' }} />
+      <div style={{ flex: 1, height: '1px', background: 'rgba(201,168,76,0.25)' }} />
       <h3 className="font-cinzel font-bold text-white flex-shrink-0" style={{ fontSize: '15px', letterSpacing: '2px', textTransform: 'uppercase' }}>
         {title}
       </h3>
-      <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '14px', color: 'rgba(201,168,76,0.4)', flexShrink: 0 }}>
+      <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '16px', color: '#C9A84C', flexShrink: 0 }}>
         · {titleMr}
       </span>
-      <div style={{ flex: 1, height: '1px', background: 'rgba(201,168,76,0.12)' }} />
+      <div style={{ flex: 1, height: '1px', background: 'rgba(201,168,76,0.25)' }} />
     </div>
   )
 }
@@ -425,7 +425,7 @@ function Field({ label, labelMr, required, note, children }: {
     <div>
       <label style={labelStyle}>
         {label}{' '}
-        <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.4)' }}>{labelMr}</span>
+        <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '14px', color: '#C9A84C' }}>{labelMr}</span>
         {required && <span style={{ color: '#B22222', marginLeft: '3px' }}>*</span>}
         {note && <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: 'rgba(245,236,215,0.3)', marginLeft: '6px', fontStyle: 'italic' }}>({note})</span>}
       </label>
@@ -447,7 +447,7 @@ const labelStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
   fontSize: '14px',
   letterSpacing: '0.5px',
-  color: 'rgba(245,236,215,0.5)',
+  color: 'rgba(245,236,215,0.88)',
   marginBottom: '8px',
   textTransform: 'uppercase',
 }
