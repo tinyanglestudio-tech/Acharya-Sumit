@@ -37,20 +37,20 @@ export default function IncludesMarquee({
       <div className="flex items-center gap-4 mb-6">
         <h3
           className="font-cinzel font-bold text-white"
-          style={{ fontSize: '13px', letterSpacing: '3px', textTransform: 'uppercase' }}
+          style={{ fontSize: '16px', letterSpacing: '3px', textTransform: 'uppercase' }}
         >
           {heading}
         </h3>
         <span
           style={{
             fontFamily: "'Tiro Devanagari Sanskrit', serif",
-            fontSize: '13px',
-            color: 'rgba(201,168,76,0.5)',
+            fontSize: '17px',
+            color: 'rgba(201,168,76,0.9)',
           }}
         >
           · {headingMr}
         </span>
-        <div style={{ flex: 1, height: '1px', background: `${accentColor}30` }} />
+        <div style={{ flex: 1, height: '1px', background: `${accentColor}50` }} />
       </div>
 
       {/* Marquee strip */}
@@ -162,19 +162,19 @@ function MarqueeCard({ card, accentColor }: { card: IncludeCard; accentColor: st
         className="flex flex-col justify-center px-4 py-4"
         style={{
           height: '35%',
-          borderTop: `1px solid ${accentColor}20`,
+          borderTop: `1px solid ${accentColor}35`,
           background: 'rgba(5,5,16,0.85)',
         }}
       >
         <div
           style={{
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: '12.5px',
+            fontSize: '15px',
             fontWeight: 600,
             color: '#fff',
             lineHeight: 1.35,
             letterSpacing: '0.1px',
-            marginBottom: '5px',
+            marginBottom: '6px',
           }}
         >
           {label}
@@ -182,9 +182,10 @@ function MarqueeCard({ card, accentColor }: { card: IncludeCard; accentColor: st
         <div
           style={{
             fontFamily: "'Tiro Devanagari Sanskrit', serif",
-            fontSize: '11.5px',
-            color: `${accentColor}90`,
+            fontSize: '14px',
+            color: accentColor,
             lineHeight: 1.4,
+            opacity: 0.92,
           }}
         >
           {labelMr}
