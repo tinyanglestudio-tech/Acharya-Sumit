@@ -48,7 +48,7 @@ export default function Navbar() {
             <span className="font-cinzel font-bold text-white" style={{ fontSize: '14px', letterSpacing: '2.5px' }}>
               ACHARYA SUMIT
             </span>
-            <span className="font-garamond uppercase" style={{ fontSize: '10px', letterSpacing: '2.5px', color: 'rgba(201,168,76,0.6)' }}>
+            <span className="font-garamond uppercase" style={{ fontSize: '10px', letterSpacing: '2.5px', color: 'rgba(201,168,76,0.88)' }}>
               Astrologer &middot; Numerologist &middot; Vastu
             </span>
           </div>

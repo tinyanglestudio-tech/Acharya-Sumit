@@ -54,7 +54,7 @@ export default function BookNowBanner() {
               style={{ background: 'rgba(5,5,16,0.6)', borderRight: i < 3 ? '1px solid rgba(201,168,76,0.1)' : 'none' }}>
               <div className="font-cinzel font-bold" style={{ fontSize: 'clamp(22px,3vw,32px)', color: '#C9A84C', lineHeight: 1 }}>{value}</div>
               <div className="font-cinzel text-white mt-1" style={{ fontSize: '13px', letterSpacing: '1.5px', textTransform: 'uppercase' }}>{label}</div>
-              <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.45)', marginTop: '3px' }}>{labelMr}</div>
+              <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.82)', marginTop: '3px' }}>{labelMr}</div>
             </div>
           ))}
         </motion.div>
@@ -65,7 +65,7 @@ export default function BookNowBanner() {
           transition={{ duration: 0.9, delay: 0.1 }}
           className="text-center mb-12">
 
-          <p className="font-cinzel uppercase mb-3" style={{ fontSize: '11px', letterSpacing: '5px', color: 'rgba(201,168,76,0.55)' }}>
+          <p className="font-cinzel uppercase mb-3" style={{ fontSize: '11px', letterSpacing: '5px', color: 'rgba(201,168,76,0.9)' }}>
             Begin Your Journey · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>आपला प्रवास सुरू करा</span>
           </p>
 
@@ -73,14 +73,14 @@ export default function BookNowBanner() {
             Book a Consultation
           </h2>
 
-          <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(16px,2vw,22px)', color: 'rgba(201,168,76,0.6)', marginBottom: '16px' }}>
+          <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(16px,2vw,22px)', color: 'rgba(201,168,76,0.9)', marginBottom: '16px' }}>
             ज्ञानाचा प्रकाश, जीवनाची दिशा — आजच सुरुवात करा
           </p>
 
           {/* Ornament divider */}
           <div className="flex items-center justify-center gap-4 mb-8">
             <div style={{ width: '80px', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.4))' }} />
-            <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '22px', color: 'rgba(201,168,76,0.55)' }}>ॐ</span>
+            <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '22px', color: 'rgba(201,168,76,0.88)' }}>ॐ</span>
             <div style={{ width: '80px', height: '1px', background: 'linear-gradient(90deg, rgba(201,168,76,0.4), transparent)' }} />
           </div>
 
@@ -111,7 +111,7 @@ export default function BookNowBanner() {
           initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.25 }}>
 
-          <p className="font-cinzel text-center mb-5" style={{ fontSize: '13px', letterSpacing: '3.5px', textTransform: 'uppercase', color: 'rgba(245,236,215,0.3)' }}>
+          <p className="font-cinzel text-center mb-5" style={{ fontSize: '13px', letterSpacing: '3.5px', textTransform: 'uppercase', color: 'rgba(245,236,215,0.6)' }}>
             Select a Service
           </p>
 
@@ -129,7 +129,7 @@ export default function BookNowBanner() {
                     {price}
                   </div>
                   <div className="font-cinzel text-white font-semibold" style={{ fontSize: '14px', letterSpacing: '0.5px', marginBottom: '3px' }}>{name}</div>
-                  <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: `${color}80` }}>{nameMr}</div>
+                  <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: `${color}CC` }}>{nameMr}</div>
                 </Link>
               </motion.div>
             ))}

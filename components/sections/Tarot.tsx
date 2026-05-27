@@ -5,8 +5,8 @@ import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import IncludesMarquee, { IncludeCard } from '@/components/ui/IncludesMarquee'
 
-const COLOR = '#B22222'
-const COLOR2 = '#8B1A1A'
+const COLOR = '#D03535'
+const COLOR2 = '#A82828'
 
 const INCLUDES: IncludeCard[] = [
   {
@@ -86,13 +86,13 @@ export default function TarotSection() {
           <motion.div initial={{ opacity: 0, x: -50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}>
 
-            <p className="font-cinzel uppercase mb-1" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(178,34,34,0.85)' }}>
+            <p className="font-cinzel uppercase mb-1" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(208,53,53,0.98)' }}>
               Ancient Wisdom Cards · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>तारोट ज्ञान</span>
             </p>
             <h2 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', letterSpacing: '2px', lineHeight: 1.1 }}>
               Tarot Reading
             </h2>
-            <p className="mb-5" style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(15px,1.8vw,19px)', color: 'rgba(178,34,34,0.65)' }}>
+            <p className="mb-5" style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(15px,1.8vw,19px)', color: 'rgba(208,53,53,0.9)' }}>
               मनाचा आरसा, भविष्याचा दीप — पत्त्यांत उत्तरे शोधा
             </p>
             <div style={{ width: '60px', height: '2px', background: 'linear-gradient(90deg, #8B1A1A, transparent)', marginBottom: '20px' }} />
@@ -102,7 +102,7 @@ export default function TarotSection() {
               <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(17px,2vw,24px)', color: '#C9A84C', lineHeight: 1.4, marginBottom: '6px' }}>
                 दैवं बलवत् — सर्वस्य दैवमेव परायणम्
               </p>
-              <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.45)', fontStyle: 'italic' }}>
+              <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.72)', fontStyle: 'italic' }}>
                 &ldquo;Destiny is powerful — all things depend upon it ultimately&rdquo; — Mahābhārata
               </p>
             </div>
@@ -127,11 +127,11 @@ export default function TarotSection() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="mt-8 rounded-[4px] px-8 py-6 text-center w-full max-w-xs"
               style={{ border: '1px solid rgba(139,26,26,0.45)', background: 'rgba(139,26,26,0.06)', boxShadow: '0 0 50px rgba(139,26,26,0.12)' }}>
-              <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(201,168,76,0.45)', textTransform: 'uppercase', marginBottom: '8px' }}>
+              <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(201,168,76,0.82)', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Consultation Fee · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सल्ला शुल्क</span>
               </p>
               <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: COLOR }}>₹800</div>
-              <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.4)', marginTop: '4px' }}>30 min · Online / In-person</p>
+              <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.65)', marginTop: '4px' }}>30 min · Online / In-person</p>
               <Link href="/booking"
                 className="mt-5 inline-block font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-125"
                 style={{ fontSize: '12px', letterSpacing: '2px', color: '#fff', background: `linear-gradient(135deg, ${COLOR2}, ${COLOR})`, padding: '12px 32px', borderRadius: '3px' }}>

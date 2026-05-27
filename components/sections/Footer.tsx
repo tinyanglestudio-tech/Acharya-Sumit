@@ -82,7 +82,7 @@ export default function Footer() {
               <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '38px', color: '#C9A84C', lineHeight: 1, filter: 'drop-shadow(0 0 12px rgba(201,168,76,0.4))' }}>ॐ</span>
               <div>
                 <div className="font-cinzel font-bold text-white" style={{ fontSize: '15px', letterSpacing: '2px' }}>ACHARYA SUMIT</div>
-                <div style={{ fontSize: '12px', letterSpacing: '1.5px', color: 'rgba(201,168,76,0.55)', textTransform: 'uppercase' }}>Astrologer · Numerologist · Vastu</div>
+                <div style={{ fontSize: '12px', letterSpacing: '1.5px', color: 'rgba(201,168,76,0.85)', textTransform: 'uppercase' }}>Astrologer · Numerologist · Vastu</div>
               </div>
             </div>
 
@@ -90,7 +90,7 @@ export default function Footer() {
               Guiding lives through the sacred sciences of Jyotish, Numerology, Vastu and Tarot — rooted in authentic Vedic tradition.
             </p>
 
-            <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.4)', lineHeight: 1.7 }}>
+            <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.78)', lineHeight: 1.7 }}>
               ज्ञानाचा प्रकाश, जीवनाची दिशा
             </p>
 
@@ -99,9 +99,9 @@ export default function Footer() {
               {SOCIALS.map(({ name, href, icon }) => (
                 <a key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={name}
                   className="flex items-center justify-center w-9 h-9 rounded-full transition-all duration-300 hover:scale-110"
-                  style={{ border: '1px solid rgba(201,168,76,0.2)', background: 'rgba(201,168,76,0.05)', color: 'rgba(201,168,76,0.55)' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.55)'; e.currentTarget.style.color = '#C9A84C' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.2)'; e.currentTarget.style.color = 'rgba(201,168,76,0.55)' }}>
+                  style={{ border: '1px solid rgba(201,168,76,0.35)', background: 'rgba(201,168,76,0.05)', color: 'rgba(201,168,76,0.85)' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.75)'; e.currentTarget.style.color = '#E8C55A' }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.35)'; e.currentTarget.style.color = 'rgba(201,168,76,0.85)' }}>
                   {icon}
                 </a>
               ))}
@@ -121,7 +121,7 @@ export default function Footer() {
                     onMouseEnter={e => (e.currentTarget.style.color = 'rgba(201,168,76,0.85)')}
                     onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,236,215,0.45)')}>
                     <span className="font-cinzel" style={{ fontSize: '14px' }}>{label}</span>
-                    <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.3)' }}>· {labelMr}</span>
+                    <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.7)' }}>· {labelMr}</span>
                   </Link>
                 </li>
               ))}
@@ -156,9 +156,9 @@ export default function Footer() {
               <div>
                 <div className="font-cinzel text-white" style={{ fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '4px' }}>WhatsApp</div>
                 <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer"
-                  style={{ fontSize: '13.5px', color: 'rgba(37,211,102,0.75)', textDecoration: 'none' }}
+                  style={{ fontSize: '13.5px', color: 'rgba(37,211,102,0.92)', textDecoration: 'none' }}
                   onMouseEnter={e => (e.currentTarget.style.color = '#25D366')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(37,211,102,0.75)')}>
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(37,211,102,0.92)')}>
                   +91 99999 99999
                 </a>
               </div>
@@ -188,7 +188,7 @@ export default function Footer() {
         {/* ── Divider with Om ── */}
         <div className="flex items-center gap-4 mb-8">
           <div className="flex-1 h-px" style={{ background: 'rgba(201,168,76,0.12)' }} />
-          <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '18px', color: 'rgba(201,168,76,0.3)' }}>ॐ</span>
+          <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '18px', color: 'rgba(201,168,76,0.7)' }}>ॐ</span>
           <div className="flex-1 h-px" style={{ background: 'rgba(201,168,76,0.12)' }} />
         </div>
 
@@ -197,15 +197,15 @@ export default function Footer() {
           <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.25)', letterSpacing: '0.3px' }}>
             © {year} Acharya Sumit. All rights reserved.
           </p>
-          <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.25)', textAlign: 'center' }}>
+          <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.6)', textAlign: 'center' }}>
             सर्व हक्क राखीव · ज्योतिष · अंकशास्त्र · वास्तुशास्त्र · तारोट
           </p>
           <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.18)', letterSpacing: '0.5px' }}>
             Designed by{' '}
             <a href="https://tinyanglestudio.com" target="_blank" rel="noopener noreferrer"
-              style={{ color: 'rgba(201,168,76,0.35)', textDecoration: 'none' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'rgba(201,168,76,0.7)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(201,168,76,0.35)')}>
+              style={{ color: 'rgba(201,168,76,0.7)', textDecoration: 'none' }}
+              onMouseEnter={e => (e.currentTarget.style.color = '#E8C55A')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(201,168,76,0.7)')}>
               TinyAngle Studio
             </a>
           </p>

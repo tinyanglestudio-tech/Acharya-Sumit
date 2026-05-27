@@ -134,7 +134,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
               fontSize: '13px',
               letterSpacing: '2px',
               textTransform: 'uppercase',
-              color: `${svc.color}99`,
+              color: `${svc.color}CC`,
               marginBottom: '18px',
             }}
           >
@@ -185,14 +185,14 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '13px',
-                color: `${svc.color}55`,
+                color: `${svc.color}BB`,
                 letterSpacing: '1.5px',
                 textTransform: 'uppercase',
               }}
             >
               Tap to see details
             </span>
-            <span style={{ color: svc.color, opacity: 0.45, fontSize: '13px' }}>→</span>
+            <span style={{ color: svc.color, opacity: 0.85, fontSize: '13px' }}>→</span>
           </div>
         </div>
 
@@ -237,7 +237,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             style={{
               fontFamily: "'Tiro Devanagari Sanskrit', serif",
               fontSize: '13px',
-              color: `${svc.color}80`,
+              color: `${svc.color}CC`,
               marginBottom: '10px',
             }}
           >
@@ -247,7 +247,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           {/* Subtitle */}
           <p
             className="font-garamond"
-            style={{ fontSize: '13px', color: 'rgba(201,168,76,0.55)', letterSpacing: '0.5px', lineHeight: 1.6, marginBottom: '18px' }}
+            style={{ fontSize: '13px', color: 'rgba(201,168,76,0.88)', letterSpacing: '0.5px', lineHeight: 1.6, marginBottom: '18px' }}
           >
             {svc.subtitle}
           </p>
@@ -268,7 +268,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: '13px',
-              color: 'rgba(245,236,215,0.3)',
+              color: 'rgba(245,236,215,0.58)',
               letterSpacing: '2px',
               textTransform: 'uppercase',
               marginBottom: '6px',
@@ -280,7 +280,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: '14px',
-              color: 'rgba(245,236,215,0.25)',
+              color: 'rgba(245,236,215,0.5)',
             }}
           >
             {svc.duration} · Online / In-person
@@ -363,7 +363,7 @@ export default function ServicesReveal() {
         >
           <p
             className="font-cinzel uppercase mb-4"
-            style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(201,168,76,0.55)' }}
+            style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(201,168,76,0.88)' }}
           >
             Ancient Wisdom &middot; Modern Guidance
           </p>

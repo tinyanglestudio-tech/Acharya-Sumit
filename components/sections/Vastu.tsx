@@ -148,7 +148,7 @@ export default function VastuSection() {
             <h2 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', letterSpacing: '2px', lineHeight: 1.1 }}>
               Vastu Shastra
             </h2>
-            <p className="mb-5" style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(15px,1.8vw,19px)', color: 'rgba(61,153,99,0.7)' }}>
+            <p className="mb-5" style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(15px,1.8vw,19px)', color: 'rgba(61,153,99,0.95)' }}>
               घराची ऊर्जा, जीवनाची शक्ती — वास्तूने बदला आपले भाग्य
             </p>
             <div style={{ width: '60px', height: '2px', background: 'linear-gradient(90deg, #2D7A4F, transparent)', marginBottom: '20px' }} />
@@ -157,7 +157,7 @@ export default function VastuSection() {
               <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(17px,2vw,24px)', color: '#C9A84C', lineHeight: 1.4, marginBottom: '6px' }}>
                 वास्तुना सुखमाप्नोति
               </p>
-              <p style={{ fontSize: '14px', color: 'rgba(245,236,215,0.5)', fontStyle: 'italic' }}>
+              <p style={{ fontSize: '14px', color: 'rgba(245,236,215,0.72)', fontStyle: 'italic' }}>
                 "One attains happiness and prosperity through Vastu" — Mānasāra
               </p>
             </div>

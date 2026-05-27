@@ -76,13 +76,13 @@ export default function NumerologySection() {
           <motion.div initial={{ opacity: 0, x: -50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1 }} className="order-2 lg:order-1">
 
-            <p className="font-cinzel uppercase mb-1" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(201,168,76,0.65)' }}>
+            <p className="font-cinzel uppercase mb-1" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(201,168,76,0.92)' }}>
               Language of the Universe · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>विश्वाची भाषा</span>
             </p>
             <h2 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', letterSpacing: '2px', lineHeight: 1.1 }}>
               Numerology
             </h2>
-            <p className="mb-5" style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(15px,1.8vw,19px)', color: 'rgba(201,168,76,0.6)' }}>
+            <p className="mb-5" style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(15px,1.8vw,19px)', color: 'rgba(201,168,76,0.9)' }}>
               अंकांतील रहस्य उलगडा — आपले जीवन समजून घ्या
             </p>
             <div style={{ width: '60px', height: '2px', background: 'linear-gradient(90deg, #C9A84C, transparent)', marginBottom: '20px' }} />
@@ -92,7 +92,7 @@ export default function NumerologySection() {
               <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(17px,2vw,24px)', color: '#C9A84C', lineHeight: 1.4, marginBottom: '6px' }}>
                 अंके सर्वं प्रतिष्ठितम्
               </p>
-              <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.45)', fontStyle: 'italic' }}>
+              <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.72)', fontStyle: 'italic' }}>
                 "All of existence is established in numbers" — Vedic Wisdom
               </p>
             </div>
@@ -117,11 +117,11 @@ export default function NumerologySection() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="mt-8 rounded-[4px] px-8 py-6 text-center w-full max-w-xs"
               style={{ border: '1px solid rgba(201,168,76,0.4)', background: 'rgba(201,168,76,0.05)', boxShadow: '0 0 50px rgba(201,168,76,0.1)' }}>
-              <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(201,168,76,0.45)', textTransform: 'uppercase', marginBottom: '8px' }}>
+              <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(201,168,76,0.82)', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Consultation Fee · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सल्ला शुल्क</span>
               </p>
               <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: COLOR }}>₹1,200</div>
-              <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.4)', marginTop: '4px' }}>45 min · Online / In-person</p>
+              <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.65)', marginTop: '4px' }}>45 min · Online / In-person</p>
               <Link href="/booking"
                 className="mt-5 inline-block font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-110"
                 style={{ fontSize: '12px', letterSpacing: '2px', color: '#050510', background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', padding: '12px 32px', borderRadius: '3px' }}>

@@ -91,7 +91,7 @@ export default function AboutSection() {
                 </span>
                 <span
                   className="font-cinzel font-bold"
-                  style={{ fontSize: '11px', letterSpacing: '3px', color: 'rgba(201,168,76,0.4)', marginTop: '8px', textTransform: 'uppercase' }}
+                  style={{ fontSize: '11px', letterSpacing: '3px', color: 'rgba(201,168,76,0.78)', marginTop: '8px', textTransform: 'uppercase' }}
                 >
                   Acharya Sumit
                 </span>
@@ -112,7 +112,7 @@ export default function AboutSection() {
             <div className="w-full max-w-sm">
               <p
                 className="font-cinzel uppercase mb-4"
-                style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(201,168,76,0.5)' }}
+                style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(201,168,76,0.85)' }}
               >
                 Credentials &amp; Training · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>पात्रता</span>
               </p>
@@ -140,13 +140,13 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: 50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.15 }}
           >
-            <p className="font-cinzel uppercase mb-2" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(201,168,76,0.6)' }}>
+            <p className="font-cinzel uppercase mb-2" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(201,168,76,0.9)' }}>
               Meet Your Guide · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>आपला मार्गदर्शक</span>
             </p>
             <h2 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', letterSpacing: '2px', lineHeight: 1.1 }}>
               Acharya Sumit
             </h2>
-            <p className="mb-5" style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(14px,1.6vw,18px)', color: 'rgba(201,168,76,0.55)' }}>
+            <p className="mb-5" style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(14px,1.6vw,18px)', color: 'rgba(201,168,76,0.88)' }}>
               ज्योतिषी · अंकशास्त्रज्ञ · वास्तुतज्ज्ञ
             </p>
             <div style={{ width: '60px', height: '2px', background: 'linear-gradient(90deg, #C9A84C, transparent)', marginBottom: '24px' }} />
@@ -156,7 +156,7 @@ export default function AboutSection() {
               <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(16px,1.8vw,22px)', color: '#C9A84C', lineHeight: 1.5, marginBottom: '6px' }}>
                 ज्ञानं परमं ध्येयम्
               </p>
-              <p style={{ fontSize: '12px', color: 'rgba(245,236,215,0.4)', fontStyle: 'italic' }}>
+              <p style={{ fontSize: '12px', color: 'rgba(245,236,215,0.72)', fontStyle: 'italic' }}>
                 "Knowledge is the highest goal" — the principle that guides every consultation
               </p>
             </div>
@@ -188,8 +188,8 @@ export default function AboutSection() {
                   style={{ background: 'rgba(5,5,16,0.7)', borderRight: i < 3 ? '1px solid rgba(201,168,76,0.1)' : 'none' }}
                 >
                   <div className="font-cinzel font-bold" style={{ fontSize: 'clamp(18px,2.2vw,26px)', color: '#C9A84C', lineHeight: 1 }}>{value}</div>
-                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '10px', letterSpacing: '1px', color: 'rgba(245,236,215,0.45)', textTransform: 'uppercase', marginTop: '4px' }}>{label}</div>
-                  <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '10px', color: 'rgba(201,168,76,0.35)', marginTop: '2px' }}>{labelMr}</div>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '10px', letterSpacing: '1px', color: 'rgba(245,236,215,0.72)', textTransform: 'uppercase', marginTop: '4px' }}>{label}</div>
+                  <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '10px', color: 'rgba(201,168,76,0.75)', marginTop: '2px' }}>{labelMr}</div>
                 </motion.div>
               ))}
             </div>
