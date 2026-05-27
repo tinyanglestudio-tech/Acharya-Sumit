@@ -12,6 +12,7 @@ import VastuSection from '@/components/sections/Vastu'
 import TarotSection from '@/components/sections/Tarot'
 import AboutSection from '@/components/sections/About'
 import ShopPreview from '@/components/sections/ShopPreview'
+import TestimonialsSection from '@/components/sections/Testimonials'
 import BookNowBanner from '@/components/sections/BookNowBanner'
 import Footer from '@/components/sections/Footer'
 
@@ -66,6 +67,9 @@ export default function HomePage() {
 
       {/* ── SHOP — Consultations & Products ── */}
       <ShopPreview />
+
+      {/* ── TESTIMONIALS — Client voices ── */}
+      <TestimonialsSection />
 
       {/* ── BOOK NOW — CTA conversion banner ── */}
       <BookNowBanner />
