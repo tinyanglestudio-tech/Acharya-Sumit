@@ -86,7 +86,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: 0.2 + index * 0.14, ease: 'easeOut' }}
-      style={{ perspective: '1200px', height: '420px' }}
+      style={{ perspective: '1200px', minHeight: 'clamp(320px, 40vw, 440px)' }}
     >
       {/* 3-D flip wrapper */}
       <div
@@ -111,7 +111,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             borderRadius: '6px',
             border: `1px solid ${svc.color}40`,
             background: `linear-gradient(150deg, ${svc.color}14 0%, rgba(5,5,16,0.97) 55%)`,
-            padding: '32px 28px',
+            padding: 'clamp(1.5rem,3vw,2rem) clamp(1.25rem,2.5vw,1.75rem)',
             display: 'flex',
             flexDirection: 'column',
           }}
@@ -119,11 +119,11 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           {/* Service name */}
           <h3
             className="font-cinzel font-bold text-white"
-            style={{ fontSize: '19px', letterSpacing: '1px', lineHeight: 1.2, marginBottom: '4px' }}
+            style={{ fontSize: 'clamp(14px, 1.6vw, 19px)', letterSpacing: '1px', lineHeight: 1.2, marginBottom: '4px' }}
           >
             {svc.title}
           </h3>
-          <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '15px', color: svc.color, marginBottom: '10px', lineHeight: 1.3 }}>
+          <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(13px, 1.3vw, 15px)', color: svc.color, marginBottom: '10px', lineHeight: 1.3 }}>
             {svc.titleMr}
           </p>
           <div
@@ -134,7 +134,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: '13px',
+              fontSize: 'clamp(11px, 1.1vw, 13px)',
               letterSpacing: '2px',
               textTransform: 'uppercase',
               color: `${svc.color}CC`,
@@ -163,7 +163,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
                 <span
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    fontSize: '15px',
+                    fontSize: 'clamp(13px, 1.3vw, 15px)',
                     fontWeight: 400,
                     color: 'rgba(245,236,215,0.82)',
                     lineHeight: 1.65,
@@ -187,7 +187,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             <span
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: '13px',
+                fontSize: 'clamp(11px, 1.1vw, 13px)',
                 color: `${svc.color}BB`,
                 letterSpacing: '1.5px',
                 textTransform: 'uppercase',
@@ -195,7 +195,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             >
               Tap to see details
             </span>
-            <span style={{ color: svc.color, opacity: 0.85, fontSize: '13px' }}>→</span>
+            <span style={{ color: svc.color, opacity: 0.85, fontSize: 'clamp(11px, 1.1vw, 13px)' }}>→</span>
           </div>
         </div>
 
@@ -209,7 +209,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             borderRadius: '6px',
             border: `1px solid ${svc.color}40`,
             background: `linear-gradient(160deg, ${svc.color}10 0%, rgba(5,5,16,0.97) 70%)`,
-            padding: '32px 28px',
+            padding: 'clamp(1.5rem,3vw,2rem) clamp(1.25rem,2.5vw,1.75rem)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -219,7 +219,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           {/* Symbol */}
           <div
             style={{
-              fontSize: '56px',
+              fontSize: 'clamp(32px, 4.5vw, 56px)',
               lineHeight: 1,
               marginBottom: '16px',
               color: svc.color,
@@ -232,14 +232,14 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           {/* Title + Marathi */}
           <h3
             className="font-cinzel font-bold text-white"
-            style={{ fontSize: '18px', letterSpacing: '1.5px', marginBottom: '4px' }}
+            style={{ fontSize: 'clamp(13px, 1.5vw, 18px)', letterSpacing: '1.5px', marginBottom: '4px' }}
           >
             {svc.title}
           </h3>
           <p
             style={{
               fontFamily: "'Tiro Devanagari Sanskrit', serif",
-              fontSize: '16px',
+              fontSize: 'clamp(13px, 1.5vw, 16px)',
               color: svc.color,
               marginBottom: '10px',
             }}
@@ -250,7 +250,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           {/* Subtitle */}
           <p
             className="font-garamond"
-            style={{ fontSize: '13px', color: 'rgba(201,168,76,0.88)', letterSpacing: '0.5px', lineHeight: 1.6, marginBottom: '18px' }}
+            style={{ fontSize: 'clamp(11px, 1.1vw, 13px)', color: 'rgba(201,168,76,0.88)', letterSpacing: '0.5px', lineHeight: 1.6, marginBottom: '18px' }}
           >
             {svc.subtitle}
           </p>
@@ -263,14 +263,14 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
           {/* Price */}
           <div
             className="font-cinzel font-bold"
-            style={{ fontSize: '30px', color: svc.color, lineHeight: 1, marginBottom: '4px' }}
+            style={{ fontSize: 'clamp(20px, 2.5vw, 30px)', color: svc.color, lineHeight: 1, marginBottom: '4px' }}
           >
             {svc.price}
           </div>
           <div
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: '13px',
+              fontSize: 'clamp(11px, 1.1vw, 13px)',
               color: 'rgba(245,236,215,0.58)',
               letterSpacing: '2px',
               textTransform: 'uppercase',
@@ -297,11 +297,11 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             onClick={e => e.stopPropagation()}
             className="font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-125"
             style={{
-              fontSize: '13px',
+              fontSize: 'clamp(11px, 1.1vw, 13px)',
               letterSpacing: '2px',
               color: '#fff',
               background: `linear-gradient(135deg, ${svc.color}cc, ${svc.color})`,
-              padding: '11px 28px',
+              padding: 'clamp(9px,1.3vw,11px) clamp(18px,2.5vw,28px)',
               borderRadius: '3px',
               display: 'inline-block',
               marginBottom: '14px',
@@ -315,7 +315,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
             onClick={() => setFlipped(false)}
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: '13px',
+              fontSize: 'clamp(11px, 1.1vw, 13px)',
               color: `${svc.color}50`,
               letterSpacing: '1px',
               background: 'none',
@@ -345,8 +345,8 @@ export default function ServicesReveal() {
     <section
       id="services"
       ref={ref}
-      className="relative py-32 px-6 overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #050510 0%, #08082A 50%, #050510 100%)' }}
+      className="relative px-6 overflow-hidden"
+      style={{ paddingTop: 'clamp(3rem,8vw,7rem)', paddingBottom: 'clamp(3rem,8vw,7rem)', background: 'linear-gradient(180deg, #050510 0%, #08082A 50%, #050510 100%)' }}
     >
       {/* Faint Om watermark */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center select-none" aria-hidden>
@@ -362,11 +362,11 @@ export default function ServicesReveal() {
           initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, ease: 'easeOut' }}
-          className="text-center mb-20"
+          className="text-center mb-[clamp(2rem,5vw,5rem)]"
         >
           <p
             className="font-cinzel uppercase mb-4"
-            style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(201,168,76,0.88)' }}
+            style={{ fontSize: 'clamp(10px, 1vw, 12px)', letterSpacing: '4px', color: 'rgba(201,168,76,0.88)' }}
           >
             Ancient Wisdom &middot; Modern Guidance
           </p>
@@ -377,7 +377,7 @@ export default function ServicesReveal() {
             Our Services
           </h2>
           <div
-            style={{ width: '80px', height: '2px', background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)', margin: '0 auto 24px' }}
+            style={{ width: 'clamp(48px, 6vw, 80px)', height: '2px', background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)', margin: `0 auto clamp(12px, 2vw, 24px)` }}
           />
           <p
             style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(15px, 1.7vw, 18px)', color: 'rgba(245,236,215,0.5)', lineHeight: 1.8, maxWidth: '520px', margin: '0 auto' }}
@@ -400,7 +400,7 @@ export default function ServicesReveal() {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.9 }}
           className="text-center mt-14"
-          style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(245,236,215,0.25)', letterSpacing: '1.5px' }}
+          style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(11px, 1.1vw, 13px)', color: 'rgba(245,236,215,0.25)', letterSpacing: '1.5px' }}
         >
           All consultations are by prior appointment only &middot; Paid sessions
         </motion.p>
