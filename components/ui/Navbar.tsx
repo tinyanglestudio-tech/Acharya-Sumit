@@ -40,17 +40,17 @@ export default function Navbar() {
           <span
             style={{
               fontFamily: "'Tiro Devanagari Sanskrit', serif",
-              fontSize: '30px',
+              fontSize: 'clamp(22px, 2.8vw, 30px)',
               lineHeight: 1,
               color: '#C9A84C',
               filter: 'drop-shadow(0 0 10px rgba(201,168,76,0.65))',
             }}
           >ॐ</span>
           <div className="flex flex-col leading-tight">
-            <span className="font-cinzel font-bold text-white" style={{ fontSize: '14px', letterSpacing: '2.5px' }}>
+            <span className="font-cinzel font-bold text-white" style={{ fontSize: 'clamp(12px, 1.2vw, 14px)', letterSpacing: '2.5px' }}>
               ACHARYA SUMIT
             </span>
-            <span className="font-garamond uppercase" style={{ fontSize: '10px', letterSpacing: '2.5px', color: 'rgba(201,168,76,0.88)' }}>
+            <span className="font-garamond uppercase" style={{ fontSize: 'clamp(9px, 0.9vw, 11px)', letterSpacing: '2.5px', color: 'rgba(201,168,76,0.88)' }}>
               Astrologer &middot; Numerologist &middot; Vastu
             </span>
           </div>
@@ -63,7 +63,7 @@ export default function Navbar() {
               key={href}
               href={href}
               className="font-cinzel uppercase transition-colors duration-200 hover:text-gold"
-              style={{ fontSize: '14px', letterSpacing: '2px', color: 'rgba(245,236,215,0.65)' }}
+              style={{ fontSize: 'clamp(12px, 1.2vw, 14px)', letterSpacing: '2px', color: 'rgba(245,236,215,0.65)' }}
             >
               {label}
             </Link>
@@ -76,11 +76,11 @@ export default function Navbar() {
             href="/booking"
             className="font-cinzel font-semibold uppercase transition-all duration-200 hover:brightness-110"
             style={{
-              fontSize: '12px',
+              fontSize: 'clamp(10px, 1.1vw, 12px)',
               letterSpacing: '2px',
               color: '#050510',
               background: 'linear-gradient(135deg, #C9A84C, #e8c96a)',
-              padding: '11px 24px',
+              padding: 'clamp(8px,1vw,11px) clamp(16px,2vw,24px)',
               borderRadius: '3px',
               display: 'inline-block',
             }}
@@ -115,7 +115,7 @@ export default function Navbar() {
               key={href}
               href={href}
               className="font-cinzel uppercase text-cream/65 hover:text-gold transition-colors"
-              style={{ fontSize: '15px', letterSpacing: '2px' }}
+              style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', letterSpacing: '2px' }}
               onClick={() => setOpen(false)}
             >
               {label}
@@ -124,7 +124,7 @@ export default function Navbar() {
           <Link
             href="/booking"
             className="font-cinzel font-semibold uppercase text-cosmic text-center py-3 rounded-[3px] mt-2"
-            style={{ fontSize: '12px', letterSpacing: '2px', background: 'linear-gradient(135deg, #C9A84C, #e8c96a)' }}
+            style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', letterSpacing: '2px', background: 'linear-gradient(135deg, #C9A84C, #e8c96a)' }}
             onClick={() => setOpen(false)}
           >
             Book Consultation
