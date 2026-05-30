@@ -27,8 +27,12 @@ export default function AboutSection() {
     <section
       id="about"
       ref={ref}
-      className="relative overflow-hidden py-28 px-6"
-      style={{ background: 'linear-gradient(180deg, #050510 0%, #06090F 55%, #050510 100%)' }}
+      className="relative overflow-hidden px-6"
+      style={{
+        paddingTop: 'clamp(3rem,8vw,7rem)',
+        paddingBottom: 'clamp(3rem,8vw,7rem)',
+        background: 'linear-gradient(180deg, #050510 0%, #06090F 55%, #050510 100%)',
+      }}
     >
       {/* Radial glow */}
       <div
@@ -37,7 +41,7 @@ export default function AboutSection() {
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(2rem,5vw,5rem)] items-center">
 
           {/* ── LEFT — Avatar + credentials ── */}
           <motion.div
@@ -46,7 +50,13 @@ export default function AboutSection() {
             className="flex flex-col items-center lg:items-start"
           >
             {/* Avatar frame */}
-            <div className="relative mb-10" style={{ width: '280px', height: '280px' }}>
+            <div
+              className="relative mb-10"
+              style={{
+                width: 'clamp(200px, 35vw, 280px)',
+                height: 'clamp(200px, 35vw, 280px)',
+              }}
+            >
               {/* Outer ring */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 280 280" fill="none">
                 <circle cx="140" cy="140" r="136" stroke="#C9A84C" strokeWidth="0.8" opacity="0.4" strokeDasharray="4 6" />
@@ -80,7 +90,7 @@ export default function AboutSection() {
                 <span
                   style={{
                     fontFamily: "'Tiro Devanagari Sanskrit', serif",
-                    fontSize: '72px',
+                    fontSize: 'clamp(44px, 6vw, 72px)',
                     color: '#C9A84C',
                     opacity: 0.7,
                     lineHeight: 1,
@@ -91,7 +101,7 @@ export default function AboutSection() {
                 </span>
                 <span
                   className="font-cinzel font-bold"
-                  style={{ fontSize: '11px', letterSpacing: '3px', color: 'rgba(201,168,76,0.78)', marginTop: '8px', textTransform: 'uppercase' }}
+                  style={{ fontSize: 'clamp(10px, 1vw, 12px)', letterSpacing: '3px', color: 'rgba(201,168,76,0.78)', marginTop: '8px', textTransform: 'uppercase' }}
                 >
                   Acharya Sumit
                 </span>
@@ -126,7 +136,7 @@ export default function AboutSection() {
                     style={{ border: '1px solid rgba(201,168,76,0.12)', background: 'rgba(201,168,76,0.04)' }}
                   >
                     <span className="text-[16px] flex-shrink-0 mt-0.5">{icon}</span>
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12.5px', color: 'rgba(245,236,215,0.55)', lineHeight: 1.55 }}>
+                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(11px, 1.1vw, 13px)', color: 'rgba(245,236,215,0.55)', lineHeight: 1.55 }}>
                       {text}
                     </span>
                   </motion.div>
@@ -140,7 +150,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: 50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.15 }}
           >
-            <p className="font-cinzel uppercase mb-2" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(201,168,76,0.9)' }}>
+            <p className="font-cinzel uppercase mb-2" style={{ fontSize: 'clamp(10px, 1vw, 12px)', letterSpacing: '4px', color: 'rgba(201,168,76,0.9)' }}>
               Meet Your Guide · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>आपला मार्गदर्शक</span>
             </p>
             <h2 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', letterSpacing: '2px', lineHeight: 1.1 }}>
@@ -156,7 +166,7 @@ export default function AboutSection() {
               <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(16px,1.8vw,22px)', color: '#C9A84C', lineHeight: 1.5, marginBottom: '6px' }}>
                 ज्ञानं परमं ध्येयम्
               </p>
-              <p style={{ fontSize: '12px', color: 'rgba(245,236,215,0.72)', fontStyle: 'italic' }}>
+              <p style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', color: 'rgba(245,236,215,0.72)', fontStyle: 'italic' }}>
                 "Knowledge is the highest goal" — the principle that guides every consultation
               </p>
             </div>
@@ -199,7 +209,7 @@ export default function AboutSection() {
               <Link
                 href="/booking"
                 className="font-cinzel font-bold uppercase transition-all duration-300 hover:brightness-115 hover:scale-[1.02]"
-                style={{ fontSize: '12px', letterSpacing: '2px', color: '#050510', background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', padding: '13px 32px', borderRadius: '3px', boxShadow: '0 0 30px rgba(201,168,76,0.2)', display: 'inline-block' }}
+                style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', letterSpacing: '2px', color: '#050510', background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', padding: 'clamp(9px,1.3vw,13px) clamp(18px,2.5vw,32px)', borderRadius: '3px', boxShadow: '0 0 30px rgba(201,168,76,0.2)', display: 'inline-block' }}
               >
                 Book a Consultation
               </Link>
@@ -207,7 +217,7 @@ export default function AboutSection() {
                 href="https://wa.me/919999999999"
                 target="_blank" rel="noopener noreferrer"
                 className="font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-115"
-                style={{ fontSize: '12px', letterSpacing: '2px', color: '#25D366', border: '1px solid rgba(37,211,102,0.35)', padding: '13px 28px', borderRadius: '3px', display: 'inline-block' }}
+                style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', letterSpacing: '2px', color: '#25D366', border: '1px solid rgba(37,211,102,0.35)', padding: 'clamp(9px,1.3vw,13px) clamp(18px,2.5vw,28px)', borderRadius: '3px', display: 'inline-block' }}
               >
                 WhatsApp Chat
               </a>

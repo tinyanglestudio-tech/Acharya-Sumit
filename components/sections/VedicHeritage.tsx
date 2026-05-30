@@ -57,8 +57,8 @@ export default function VedicHeritage() {
   return (
     <section
       ref={ref}
-      className="relative py-28 px-6 overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #050510 0%, #080820 50%, #050510 100%)' }}
+      className="relative px-6 overflow-hidden"
+      style={{ paddingTop: 'clamp(3rem,8vw,7rem)', paddingBottom: 'clamp(3rem,8vw,7rem)', background: 'linear-gradient(180deg, #050510 0%, #080820 50%, #050510 100%)' }}
     >
       {/* Subtle star dots */}
       {[...Array(24)].map((_, i) => (
@@ -83,13 +83,13 @@ export default function VedicHeritage() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 1 }}
-          className="flex items-center justify-center gap-5 mb-20"
+          className="flex items-center justify-center gap-5 mb-[clamp(2rem,5vw,5rem)]"
         >
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.35))' }} />
           <span
             style={{
               fontFamily: "'Tiro Devanagari Sanskrit', serif",
-              fontSize: '30px',
+              fontSize: 'clamp(20px, 2.8vw, 30px)',
               color: '#C9A84C',
               filter: 'drop-shadow(0 0 12px rgba(201,168,76,0.7))',
             }}
@@ -106,7 +106,7 @@ export default function VedicHeritage() {
         >
           <p
             className="font-garamond uppercase mb-3"
-            style={{ fontSize: '12px', letterSpacing: '4px', color: 'rgba(201,168,76,0.55)' }}
+            style={{ fontSize: 'clamp(10px, 1.1vw, 12px)', letterSpacing: '4px', color: 'rgba(201,168,76,0.55)' }}
           >
             Sacred Knowledge &nbsp;·&nbsp; <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>पवित्र ज्ञान</span>
           </p>
@@ -123,8 +123,9 @@ export default function VedicHeritage() {
           initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.2 }}
-          className="relative rounded-[6px] p-10 md:p-14 mb-12 overflow-hidden"
+          className="relative rounded-[6px] mb-[clamp(1.5rem,3vw,3rem)] overflow-hidden"
           style={{
+            padding: 'clamp(1.5rem,3vw,3.5rem)',
             border: '1px solid rgba(201,168,76,0.2)',
             background: 'rgba(255,255,255,0.025)',
             boxShadow: 'inset 0 0 80px rgba(201,168,76,0.04)',
@@ -196,7 +197,7 @@ export default function VedicHeritage() {
               {/* Source */}
               <p
                 className="font-garamond italic"
-                style={{ fontSize: '13px', color: 'rgba(201,168,76,0.4)', letterSpacing: '1px' }}
+                style={{ fontSize: 'clamp(11px, 1.1vw, 13px)', color: 'rgba(201,168,76,0.4)', letterSpacing: '1px' }}
               >
                 {verse.source}
               </p>
