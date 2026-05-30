@@ -27,7 +27,9 @@ export default function Navbar() {
         scrolled ? 'py-3 border-b border-[rgba(201,168,76,0.12)]' : 'py-5'
       }`}
       style={{
-        background: scrolled ? 'rgba(5,5,16,0.92)' : 'transparent',
+        background: scrolled
+          ? 'rgba(5,5,16,0.92)'
+          : 'linear-gradient(to bottom, rgba(5,5,16,0.72) 0%, transparent 100%)',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
       }}
     >

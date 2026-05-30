@@ -5,10 +5,10 @@ const OM_SIZE = 'clamp(72px, 11vw, 130px)'
 
 export default function HeroSection() {
   return (
-    <div className="relative z-20 flex flex-col items-center justify-center text-center px-6 h-full pointer-events-none select-none">
+    <div className="relative z-20 flex flex-col items-center justify-center text-center px-6 h-full pointer-events-none select-none pt-24 pb-40" style={{ minHeight: 0 }}>
 
       {/* ── Om symbol — circular aura ── */}
-      <div className="relative flex flex-col items-center mb-6 anim-fade-in delay-200">
+      <div className="relative flex flex-col items-center mb-4 anim-fade-in delay-200">
         <div
           className="absolute anim-aura pointer-events-none"
           style={{
@@ -33,7 +33,7 @@ export default function HeroSection() {
 
       {/* ── Sanskrit verse ── */}
       <p
-        className="mb-10 anim-fade-in delay-400"
+        className="mb-6 anim-fade-in delay-400"
         style={{
           fontFamily: "'Tiro Devanagari Sanskrit', serif",
           fontSize: 'clamp(13px, 1.8vw, 20px)',
@@ -105,7 +105,7 @@ export default function HeroSection() {
       </p>
 
       {/* ── Service tags ── */}
-      <div className="flex flex-wrap gap-3 justify-center mb-12 anim-fade-up delay-800">
+      <div className="flex flex-wrap gap-3 justify-center mb-8 anim-fade-up delay-800">
         {['Astrology', 'Numerology', 'Vastu', 'Tarot'].map(tag => (
           <span
             key={tag}
