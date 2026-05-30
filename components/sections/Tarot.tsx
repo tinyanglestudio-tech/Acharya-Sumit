@@ -80,7 +80,7 @@ export default function TarotSection() {
         style={{ width: '800px', height: '800px', background: 'radial-gradient(ellipse at center, rgba(139,26,26,0.11) 0%, transparent 65%)' }} />
 
       <div className="max-w-7xl mx-auto relative z-10" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 0, width: '100%' }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16" style={{ flex: 1, minHeight: 0, alignItems: 'center' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(1rem,3vw,2.5rem)]" style={{ flex: 1, minHeight: 0, alignItems: 'center' }}>
 
           {/* LEFT — Content */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={inView ? { opacity: 1, x: 0 } : {}}

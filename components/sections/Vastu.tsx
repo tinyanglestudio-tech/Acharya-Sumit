@@ -108,7 +108,7 @@ export default function VastuSection() {
       <div className="max-w-7xl mx-auto relative z-10" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 0, width: '100%' }}>
 
         {/* ── Top 2-col: Mandala + Content ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16" style={{ flex: 1, minHeight: 0, alignItems: 'center' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(1rem,3vw,2.5rem)]" style={{ flex: 1, minHeight: 0, alignItems: 'center' }}>
 
           {/* LEFT — Visual */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -193,7 +193,7 @@ export default function VastuSection() {
           </p>
 
           {/* Compass + Cards layout */}
-          <div className="flex flex-col xl:flex-row gap-12 items-center xl:items-start">
+          <div className="flex flex-col xl:flex-row gap-[clamp(0.75rem,2vw,2rem)] items-center xl:items-start">
 
             {/* Compass rose SVG */}
             <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 'clamp(200px,35vw,300px)', height: 'clamp(200px,35vw,300px)' }}>
