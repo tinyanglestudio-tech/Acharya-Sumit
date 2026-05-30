@@ -86,7 +86,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: 0.2 + index * 0.14, ease: 'easeOut' }}
-      style={{ perspective: '1200px', height: '100%' }}
+      style={{ perspective: '1200px', minHeight: 'clamp(320px, 40vw, 440px)' }}
     >
       {/* 3-D flip wrapper */}
       <div
@@ -345,8 +345,8 @@ export default function ServicesReveal() {
     <section
       id="services"
       ref={ref}
-      className="relative overflow-hidden"
-      style={{ height: '100dvh', overflow: 'clip', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(1rem,3vh,2rem) 1.5rem', background: 'linear-gradient(180deg, #050510 0%, #08082A 50%, #050510 100%)' }}
+      className="relative px-6 overflow-hidden"
+      style={{ paddingTop: 'clamp(3rem,8vw,7rem)', paddingBottom: 'clamp(3rem,8vw,7rem)', background: 'linear-gradient(180deg, #050510 0%, #08082A 50%, #050510 100%)' }}
     >
       {/* Faint Om watermark */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center select-none" aria-hidden>
@@ -355,29 +355,29 @@ export default function ServicesReveal() {
         </span>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10" style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, width: '100%' }}>
+      <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, ease: 'easeOut' }}
-          style={{ marginBottom: 'clamp(0.5rem, 1.5vh, 1.25rem)', textAlign: 'center' }}
+          className="text-center mb-[clamp(2rem,5vw,5rem)]"
         >
           <p
-            className="font-cinzel uppercase"
-            style={{ fontSize: 'clamp(10px, 1vw, 12px)', letterSpacing: '4px', color: 'rgba(201,168,76,0.88)', marginBottom: 'clamp(4px,0.8vh,10px)' }}
+            className="font-cinzel uppercase mb-4"
+            style={{ fontSize: 'clamp(10px, 1vw, 12px)', letterSpacing: '4px', color: 'rgba(201,168,76,0.88)' }}
           >
             Ancient Wisdom &middot; Modern Guidance
           </p>
           <h2
-            className="font-cinzel font-bold text-white"
-            style={{ fontSize: 'clamp(30px, 5vw, 56px)', letterSpacing: '3px', marginBottom: 'clamp(4px,0.8vh,10px)' }}
+            className="font-cinzel font-bold text-white mb-5"
+            style={{ fontSize: 'clamp(30px, 5vw, 56px)', letterSpacing: '3px' }}
           >
             Our Services
           </h2>
           <div
-            style={{ width: 'clamp(48px, 6vw, 80px)', height: '2px', background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)', margin: `0 auto clamp(8px, 1vh, 16px)` }}
+            style={{ width: 'clamp(48px, 6vw, 80px)', height: '2px', background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)', margin: `0 auto clamp(12px, 2vw, 24px)` }}
           />
           <p
             style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(15px, 1.7vw, 18px)', color: 'rgba(245,236,215,0.5)', lineHeight: 1.8, maxWidth: '520px', margin: '0 auto' }}
@@ -388,7 +388,7 @@ export default function ServicesReveal() {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ flex: 1, minHeight: 0, gap: 'clamp(8px,1.5vh,16px)' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {SERVICES.map((svc, i) => (
             <ServiceCard key={svc.id} svc={svc} index={i} inView={inView} />
           ))}
@@ -399,7 +399,8 @@ export default function ServicesReveal() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.9 }}
-          style={{ marginTop: 'clamp(0.5rem,1vh,1rem)', textAlign: 'center', fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(11px, 1.1vw, 13px)', color: 'rgba(245,236,215,0.25)', letterSpacing: '1.5px' }}
+          className="text-center mt-14"
+          style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(11px, 1.1vw, 13px)', color: 'rgba(245,236,215,0.25)', letterSpacing: '1.5px' }}
         >
           All consultations are by prior appointment only &middot; Paid sessions
         </motion.p>

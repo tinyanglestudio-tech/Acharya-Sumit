@@ -29,15 +29,11 @@ export default function ShopPreview() {
     <section
       id="shop"
       ref={ref}
-      className="relative"
+      className="relative px-6 overflow-hidden"
       style={{
-        height: '100dvh',
-        overflow: 'clip',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: 'clamp(1rem,3vh,2rem) clamp(1rem,4vw,2rem)',
         background: 'linear-gradient(180deg, #050510 0%, #0A0820 50%, #050510 100%)',
+        paddingTop: 'clamp(3rem,8vw,7rem)',
+        paddingBottom: 'clamp(3rem,8vw,7rem)',
       }}
     >
       {/* Background glow */}
@@ -59,14 +55,14 @@ export default function ShopPreview() {
         </span>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 0, width: '100%' }}>
+      <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9 }}
-          className="text-center mb-[clamp(0.5rem,1.5vh,1.25rem)]"
+          className="text-center mb-[clamp(2rem,4vw,3.5rem)]"
         >
           <p className="font-garamond uppercase mb-3" style={{ fontSize: 'clamp(10px,1.1vw,12px)', letterSpacing: '4px', color: 'rgba(201,168,76,0.55)' }}>
             Consultations &amp; Products &nbsp;·&nbsp;
@@ -93,7 +89,7 @@ export default function ShopPreview() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex justify-center gap-[clamp(8px,1vw,12px)] mb-[clamp(0.5rem,1vh,1rem)]"
+          className="flex justify-center gap-[clamp(8px,1vw,12px)] mb-[clamp(1.5rem,3vw,3rem)]"
         >
           {([['product', 'Products'], ['service', 'Consultations']] as [Filter, string][]).map(([f, label]) => (
             <button
@@ -117,7 +113,7 @@ export default function ShopPreview() {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[clamp(12px,2vw,20px)]" style={{ flex: 1, minHeight: 0 }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[clamp(12px,2vw,20px)]">
           {visible.map((item, i) => {
             const badgeStyle = item.badge ? BADGE_COLORS[item.badge] : null
             const typeColor = TYPE_COLOR[item.type]
@@ -152,7 +148,7 @@ export default function ShopPreview() {
                   </div>
                 )}
 
-                <div className="p-[clamp(0.5rem,1.5vw,1rem)] flex flex-col flex-1">
+                <div className="p-[clamp(1rem,2vw,1.5rem)] flex flex-col flex-1">
                   {/* Icon */}
                   <div
                     className="w-[clamp(2.5rem,3.5vw,3rem)] h-[clamp(2.5rem,3.5vw,3rem)] rounded-[8px] flex items-center justify-center mb-4"
@@ -244,7 +240,7 @@ export default function ShopPreview() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="text-center mt-[clamp(0.5rem,1vh,1rem)]"
+          className="text-center mt-[clamp(1.5rem,3vw,3rem)]"
         >
           <Link
             href="/shop"
