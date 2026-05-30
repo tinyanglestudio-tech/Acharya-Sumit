@@ -23,8 +23,15 @@ export default function BookNowBanner() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
-    <section ref={ref} className="relative overflow-hidden py-24 px-6"
-      style={{ background: 'linear-gradient(180deg, #050510 0%, #07030F 50%, #050510 100%)' }}>
+    <section
+      ref={ref}
+      className="relative overflow-hidden px-6"
+      style={{
+        background: 'linear-gradient(180deg, #050510 0%, #07030F 50%, #050510 100%)',
+        paddingTop: 'clamp(2.5rem,7vw,6rem)',
+        paddingBottom: 'clamp(2.5rem,7vw,6rem)',
+      }}
+    >
 
       {/* Gold radial glow — centre */}
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
@@ -47,14 +54,22 @@ export default function BookNowBanner() {
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-px mb-16"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-px mb-[clamp(2rem,4vw,4rem)]"
           style={{ border: '1px solid rgba(201,168,76,0.15)', borderRadius: '4px', overflow: 'hidden', background: 'rgba(201,168,76,0.08)' }}>
           {STATS.map(({ value, label, labelMr }, i) => (
-            <div key={i} className="flex flex-col items-center justify-center py-6 px-4 text-center"
-              style={{ background: 'rgba(5,5,16,0.6)', borderRight: i < 3 ? '1px solid rgba(201,168,76,0.1)' : 'none' }}>
+            <div key={i}
+              className="flex flex-col items-center justify-center text-center"
+              style={{
+                paddingTop: 'clamp(1rem,2vw,1.5rem)',
+                paddingBottom: 'clamp(1rem,2vw,1.5rem)',
+                paddingLeft: 'clamp(0.75rem,1.5vw,1rem)',
+                paddingRight: 'clamp(0.75rem,1.5vw,1rem)',
+                background: 'rgba(5,5,16,0.6)',
+                borderRight: i < 3 ? '1px solid rgba(201,168,76,0.1)' : 'none',
+              }}>
               <div className="font-cinzel font-bold" style={{ fontSize: 'clamp(22px,3vw,32px)', color: '#C9A84C', lineHeight: 1 }}>{value}</div>
-              <div className="font-cinzel text-white mt-1" style={{ fontSize: '13px', letterSpacing: '1.5px', textTransform: 'uppercase' }}>{label}</div>
-              <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.82)', marginTop: '3px' }}>{labelMr}</div>
+              <div className="font-cinzel text-white mt-1" style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '1.5px', textTransform: 'uppercase' }}>{label}</div>
+              <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(11px,1.1vw,13px)', color: 'rgba(201,168,76,0.82)', marginTop: '3px' }}>{labelMr}</div>
             </div>
           ))}
         </motion.div>
@@ -63,9 +78,9 @@ export default function BookNowBanner() {
         <motion.div
           initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="text-center mb-12">
+          className="text-center mb-[clamp(1.5rem,3vw,3rem)]">
 
-          <p className="font-cinzel uppercase mb-3" style={{ fontSize: '11px', letterSpacing: '5px', color: 'rgba(201,168,76,0.9)' }}>
+          <p className="font-cinzel uppercase mb-3" style={{ fontSize: 'clamp(10px,1vw,12px)', letterSpacing: '5px', color: 'rgba(201,168,76,0.9)' }}>
             Begin Your Journey · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>आपला प्रवास सुरू करा</span>
           </p>
 
@@ -79,9 +94,9 @@ export default function BookNowBanner() {
 
           {/* Ornament divider */}
           <div className="flex items-center justify-center gap-4 mb-8">
-            <div style={{ width: '80px', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.4))' }} />
-            <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '22px', color: 'rgba(201,168,76,0.88)' }}>ॐ</span>
-            <div style={{ width: '80px', height: '1px', background: 'linear-gradient(90deg, rgba(201,168,76,0.4), transparent)' }} />
+            <div style={{ width: 'clamp(48px,6vw,80px)', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.4))' }} />
+            <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(16px,2vw,22px)', color: 'rgba(201,168,76,0.88)' }}>ॐ</span>
+            <div style={{ width: 'clamp(48px,6vw,80px)', height: '1px', background: 'linear-gradient(90deg, rgba(201,168,76,0.4), transparent)' }} />
           </div>
 
           <p style={{ fontSize: 'clamp(15px,1.7vw,18px)', color: 'rgba(245,236,215,0.55)', lineHeight: 1.8, maxWidth: '560px', margin: '0 auto 40px' }}>
@@ -90,16 +105,36 @@ export default function BookNowBanner() {
           </p>
 
           {/* ── CTA Buttons ── */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-[clamp(2rem,4vw,3.5rem)]">
             <Link href="/booking"
               className="font-cinzel font-bold uppercase transition-all duration-300 hover:brightness-115 hover:scale-[1.03]"
-              style={{ fontSize: '13px', letterSpacing: '2.5px', color: '#050510', background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', padding: '16px 44px', borderRadius: '3px', boxShadow: '0 0 40px rgba(201,168,76,0.25)', display: 'inline-block' }}>
+              style={{
+                fontSize: 'clamp(11px,1.1vw,13px)',
+                letterSpacing: '2.5px',
+                color: '#050510',
+                background: 'linear-gradient(135deg, #C9A84C, #e8c96a)',
+                padding: 'clamp(12px,1.6vw,16px) clamp(28px,3.5vw,44px)',
+                borderRadius: '3px',
+                boxShadow: '0 0 40px rgba(201,168,76,0.25)',
+                display: 'inline-block',
+              }}>
               Book Online · ऑनलाइन बुक करा
             </Link>
             <a href="https://wa.me/919999999999"
               target="_blank" rel="noopener noreferrer"
               className="font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-115 hover:scale-[1.03]"
-              style={{ fontSize: '12px', letterSpacing: '2px', color: '#fff', background: 'rgba(37,211,102,0.12)', border: '1px solid rgba(37,211,102,0.45)', padding: '16px 36px', borderRadius: '3px', display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+              style={{
+                fontSize: 'clamp(10px,1.1vw,12px)',
+                letterSpacing: '2px',
+                color: '#fff',
+                background: 'rgba(37,211,102,0.12)',
+                border: '1px solid rgba(37,211,102,0.45)',
+                padding: 'clamp(12px,1.6vw,16px) clamp(22px,3vw,36px)',
+                borderRadius: '3px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+              }}>
               <WhatsAppIcon />
               WhatsApp Us
             </a>
@@ -111,25 +146,29 @@ export default function BookNowBanner() {
           initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.25 }}>
 
-          <p className="font-cinzel text-center mb-5" style={{ fontSize: '13px', letterSpacing: '3.5px', textTransform: 'uppercase', color: 'rgba(245,236,215,0.6)' }}>
+          <p className="font-cinzel text-center mb-5" style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '3.5px', textTransform: 'uppercase', color: 'rgba(245,236,215,0.6)' }}>
             Select a Service
           </p>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-[clamp(8px,1vw,12px)]">
             {SERVICES_QUICK.map(({ name, nameMr, price, color, href }, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.35 + i * 0.07 }}>
                 <Link href={href}
-                  className="flex flex-col items-center text-center p-5 rounded-[4px] group transition-all duration-300 hover:scale-[1.03]"
-                  style={{ border: `1px solid ${color}28`, background: `${color}08` }}
+                  className="flex flex-col items-center text-center rounded-[4px] group transition-all duration-300 hover:scale-[1.03]"
+                  style={{
+                    padding: 'clamp(0.875rem,1.8vw,1.25rem)',
+                    border: `1px solid ${color}28`,
+                    background: `${color}08`,
+                  }}
                   onMouseEnter={e => (e.currentTarget.style.borderColor = `${color}55`)}
                   onMouseLeave={e => (e.currentTarget.style.borderColor = `${color}28`)}>
                   <div className="font-cinzel font-bold mb-1" style={{ fontSize: 'clamp(18px,2vw,24px)', color, lineHeight: 1 }}>
                     {price}
                   </div>
-                  <div className="font-cinzel text-white font-semibold" style={{ fontSize: '14px', letterSpacing: '0.5px', marginBottom: '3px' }}>{name}</div>
-                  <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: `${color}CC` }}>{nameMr}</div>
+                  <div className="font-cinzel text-white font-semibold" style={{ fontSize: 'clamp(12px,1.2vw,14px)', letterSpacing: '0.5px', marginBottom: '3px' }}>{name}</div>
+                  <div style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(11px,1.1vw,13px)', color: `${color}CC` }}>{nameMr}</div>
                 </Link>
               </motion.div>
             ))}
@@ -141,7 +180,7 @@ export default function BookNowBanner() {
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-10"
-          style={{ fontSize: '14px', color: 'rgba(245,236,215,0.25)', letterSpacing: '0.5px' }}>
+          style={{ fontSize: 'clamp(12px,1.2vw,14px)', color: 'rgba(245,236,215,0.25)', letterSpacing: '0.5px' }}>
           Sessions available online & in-person · Confidential & private ·{' '}
           <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>गोपनीय सल्ला</span>
         </motion.p>

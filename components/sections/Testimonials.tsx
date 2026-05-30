@@ -97,8 +97,12 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden py-28 px-6"
-      style={{ background: 'linear-gradient(180deg, #050510 0%, #08060F 55%, #050510 100%)' }}
+      className="relative overflow-hidden px-6"
+      style={{
+        background: 'linear-gradient(180deg, #050510 0%, #08060F 55%, #050510 100%)',
+        paddingTop: 'clamp(3rem,8vw,7rem)',
+        paddingBottom: 'clamp(3rem,8vw,7rem)',
+      }}
     >
       {/* Glow */}
       <div
@@ -112,9 +116,9 @@ export default function TestimonialsSection() {
         <motion.div
           initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.85 }}
-          className="text-center mb-16"
+          className="text-center mb-[clamp(2rem,4vw,3.5rem)]"
         >
-          <p className="font-cinzel uppercase mb-3" style={{ fontSize: '13px', letterSpacing: '4px', color: 'rgba(201,168,76,0.92)' }}>
+          <p className="font-cinzel uppercase mb-3" style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '4px', color: 'rgba(201,168,76,0.92)' }}>
             Voices of Transformation ·{' '}
             <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>अनुभवांचे शब्द</span>
           </p>
@@ -124,14 +128,14 @@ export default function TestimonialsSection() {
           <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(16px, 1.9vw, 22px)', color: 'rgba(201,168,76,0.9)', marginBottom: '16px' }}>
             ज्ञानाने बदललेले जीवन — आमच्या ग्राहकांचे अनुभव
           </p>
-          <div style={{ width: '80px', height: '2px', background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)', margin: '0 auto' }} />
+          <div style={{ width: 'clamp(48px,6vw,80px)', height: '2px', background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)', margin: '0 auto' }} />
         </motion.div>
 
         {/* ── Desktop: 3 cards ── */}
         <motion.div
           initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.15 }}
-          className="hidden md:grid grid-cols-3 gap-5"
+          className="hidden md:grid grid-cols-3 gap-[clamp(12px,2vw,20px)]"
         >
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((idx, pos) => (
@@ -177,7 +181,14 @@ export default function TestimonialsSection() {
             onClick={() => go(active - 1, -1)}
             aria-label="Previous testimonial"
             className="flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110 hover:brightness-125"
-            style={{ width: '44px', height: '44px', border: '1px solid rgba(201,168,76,0.5)', background: 'rgba(201,168,76,0.08)', color: 'rgba(201,168,76,0.95)', fontSize: '18px' }}
+            style={{
+              width: 'clamp(36px,3.5vw,44px)',
+              height: 'clamp(36px,3.5vw,44px)',
+              border: '1px solid rgba(201,168,76,0.5)',
+              background: 'rgba(201,168,76,0.08)',
+              color: 'rgba(201,168,76,0.95)',
+              fontSize: '18px',
+            }}
           >
             ←
           </button>
@@ -202,14 +213,21 @@ export default function TestimonialsSection() {
             onClick={() => go(active + 1, 1)}
             aria-label="Next testimonial"
             className="flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110 hover:brightness-125"
-            style={{ width: '44px', height: '44px', border: '1px solid rgba(201,168,76,0.5)', background: 'rgba(201,168,76,0.08)', color: 'rgba(201,168,76,0.95)', fontSize: '18px' }}
+            style={{
+              width: 'clamp(36px,3.5vw,44px)',
+              height: 'clamp(36px,3.5vw,44px)',
+              border: '1px solid rgba(201,168,76,0.5)',
+              background: 'rgba(201,168,76,0.08)',
+              color: 'rgba(201,168,76,0.95)',
+              fontSize: '18px',
+            }}
           >
             →
           </button>
         </motion.div>
 
         {/* ── Bottom note ── */}
-        <p className="text-center mt-8 font-cinzel" style={{ fontSize: '13px', letterSpacing: '2px', color: 'rgba(245,236,215,0.55)' }}>
+        <p className="text-center mt-8 font-cinzel" style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '2px', color: 'rgba(245,236,215,0.55)' }}>
           5,000+ consultations · Trusted across Maharashtra &amp; beyond
         </p>
 
@@ -222,14 +240,15 @@ export default function TestimonialsSection() {
 function TestimonialCard({ t, featured = false }: { t: typeof TESTIMONIALS[0]; featured?: boolean }) {
   return (
     <div
-      className="flex flex-col h-full rounded-[6px] p-6 transition-all duration-300"
+      className="flex flex-col h-full rounded-[6px] transition-all duration-300"
       style={{
+        padding: 'clamp(1rem,2vw,1.5rem)',
         border: featured ? '1px solid rgba(201,168,76,0.5)' : '1px solid rgba(201,168,76,0.2)',
         background: featured
           ? 'linear-gradient(145deg, rgba(201,168,76,0.1) 0%, rgba(5,5,16,0.97) 100%)'
           : 'rgba(5,5,16,0.75)',
         boxShadow: featured ? '0 0 52px rgba(201,168,76,0.12)' : 'none',
-        minHeight: '340px',
+        minHeight: 'clamp(260px,35vw,340px)',
       }}
     >
       {/* Stars */}
@@ -242,7 +261,7 @@ function TestimonialCard({ t, featured = false }: { t: typeof TESTIMONIALS[0]; f
       {/* Quote */}
       <p style={{
         fontFamily: "'DM Sans', sans-serif",
-        fontSize: '15px',
+        fontSize: 'clamp(13px,1.3vw,15px)',
         color: 'rgba(245,236,215,0.92)',
         lineHeight: 1.8,
         marginBottom: '10px',
@@ -254,10 +273,10 @@ function TestimonialCard({ t, featured = false }: { t: typeof TESTIMONIALS[0]; f
       {/* Marathi summary */}
       <p style={{
         fontFamily: "'Tiro Devanagari Sanskrit', serif",
-        fontSize: '15px',
+        fontSize: 'clamp(13px,1.3vw,15px)',
         color: t.serviceColor,
         lineHeight: 1.5,
-        marginBottom: '20px',
+        marginBottom: 'clamp(10px,1.5vw,20px)',
         opacity: 0.95,
       }}>
         {t.quoteMr}
@@ -272,7 +291,8 @@ function TestimonialCard({ t, featured = false }: { t: typeof TESTIMONIALS[0]; f
         <div
           className="flex-shrink-0 flex items-center justify-center rounded-full font-cinzel font-bold"
           style={{
-            width: '44px', height: '44px',
+            width: 'clamp(36px,3.5vw,44px)',
+            height: 'clamp(36px,3.5vw,44px)',
             background: `${t.serviceColor}25`,
             border: `1px solid ${t.serviceColor}60`,
             color: t.serviceColor,
@@ -283,10 +303,10 @@ function TestimonialCard({ t, featured = false }: { t: typeof TESTIMONIALS[0]; f
         </div>
 
         <div className="flex-1 min-w-0">
-          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '16px', fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>
+          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(13px,1.3vw,16px)', fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>
             {t.name}
           </div>
-          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(245,236,215,0.7)', marginTop: '2px' }}>
+          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(12px,1.2vw,14px)', color: 'rgba(245,236,215,0.7)', marginTop: '2px' }}>
             {t.city}
           </div>
         </div>
@@ -295,7 +315,7 @@ function TestimonialCard({ t, featured = false }: { t: typeof TESTIMONIALS[0]; f
         <span
           className="flex-shrink-0 font-cinzel"
           style={{
-            fontSize: '11px',
+            fontSize: 'clamp(10px,1vw,12px)',
             letterSpacing: '0.5px',
             color: t.serviceColor,
             background: `${t.serviceColor}20`,
