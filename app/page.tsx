@@ -49,6 +49,7 @@ export default function HomePage() {
         <StarField />
         <MandalaRings />
         <CornerOrnaments />
+        <HeroPhoto />
         <HeroSection />
       </div>
 
@@ -78,6 +79,49 @@ export default function HomePage() {
 
       {/* ── FOOTER ── */}
       <Footer />
+    </div>
+  )
+}
+
+/* ── Acharya photo — right-side, blended into cosmic bg ── */
+function HeroPhoto() {
+  return (
+    <div
+      className="pointer-events-none absolute inset-y-0 right-0 z-10"
+      style={{
+        width: 'clamp(260px, 42vw, 620px)',
+        /* Multi-directional mask: fades into bg on all edges so no hard border */
+        maskImage: `
+          linear-gradient(to right,  transparent 0%, black 28%, black 80%, transparent 100%),
+          linear-gradient(to bottom, transparent 0%, black 10%, black 82%, transparent 100%)
+        `,
+        maskComposite: 'intersect',
+        WebkitMaskImage: `
+          linear-gradient(to right,  transparent 0%, black 28%, black 80%, transparent 100%),
+          linear-gradient(to bottom, transparent 0%, black 10%, black 82%, transparent 100%)
+        `,
+        WebkitMaskComposite: 'source-in',
+        opacity: 0.82,
+      }}
+    >
+      <img
+        src="/acharya-sumit.jpg"
+        alt="Acharya Sumit"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center top',
+          /* Blend with the dark cosmic background — removes light halos */
+          mixBlendMode: 'luminosity',
+          filter: 'contrast(1.08) brightness(0.88)',
+        }}
+      />
+      {/* Extra bottom fade so photo dissolves into the next section */}
+      <div
+        className="absolute inset-x-0 bottom-0"
+        style={{ height: '35%', background: 'linear-gradient(to bottom, transparent, #050510)' }}
+      />
     </div>
   )
 }
