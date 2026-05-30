@@ -29,12 +29,8 @@ export default function ShopPreview() {
     <section
       id="shop"
       ref={ref}
-      className="relative px-6 overflow-hidden"
-      style={{
-        background: 'linear-gradient(180deg, #050510 0%, #0A0820 50%, #050510 100%)',
-        paddingTop: 'clamp(3rem,8vw,7rem)',
-        paddingBottom: 'clamp(3rem,8vw,7rem)',
-      }}
+      className="relative py-28 px-6 overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #050510 0%, #0A0820 50%, #050510 100%)' }}
     >
       {/* Background glow */}
       <div
@@ -62,9 +58,9 @@ export default function ShopPreview() {
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9 }}
-          className="text-center mb-[clamp(2rem,4vw,3.5rem)]"
+          className="text-center mb-14"
         >
-          <p className="font-garamond uppercase mb-3" style={{ fontSize: 'clamp(10px,1.1vw,12px)', letterSpacing: '4px', color: 'rgba(201,168,76,0.55)' }}>
+          <p className="font-garamond uppercase mb-3" style={{ fontSize: '12px', letterSpacing: '4px', color: 'rgba(201,168,76,0.55)' }}>
             Consultations &amp; Products &nbsp;·&nbsp;
             <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सेवा आणि उत्पादने</span>
           </p>
@@ -74,7 +70,7 @@ export default function ShopPreview() {
           >
             Consultations &amp; Products
           </h2>
-          <div style={{ width: 'clamp(48px,6vw,80px)', height: '2px', background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)', margin: '0 auto clamp(10px,1.5vw,20px)' }} />
+          <div style={{ width: '80px', height: '2px', background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)', margin: '0 auto 20px' }} />
           <p className="font-garamond text-cream/55 max-w-xl mx-auto" style={{ fontSize: 'clamp(15px, 1.8vw, 19px)', lineHeight: 1.85 }}>
             Premium spiritual services and authentic sacred products curated for your journey.
             <br />
@@ -89,7 +85,7 @@ export default function ShopPreview() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex justify-center gap-[clamp(8px,1vw,12px)] mb-[clamp(1.5rem,3vw,3rem)]"
+          className="flex justify-center gap-3 mb-12"
         >
           {([['product', 'Products'], ['service', 'Consultations']] as [Filter, string][]).map(([f, label]) => (
             <button
@@ -97,9 +93,9 @@ export default function ShopPreview() {
               onClick={() => setFilter(f)}
               className="font-cinzel uppercase transition-all duration-300"
               style={{
-                fontSize: 'clamp(10px,1.1vw,12px)',
+                fontSize: '12px',
                 letterSpacing: '2px',
-                padding: 'clamp(7px,1vw,10px) clamp(16px,2.2vw,28px)',
+                padding: '10px 28px',
                 borderRadius: '24px',
                 border: filter === f ? '1px solid #C9A84C' : '1px solid rgba(201,168,76,0.25)',
                 background: filter === f ? '#C9A84C' : 'transparent',
@@ -113,7 +109,7 @@ export default function ShopPreview() {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[clamp(12px,2vw,20px)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {visible.map((item, i) => {
             const badgeStyle = item.badge ? BADGE_COLORS[item.badge] : null
             const typeColor = TYPE_COLOR[item.type]
@@ -135,7 +131,7 @@ export default function ShopPreview() {
                   <div
                     className="absolute top-3 right-3 font-cinzel uppercase z-10"
                     style={{
-                      fontSize: 'clamp(9px,0.9vw,11px)',
+                      fontSize: '10px',
                       letterSpacing: '1.5px',
                       padding: '4px 10px',
                       borderRadius: '12px',
@@ -148,11 +144,11 @@ export default function ShopPreview() {
                   </div>
                 )}
 
-                <div className="p-[clamp(1rem,2vw,1.5rem)] flex flex-col flex-1">
+                <div className="p-6 flex flex-col flex-1">
                   {/* Icon */}
                   <div
-                    className="w-[clamp(2.5rem,3.5vw,3rem)] h-[clamp(2.5rem,3.5vw,3rem)] rounded-[8px] flex items-center justify-center mb-4"
-                    style={{ background: `${typeColor}18`, border: `1px solid ${typeColor}35`, fontSize: 'clamp(16px,2vw,22px)' }}
+                    className="w-12 h-12 rounded-[8px] flex items-center justify-center mb-4 text-[22px]"
+                    style={{ background: `${typeColor}18`, border: `1px solid ${typeColor}35` }}
                   >
                     {item.icon}
                   </div>
@@ -160,13 +156,13 @@ export default function ShopPreview() {
                   {/* Type label */}
                   <p
                     className="font-cinzel uppercase mb-2"
-                    style={{ fontSize: 'clamp(9px,0.9vw,11px)', letterSpacing: '2px', color: typeColor }}
+                    style={{ fontSize: '10px', letterSpacing: '2px', color: typeColor }}
                   >
                     {item.type}
                   </p>
 
                   {/* Name */}
-                  <h3 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: 'clamp(13px,1.3vw,15px)', lineHeight: 1.3 }}>
+                  <h3 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: '15px', lineHeight: 1.3 }}>
                     {item.name}
                   </h3>
 
@@ -175,7 +171,7 @@ export default function ShopPreview() {
                     className="mb-3"
                     style={{
                       fontFamily: "'Tiro Devanagari Sanskrit', serif",
-                      fontSize: 'clamp(10px,1.1vw,12px)',
+                      fontSize: '12px',
                       color: 'rgba(201,168,76,0.45)',
                     }}
                   >
@@ -185,7 +181,7 @@ export default function ShopPreview() {
                   {/* Description */}
                   <p
                     className="font-garamond text-cream/50 mb-5 flex-1"
-                    style={{ fontSize: 'clamp(11px,1.1vw,13px)', lineHeight: 1.7 }}
+                    style={{ fontSize: '13px', lineHeight: 1.7 }}
                   >
                     {item.description}
                   </p>
@@ -194,13 +190,13 @@ export default function ShopPreview() {
                   <div className="flex items-center justify-between mt-auto">
                     <div>
                       {item.pricePrefix && (
-                        <span className="font-garamond text-cream/40" style={{ fontSize: 'clamp(10px,1vw,12px)', marginRight: '4px' }}>
+                        <span className="font-garamond text-cream/40" style={{ fontSize: '11px', marginRight: '4px' }}>
                           {item.pricePrefix}
                         </span>
                       )}
                       <span
                         className="font-cinzel font-bold"
-                        style={{ fontSize: 'clamp(15px,1.8vw,20px)', color: typeColor }}
+                        style={{ fontSize: '20px', color: typeColor }}
                       >
                         ₹{item.price.toLocaleString('en-IN')}
                       </span>
@@ -209,9 +205,9 @@ export default function ShopPreview() {
                       href={item.href}
                       className="font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-110"
                       style={{
-                        fontSize: 'clamp(10px,1vw,12px)',
+                        fontSize: '11px',
                         letterSpacing: '1.5px',
-                        padding: 'clamp(7px,0.9vw,9px) clamp(12px,1.6vw,18px)',
+                        padding: '9px 18px',
                         borderRadius: '3px',
                         background: item.type === 'service'
                           ? 'linear-gradient(135deg, #C9A84C, #e8c96a)'
@@ -240,17 +236,17 @@ export default function ShopPreview() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="text-center mt-[clamp(1.5rem,3vw,3rem)]"
+          className="text-center mt-12"
         >
           <Link
             href="/shop"
             className="font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-110 inline-block"
             style={{
-              fontSize: 'clamp(11px,1.1vw,13px)',
+              fontSize: '13px',
               letterSpacing: '2.5px',
               color: '#C9A84C',
               border: '1px solid rgba(201,168,76,0.35)',
-              padding: 'clamp(10px,1.4vw,14px) clamp(24px,3vw,40px)',
+              padding: '14px 40px',
               borderRadius: '3px',
               background: 'rgba(201,168,76,0.04)',
             }}

@@ -98,8 +98,8 @@ export default function VastuSection() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="vastu" ref={ref} className="relative overflow-hidden px-6"
-      style={{ paddingTop: 'clamp(3rem,8vw,7rem)', paddingBottom: 'clamp(3rem,8vw,7rem)', background: 'linear-gradient(180deg, #050510 0%, #020D06 60%, #050510 100%)' }}>
+    <section id="vastu" ref={ref} className="relative overflow-hidden py-28 px-6"
+      style={{ background: 'linear-gradient(180deg, #050510 0%, #020D06 60%, #050510 100%)' }}>
 
       {/* Glow */}
       <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 rounded-full"
@@ -113,21 +113,21 @@ export default function VastuSection() {
           {/* LEFT — Visual */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1 }} className="flex flex-col items-center">
-            <div className="relative flex items-center justify-center" style={{ width: 'clamp(220px,40vw,340px)', height: 'clamp(220px,40vw,340px)' }}>
+            <div className="relative flex items-center justify-center" style={{ width: '340px', height: '340px', maxWidth: '80vw' }}>
               <VastuMandala />
             </div>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="rounded-[4px] px-8 py-6 text-center w-full max-w-xs"
-              style={{ border: '1px solid rgba(45,122,79,0.45)', background: 'rgba(45,122,79,0.06)', boxShadow: '0 0 50px rgba(45,122,79,0.12)', marginTop: 'clamp(0.75rem,2vw,2rem)' }}>
-              <p style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '2.5px', color: 'rgba(201,168,76,0.55)', textTransform: 'uppercase', marginBottom: '8px' }}>
+              className="mt-8 rounded-[4px] px-8 py-6 text-center w-full max-w-xs"
+              style={{ border: '1px solid rgba(45,122,79,0.45)', background: 'rgba(45,122,79,0.06)', boxShadow: '0 0 50px rgba(45,122,79,0.12)' }}>
+              <p style={{ fontSize: '13px', letterSpacing: '2.5px', color: 'rgba(201,168,76,0.55)', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Consultation Fee · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सल्ला शुल्क</span>
               </p>
-              <div className="font-cinzel font-bold" style={{ fontSize: 'clamp(28px,3.5vw,44px)', color: COLOR2 }}>₹2,500</div>
-              <p style={{ fontSize: 'clamp(13px,1.3vw,15px)', color: 'rgba(245,236,215,0.5)', marginTop: '4px' }}>90 min · Site visit / Online</p>
+              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: COLOR2 }}>₹2,500</div>
+              <p style={{ fontSize: '15px', color: 'rgba(245,236,215,0.5)', marginTop: '4px' }}>90 min · Site visit / Online</p>
               <Link href="/booking"
                 className="mt-5 inline-block font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-125"
-                style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '2px', color: '#fff', background: 'linear-gradient(135deg, #2D7A4F, #3d9963)', padding: 'clamp(8px,1.2vw,12px) clamp(20px,2.5vw,32px)', borderRadius: '3px' }}>
+                style={{ fontSize: '13px', letterSpacing: '2px', color: '#fff', background: 'linear-gradient(135deg, #2D7A4F, #3d9963)', padding: '12px 32px', borderRadius: '3px' }}>
                 Book Session · बुक करा
               </Link>
             </motion.div>
@@ -142,7 +142,7 @@ export default function VastuSection() {
           {/* RIGHT — Content */}
           <motion.div initial={{ opacity: 0, x: 50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.15 }}>
-            <p className="font-cinzel uppercase mb-1" style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '3.5px', color: 'rgba(61,153,99,0.85)' }}>
+            <p className="font-cinzel uppercase mb-1" style={{ fontSize: '13px', letterSpacing: '3.5px', color: 'rgba(61,153,99,0.85)' }}>
               Ancient Architecture Science · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>वास्तुशास्त्र</span>
             </p>
             <h2 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', letterSpacing: '2px', lineHeight: 1.1 }}>
@@ -175,7 +175,7 @@ export default function VastuSection() {
         <motion.div
           initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.3 }}
-          className="mt-[clamp(2rem,5vw,5rem)]"
+          className="mt-20"
         >
           {/* Header */}
           <div className="flex items-center gap-4 mb-3">
@@ -196,12 +196,12 @@ export default function VastuSection() {
           <div className="flex flex-col xl:flex-row gap-12 items-center xl:items-start">
 
             {/* Compass rose SVG */}
-            <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 'clamp(200px,35vw,300px)', height: 'clamp(200px,35vw,300px)' }}>
+            <div className="flex-shrink-0 flex items-center justify-center" style={{ width: '300px', height: '300px' }}>
               <VastuCompass directions={ALL_DIRECTIONS} />
             </div>
 
             {/* Direction cards — 2x4 grid */}
-            <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-[clamp(8px,1vw,12px)] w-full">
+            <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
               {ALL_DIRECTIONS.map((d, i) => (
                 <motion.div
                   key={d.dir}
@@ -221,27 +221,27 @@ export default function VastuSection() {
                   {/* Content */}
                   <div className="flex-1 px-4 py-3">
                     <div className="flex items-center justify-between gap-2 mb-1">
-                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(13px,1.3vw,15px)', fontWeight: 700, color: 'rgba(245,236,215,0.95)' }}>{d.full}</span>
-                      <span className="font-cinzel" style={{ fontSize: 'clamp(10px,1vw,12px)', letterSpacing: '0.8px', color: `${d.color}`, background: `${d.color}18`, padding: 'clamp(5px,0.6vw,7px) clamp(12px,1.4vw,18px)', borderRadius: '10px', border: `1px solid ${d.color}30`, whiteSpace: 'nowrap' }}>
+                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '15px', fontWeight: 700, color: 'rgba(245,236,215,0.95)' }}>{d.full}</span>
+                      <span className="font-cinzel" style={{ fontSize: '11px', letterSpacing: '0.8px', color: `${d.color}`, background: `${d.color}18`, padding: '3px 9px', borderRadius: '10px', border: `1px solid ${d.color}30`, whiteSpace: 'nowrap' }}>
                         {d.element} · {d.elementHi}
                       </span>
                     </div>
 
                     <div className="flex items-center gap-2 mb-2">
-                      <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(11px,1.1vw,13px)', color: 'rgba(201,168,76,0.65)' }}>{d.deityHi}</span>
-                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(11px,1.1vw,13px)', color: 'rgba(245,236,215,0.35)' }}>· {d.deity}</span>
+                      <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: 'rgba(201,168,76,0.65)' }}>{d.deityHi}</span>
+                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(245,236,215,0.35)' }}>· {d.deity}</span>
                     </div>
 
                     <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(245,236,215,0.8)', lineHeight: 1.5, marginBottom: '5px', fontWeight: 500 }}>
                       {d.significance}
                     </p>
-                    <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(11px,1.1vw,13px)', color: `${d.color}80`, lineHeight: 1.45, marginBottom: '7px' }}>
+                    <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '13px', color: `${d.color}80`, lineHeight: 1.45, marginBottom: '7px' }}>
                       {d.signHi}
                     </p>
 
                     <div className="flex items-center gap-1 flex-wrap">
-                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(10px,1vw,12px)', color: 'rgba(245,236,215,0.35)', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Ideal for:</span>
-                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(10px,1vw,12px)', color: `${d.color}75` }}>{d.idealFor}</span>
+                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '11px', color: 'rgba(245,236,215,0.35)', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Ideal for:</span>
+                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '11px', color: `${d.color}75` }}>{d.idealFor}</span>
                     </div>
                   </div>
                 </motion.div>
