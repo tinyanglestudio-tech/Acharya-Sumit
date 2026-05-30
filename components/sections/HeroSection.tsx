@@ -1,45 +1,51 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-const OM_SIZE = 'clamp(72px, 11vw, 130px)'
-
 export default function HeroSection() {
   return (
     <div
       className="relative z-20 flex flex-col items-center justify-center text-center px-6 h-full pointer-events-none select-none"
-      style={{ paddingTop: 'max(130px, 15vh)', paddingBottom: 'max(100px, 12vh)' }}
+      style={{
+        /* Top clears the fixed navbar (~80px) + breathing room, scales on tall screens.
+           Bottom reserves space for the absolute scroll/note elements. */
+        paddingTop:    'clamp(92px, 12vh, 160px)',
+        paddingBottom: 'clamp(90px, 11vh, 140px)',
+        /* All inter-element spacing lives here — one value, scales with viewport height */
+        gap: 'clamp(6px, 1.4vh, 18px)',
+      }}
     >
 
-      {/* ── Om symbol — circular aura ── */}
-      <div className="relative flex flex-col items-center mb-4 anim-fade-in delay-200">
+      {/* Om symbol */}
+      <div className="relative flex flex-col items-center anim-fade-in delay-200">
         <div
           className="absolute anim-aura pointer-events-none"
           style={{
-            top: '50%',
-            left: '50%',
-            width: 'clamp(160px, 22vw, 260px)',
-            height: 'clamp(160px, 22vw, 260px)',
+            top: '50%', left: '50%',
+            /* Aura proportional to Om — uses same vh/vw min so it never overflows */
+            width:  'clamp(120px, min(17vh, 15vw), 210px)',
+            height: 'clamp(120px, min(17vh, 15vw), 210px)',
             borderRadius: '50%',
-            background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.50) 0%, rgba(201,168,76,0.22) 35%, rgba(201,168,76,0.06) 65%, transparent 80%)',
+            background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.48) 0%, rgba(201,168,76,0.20) 38%, rgba(201,168,76,0.05) 68%, transparent 82%)',
           }}
         />
         <span
           className="relative z-10 anim-om"
           style={{
             fontFamily: "'Tiro Devanagari Sanskrit', serif",
-            fontSize: OM_SIZE,
+            /* Respects both viewport dimensions — won't be oversized on wide-short screens */
+            fontSize: 'clamp(48px, min(9vh, 8vw), 108px)',
             color: '#C9A84C',
             lineHeight: 1,
           }}
         >ॐ</span>
       </div>
 
-      {/* ── Sanskrit verse ── */}
+      {/* Sanskrit verse */}
       <p
-        className="mb-6 anim-fade-in delay-400"
+        className="anim-fade-in delay-400"
         style={{
           fontFamily: "'Tiro Devanagari Sanskrit', serif",
-          fontSize: 'clamp(13px, 1.8vw, 20px)',
+          fontSize: 'clamp(11px, min(1.5vw, 2vh), 18px)',
           color: 'rgba(201,168,76,0.65)',
           letterSpacing: '3px',
         }}
@@ -47,15 +53,14 @@ export default function HeroSection() {
         ॐ तत् सत् &nbsp;·&nbsp; गायत्री मन्त्र &nbsp;·&nbsp; ॐ नमः शिवाय
       </p>
 
-      {/* ── Main heading with tilak ── */}
+      {/* Main heading */}
       <h1
         className="font-cinzel font-bold text-white anim-fade-up delay-400"
         style={{
-          fontSize: 'clamp(36px, 6vw, 86px)',
+          fontSize: 'clamp(26px, min(5.5vw, 7vh), 82px)',
           lineHeight: 1.15,
           letterSpacing: '3px',
           textShadow: '0 0 60px rgba(201,168,76,0.3)',
-          marginBottom: '16px',
         }}
       >
         Acharya Sum
@@ -66,8 +71,7 @@ export default function HeroSection() {
           height={90}
           className="inline-block anim-tilak-rise delay-800"
           style={{
-            height: '1em',
-            width:  '0.74em',
+            height: '1em', width: '0.74em',
             objectFit: 'fill',
             verticalAlign: '-0.28em',
             margin: '0 -0.1em',
@@ -77,28 +81,26 @@ export default function HeroSection() {
         t
       </h1>
 
-      {/* ── Gold divider ── */}
+      {/* Gold divider */}
       <div
         className="anim-fade-in delay-600"
         style={{
-          width: '100px',
+          width: 'clamp(60px, 8vw, 100px)',
           height: '2px',
           background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)',
-          margin: '0 auto 24px',
         }}
       />
 
-      {/* ── Tagline ── */}
+      {/* Tagline */}
       <p
         className="font-garamond anim-fade-up delay-600"
         style={{
-          fontSize: 'clamp(16px, 2.2vw, 26px)',
+          fontSize: 'clamp(13px, min(2vw, 2.8vh), 24px)',
           color: '#F5ECD7',
           opacity: 0.85,
           letterSpacing: '1px',
-          maxWidth: '620px',
-          lineHeight: 1.7,
-          marginBottom: '10px',
+          maxWidth: '600px',
+          lineHeight: 1.6,
         }}
       >
         Helping you find clarity through the wisdom of<br />
@@ -107,18 +109,21 @@ export default function HeroSection() {
         </em>
       </p>
 
-      {/* ── Service tags ── */}
-      <div className="flex flex-wrap gap-3 justify-center mb-8 anim-fade-up delay-800">
+      {/* Service tags */}
+      <div
+        className="flex flex-wrap justify-center anim-fade-up delay-800"
+        style={{ gap: 'clamp(6px, 0.8vw, 12px)' }}
+      >
         {['Astrology', 'Numerology', 'Vastu', 'Tarot'].map(tag => (
           <span
             key={tag}
             className="font-garamond uppercase"
             style={{
-              fontSize: 'clamp(12px, 1.4vw, 15px)',
+              fontSize: 'clamp(10px, min(1.2vw, 1.7vh), 14px)',
               color: '#C9A84C',
               border: '1px solid rgba(201,168,76,0.4)',
               borderRadius: '20px',
-              padding: '7px 20px',
+              padding: 'clamp(5px, 0.8vh, 8px) clamp(12px, 1.4vw, 20px)',
               letterSpacing: '2px',
               background: 'rgba(201,168,76,0.07)',
             }}
@@ -128,19 +133,22 @@ export default function HeroSection() {
         ))}
       </div>
 
-      {/* ── CTA buttons ── */}
-      <div className="flex flex-wrap gap-5 justify-center anim-fade-up delay-1000 pointer-events-auto">
+      {/* CTA buttons */}
+      <div
+        className="flex flex-wrap justify-center anim-fade-up delay-1000 pointer-events-auto"
+        style={{ gap: 'clamp(10px, 1.2vw, 20px)' }}
+      >
         <Link
           href="/booking"
           className="font-cinzel font-semibold uppercase anim-btn transition-transform duration-200 hover:-translate-y-0.5"
           style={{
-            fontSize: 'clamp(12px, 1.4vw, 15px)',
+            fontSize: 'clamp(11px, min(1.3vw, 1.8vh), 14px)',
             color: '#050510',
             background: 'linear-gradient(135deg, #C9A84C, #e8c96a, #C9A84C)',
             backgroundSize: '200% 200%',
             border: 'none',
             borderRadius: '4px',
-            padding: '16px 40px',
+            padding: 'clamp(10px, 1.6vh, 16px) clamp(22px, 2.8vw, 40px)',
             letterSpacing: '2.5px',
             display: 'inline-block',
           }}
@@ -151,12 +159,12 @@ export default function HeroSection() {
           href="#services"
           className="font-cinzel font-semibold uppercase transition-all duration-200 hover:bg-white/5"
           style={{
-            fontSize: 'clamp(12px, 1.4vw, 15px)',
+            fontSize: 'clamp(11px, min(1.3vw, 1.8vh), 14px)',
             color: '#C9A84C',
             background: 'transparent',
             border: '1px solid rgba(201,168,76,0.5)',
             borderRadius: '4px',
-            padding: '15px 36px',
+            padding: 'clamp(9px, 1.5vh, 15px) clamp(18px, 2.4vw, 36px)',
             letterSpacing: '2.5px',
             display: 'inline-block',
           }}
@@ -165,8 +173,11 @@ export default function HeroSection() {
         </Link>
       </div>
 
-      {/* ── Scroll indicator ── */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 anim-fade-in delay-2000">
+      {/* Scroll indicator — positioned proportionally from bottom */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 anim-fade-in delay-2000"
+        style={{ bottom: 'clamp(52px, 7vh, 90px)' }}
+      >
         <span
           className="font-garamond uppercase"
           style={{ fontSize: '10px', color: 'rgba(201,168,76,0.45)', letterSpacing: '3px' }}
@@ -174,15 +185,23 @@ export default function HeroSection() {
           Scroll
         </span>
         <div
-          className="w-px h-12 anim-scroll-drop"
-          style={{ background: 'linear-gradient(to bottom, rgba(201,168,76,0.6), transparent)' }}
+          className="w-px anim-scroll-drop"
+          style={{
+            height: 'clamp(28px, 4vh, 48px)',
+            background: 'linear-gradient(to bottom, rgba(201,168,76,0.6), transparent)',
+          }}
         />
       </div>
 
-      {/* ── Consultation note ── */}
+      {/* Consultation note */}
       <p
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 font-garamond uppercase whitespace-nowrap anim-fade-in delay-2400"
-        style={{ fontSize: '12px', color: 'rgba(201,168,76,0.5)', letterSpacing: '2px' }}
+        className="absolute left-1/2 -translate-x-1/2 font-garamond uppercase whitespace-nowrap anim-fade-in delay-2400"
+        style={{
+          bottom: 'clamp(14px, 2vh, 28px)',
+          fontSize: 'clamp(9px, min(1.1vw, 1.4vh), 12px)',
+          color: 'rgba(201,168,76,0.5)',
+          letterSpacing: '2px',
+        }}
       >
         📞 Consultation by Prior Appointment &nbsp;·&nbsp; Paid Sessions Only
       </p>
