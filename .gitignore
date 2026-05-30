@@ -34,3 +34,6 @@ Recycle\ Bin\ -\ Shortcut.lnk
 dev-server.log
 dev-server.err.log
 Base44*/
+
+# Claude Code internal files
+.claude/worktrees/
