@@ -97,11 +97,15 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden px-6"
+      className="relative px-6"
       style={{
         background: 'linear-gradient(180deg, #050510 0%, #08060F 55%, #050510 100%)',
-        paddingTop: 'clamp(3rem,8vw,7rem)',
-        paddingBottom: 'clamp(3rem,8vw,7rem)',
+        height: '100dvh',
+        overflow: 'clip',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: 'clamp(1rem,3vh,2rem) clamp(1rem,4vw,2rem)',
       }}
     >
       {/* Glow */}
@@ -110,13 +114,13 @@ export default function TestimonialsSection() {
         style={{ width: '900px', height: '600px', background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 65%)' }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 0, width: '100%' }}>
 
         {/* ── Header ── */}
         <motion.div
           initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.85 }}
-          className="text-center mb-[clamp(2rem,4vw,3.5rem)]"
+          className="text-center mb-[clamp(0.5rem,1.5vh,1.25rem)]"
         >
           <p className="font-cinzel uppercase mb-3" style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '4px', color: 'rgba(201,168,76,0.92)' }}>
             Voices of Transformation ·{' '}
@@ -136,6 +140,7 @@ export default function TestimonialsSection() {
           initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.15 }}
           className="hidden md:grid grid-cols-3 gap-[clamp(12px,2vw,20px)]"
+          style={{ flex: 1, minHeight: 0 }}
         >
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((idx, pos) => (
@@ -175,7 +180,7 @@ export default function TestimonialsSection() {
         <motion.div
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="flex items-center justify-center gap-6 mt-10"
+          className="flex items-center justify-center gap-6 mt-[clamp(0.5rem,1.5vh,1.25rem)]"
         >
           <button
             onClick={() => go(active - 1, -1)}
@@ -227,7 +232,7 @@ export default function TestimonialsSection() {
         </motion.div>
 
         {/* ── Bottom note ── */}
-        <p className="text-center mt-8 font-cinzel" style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '2px', color: 'rgba(245,236,215,0.55)' }}>
+        <p className="text-center mt-[clamp(0.25rem,1vh,0.75rem)] font-cinzel" style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '2px', color: 'rgba(245,236,215,0.55)' }}>
           5,000+ consultations · Trusted across Maharashtra &amp; beyond
         </p>
 
@@ -242,13 +247,13 @@ function TestimonialCard({ t, featured = false }: { t: typeof TESTIMONIALS[0]; f
     <div
       className="flex flex-col h-full rounded-[6px] transition-all duration-300"
       style={{
-        padding: 'clamp(1rem,2vw,1.5rem)',
+        padding: 'clamp(0.75rem,1.5vw,1.25rem)',
         border: featured ? '1px solid rgba(201,168,76,0.5)' : '1px solid rgba(201,168,76,0.2)',
         background: featured
           ? 'linear-gradient(145deg, rgba(201,168,76,0.1) 0%, rgba(5,5,16,0.97) 100%)'
           : 'rgba(5,5,16,0.75)',
         boxShadow: featured ? '0 0 52px rgba(201,168,76,0.12)' : 'none',
-        minHeight: 'clamp(260px,35vw,340px)',
+        minHeight: 0,
       }}
     >
       {/* Stars */}

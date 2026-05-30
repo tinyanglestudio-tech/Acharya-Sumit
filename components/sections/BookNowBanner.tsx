@@ -25,11 +25,15 @@ export default function BookNowBanner() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden px-6"
+      className="relative px-6"
       style={{
         background: 'linear-gradient(180deg, #050510 0%, #07030F 50%, #050510 100%)',
-        paddingTop: 'clamp(2.5rem,7vw,6rem)',
-        paddingBottom: 'clamp(2.5rem,7vw,6rem)',
+        height: '100dvh',
+        overflow: 'clip',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: 'clamp(1rem,3vh,2rem) clamp(1rem,4vw,2rem)',
       }}
     >
 
@@ -48,20 +52,20 @@ export default function BookNowBanner() {
         </span>
       </div>
 
-      <div className="max-w-5xl mx-auto relative z-10">
+      <div className="max-w-5xl mx-auto relative z-10" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 0, width: '100%' }}>
 
         {/* ── Stats strip ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-px mb-[clamp(2rem,4vw,4rem)]"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-px mb-[clamp(0.5rem,1.5vh,1rem)]"
           style={{ border: '1px solid rgba(201,168,76,0.15)', borderRadius: '4px', overflow: 'hidden', background: 'rgba(201,168,76,0.08)' }}>
           {STATS.map(({ value, label, labelMr }, i) => (
             <div key={i}
               className="flex flex-col items-center justify-center text-center"
               style={{
-                paddingTop: 'clamp(1rem,2vw,1.5rem)',
-                paddingBottom: 'clamp(1rem,2vw,1.5rem)',
+                paddingTop: 'clamp(0.5rem,1vh,1rem)',
+                paddingBottom: 'clamp(0.5rem,1vh,1rem)',
                 paddingLeft: 'clamp(0.75rem,1.5vw,1rem)',
                 paddingRight: 'clamp(0.75rem,1.5vw,1rem)',
                 background: 'rgba(5,5,16,0.6)',
@@ -78,7 +82,7 @@ export default function BookNowBanner() {
         <motion.div
           initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="text-center mb-[clamp(1.5rem,3vw,3rem)]">
+          className="text-center mb-[clamp(0.5rem,1.5vh,1.25rem)]">
 
           <p className="font-cinzel uppercase mb-3" style={{ fontSize: 'clamp(10px,1vw,12px)', letterSpacing: '5px', color: 'rgba(201,168,76,0.9)' }}>
             Begin Your Journey · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>आपला प्रवास सुरू करा</span>
@@ -105,7 +109,7 @@ export default function BookNowBanner() {
           </p>
 
           {/* ── CTA Buttons ── */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-[clamp(2rem,4vw,3.5rem)]">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-[clamp(0.5rem,1.5vh,1.25rem)]">
             <Link href="/booking"
               className="font-cinzel font-bold uppercase transition-all duration-300 hover:brightness-115 hover:scale-[1.03]"
               style={{
@@ -158,7 +162,7 @@ export default function BookNowBanner() {
                 <Link href={href}
                   className="flex flex-col items-center text-center rounded-[4px] group transition-all duration-300 hover:scale-[1.03]"
                   style={{
-                    padding: 'clamp(0.875rem,1.8vw,1.25rem)',
+                    padding: 'clamp(0.5rem,1.5vw,0.875rem)',
                     border: `1px solid ${color}28`,
                     background: `${color}08`,
                   }}
