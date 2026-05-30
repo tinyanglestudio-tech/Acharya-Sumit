@@ -98,28 +98,28 @@ export default function VastuSection() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="vastu" ref={ref} className="relative overflow-hidden px-6"
-      style={{ paddingTop: 'clamp(3rem,8vw,7rem)', paddingBottom: 'clamp(3rem,8vw,7rem)', background: 'linear-gradient(180deg, #050510 0%, #020D06 60%, #050510 100%)' }}>
+    <section id="vastu" ref={ref} className="relative"
+      style={{ height: '100dvh', overflow: 'clip', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(1rem,3vh,2rem) clamp(1rem,4vw,2rem)', background: 'linear-gradient(180deg, #050510 0%, #020D06 60%, #050510 100%)' }}>
 
       {/* Glow */}
       <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 rounded-full"
         style={{ width: '800px', height: '800px', background: 'radial-gradient(ellipse at center, rgba(45,122,79,0.09) 0%, transparent 65%)' }} />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 0, width: '100%' }}>
 
         {/* ── Top 2-col: Mandala + Content ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16" style={{ flex: 1, minHeight: 0, alignItems: 'center' }}>
 
           {/* LEFT — Visual */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1 }} className="flex flex-col items-center">
-            <div className="relative flex items-center justify-center" style={{ width: 'clamp(220px,40vw,340px)', height: 'clamp(220px,40vw,340px)' }}>
+            <div className="relative flex items-center justify-center" style={{ width: 'clamp(220px,40vw,340px)', height: 'clamp(220px,40vw,340px)', maxHeight: '40vh' }}>
               <VastuMandala />
             </div>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
               className="rounded-[4px] px-8 py-6 text-center w-full max-w-xs"
-              style={{ border: '1px solid rgba(45,122,79,0.45)', background: 'rgba(45,122,79,0.06)', boxShadow: '0 0 50px rgba(45,122,79,0.12)', marginTop: 'clamp(0.75rem,2vw,2rem)' }}>
+              style={{ border: '1px solid rgba(45,122,79,0.45)', background: 'rgba(45,122,79,0.06)', boxShadow: '0 0 50px rgba(45,122,79,0.12)', marginTop: 'clamp(0.5rem,1vh,1rem)' }}>
               <p style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '2.5px', color: 'rgba(201,168,76,0.55)', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Consultation Fee · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सल्ला शुल्क</span>
               </p>
@@ -142,18 +142,18 @@ export default function VastuSection() {
           {/* RIGHT — Content */}
           <motion.div initial={{ opacity: 0, x: 50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.15 }}>
-            <p className="font-cinzel uppercase mb-1" style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '3.5px', color: 'rgba(61,153,99,0.85)' }}>
+            <p className="font-cinzel uppercase" style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '3.5px', color: 'rgba(61,153,99,0.85)', marginBottom: 'clamp(4px,0.8vh,12px)' }}>
               Ancient Architecture Science · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>वास्तुशास्त्र</span>
             </p>
-            <h2 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', letterSpacing: '2px', lineHeight: 1.1 }}>
+            <h2 className="font-cinzel font-bold text-white mb-[clamp(4px,0.8vh,10px)]" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', letterSpacing: '2px', lineHeight: 1.1 }}>
               Vastu Shastra
             </h2>
-            <p className="mb-5" style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(15px,1.8vw,19px)', color: 'rgba(61,153,99,0.95)' }}>
+            <p className="mb-[clamp(4px,0.8vh,10px)]" style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(15px,1.8vw,19px)', color: 'rgba(61,153,99,0.95)' }}>
               घराची ऊर्जा, जीवनाची शक्ती — वास्तूने बदला आपले भाग्य
             </p>
             <div style={{ width: '60px', height: '2px', background: 'linear-gradient(90deg, #2D7A4F, transparent)', marginBottom: '20px' }} />
 
-            <div className="mb-6 p-4 rounded-[4px]" style={{ border: '1px solid rgba(45,122,79,0.25)', background: 'rgba(45,122,79,0.06)' }}>
+            <div className="mb-[clamp(4px,0.8vh,10px)] p-4 rounded-[4px]" style={{ border: '1px solid rgba(45,122,79,0.25)', background: 'rgba(45,122,79,0.06)' }}>
               <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(17px,2vw,24px)', color: '#C9A84C', lineHeight: 1.4, marginBottom: '6px' }}>
                 वास्तुना सुखमाप्नोति
               </p>
