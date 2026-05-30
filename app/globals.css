@@ -41,7 +41,7 @@ html, body {
 
 @keyframes om-float {
   0%, 100% { transform: translateY(0px); }
-  50%      { transform: translateY(-14px); }
+  50%      { transform: translateY(-8px); }
 }
 
 @keyframes aura-pulse {

@@ -36,6 +36,7 @@ export default function HomePage() {
         id="home"
         className="relative w-screen h-screen"
         style={{
+          height: '100dvh',
           overflow: 'clip',
           background: `
             radial-gradient(ellipse 80% 60% at 50% 40%, #1a0a3e 0%, transparent 70%),

@@ -5,7 +5,10 @@ const OM_SIZE = 'clamp(72px, 11vw, 130px)'
 
 export default function HeroSection() {
   return (
-    <div className="relative z-20 flex flex-col items-center justify-center text-center px-6 h-full pointer-events-none select-none pt-24 pb-40">
+    <div
+      className="relative z-20 flex flex-col items-center justify-center text-center px-6 h-full pointer-events-none select-none"
+      style={{ paddingTop: 'max(130px, 15vh)', paddingBottom: 'max(100px, 12vh)' }}
+    >
 
       {/* ── Om symbol — circular aura ── */}
       <div className="relative flex flex-col items-center mb-4 anim-fade-in delay-200">
