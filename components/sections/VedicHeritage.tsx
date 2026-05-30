@@ -57,8 +57,16 @@ export default function VedicHeritage() {
   return (
     <section
       ref={ref}
-      className="relative px-6 overflow-hidden"
-      style={{ paddingTop: 'clamp(3rem,8vw,7rem)', paddingBottom: 'clamp(3rem,8vw,7rem)', background: 'linear-gradient(180deg, #050510 0%, #080820 50%, #050510 100%)' }}
+      className="relative"
+      style={{
+        height: '100dvh',
+        overflow: 'clip',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: 'clamp(1rem,3vh,2rem) clamp(1rem,4vw,2rem)',
+        background: 'linear-gradient(180deg, #050510 0%, #080820 50%, #050510 100%)',
+      }}
     >
       {/* Subtle star dots */}
       {[...Array(24)].map((_, i) => (
@@ -76,14 +84,14 @@ export default function VedicHeritage() {
         />
       ))}
 
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 0, width: '100%' }}>
 
         {/* ── Om divider ── */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 1 }}
-          className="flex items-center justify-center gap-5 mb-[clamp(2rem,5vw,5rem)]"
+          className="flex items-center justify-center gap-5 mb-[clamp(0.4rem,1vh,1rem)]"
         >
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.35))' }} />
           <span
@@ -102,7 +110,7 @@ export default function VedicHeritage() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9 }}
-          className="text-center mb-14"
+          className="text-center mb-[clamp(0.5rem,1.5vh,1.25rem)]"
         >
           <p
             className="font-garamond uppercase mb-3"
@@ -123,9 +131,9 @@ export default function VedicHeritage() {
           initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.2 }}
-          className="relative rounded-[6px] mb-[clamp(1.5rem,3vw,3rem)] overflow-hidden"
+          className="relative rounded-[6px] mb-[clamp(0.4rem,1vh,1rem)] overflow-hidden"
           style={{
-            padding: 'clamp(1.5rem,3vw,3.5rem)',
+            padding: 'clamp(1rem,2.5vh,2rem) clamp(1rem,3vw,2.5rem)',
             border: '1px solid rgba(201,168,76,0.2)',
             background: 'rgba(255,255,255,0.025)',
             boxShadow: 'inset 0 0 80px rgba(201,168,76,0.04)',
@@ -206,7 +214,7 @@ export default function VedicHeritage() {
         </motion.div>
 
         {/* ── Dots ── */}
-        <div className="flex justify-center gap-3 mb-16">
+        <div className="flex justify-center gap-3 mb-[clamp(0.5rem,1vh,1rem)]">
           {VERSES.map((_, i) => (
             <button
               key={i}

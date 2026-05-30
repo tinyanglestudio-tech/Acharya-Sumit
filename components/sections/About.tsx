@@ -27,10 +27,14 @@ export default function AboutSection() {
     <section
       id="about"
       ref={ref}
-      className="relative overflow-hidden px-6"
+      className="relative"
       style={{
-        paddingTop: 'clamp(3rem,8vw,7rem)',
-        paddingBottom: 'clamp(3rem,8vw,7rem)',
+        height: '100dvh',
+        overflow: 'clip',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: 'clamp(1rem,3vh,2rem) clamp(1rem,4vw,2rem)',
         background: 'linear-gradient(180deg, #050510 0%, #06090F 55%, #050510 100%)',
       }}
     >
@@ -40,8 +44,8 @@ export default function AboutSection() {
         style={{ width: '900px', height: '600px', background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.05) 0%, rgba(123,63,212,0.04) 50%, transparent 70%)' }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(2rem,5vw,5rem)] items-center">
+      <div className="max-w-7xl mx-auto relative z-10" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 0, width: '100%' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(1rem,3vw,2rem)] items-center">
 
           {/* ── LEFT — Avatar + credentials ── */}
           <motion.div
@@ -51,10 +55,11 @@ export default function AboutSection() {
           >
             {/* Avatar frame */}
             <div
-              className="relative mb-10"
+              className="relative mb-[clamp(0.5rem,1.5vh,1.25rem)]"
               style={{
                 width: 'clamp(200px, 35vw, 280px)',
                 height: 'clamp(200px, 35vw, 280px)',
+                maxHeight: '35vh',
               }}
             >
               {/* Outer ring */}
@@ -162,7 +167,7 @@ export default function AboutSection() {
             <div style={{ width: '60px', height: '2px', background: 'linear-gradient(90deg, #C9A84C, transparent)', marginBottom: '24px' }} />
 
             {/* Philosophy quote */}
-            <div className="mb-7 p-4 rounded-[4px]" style={{ border: '1px solid rgba(201,168,76,0.2)', background: 'rgba(201,168,76,0.04)', borderLeft: '3px solid rgba(201,168,76,0.5)' }}>
+            <div className="mb-[clamp(0.4rem,1vh,1rem)] p-4 rounded-[4px]" style={{ border: '1px solid rgba(201,168,76,0.2)', background: 'rgba(201,168,76,0.04)', borderLeft: '3px solid rgba(201,168,76,0.5)' }}>
               <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(16px,1.8vw,22px)', color: '#C9A84C', lineHeight: 1.5, marginBottom: '6px' }}>
                 ज्ञानं परमं ध्येयम्
               </p>
@@ -172,7 +177,7 @@ export default function AboutSection() {
             </div>
 
             {/* Bio */}
-            <div className="space-y-4 mb-8" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(14px,1.6vw,17px)', color: 'rgba(245,236,215,0.65)', lineHeight: 1.85 }}>
+            <div className="space-y-[clamp(4px,0.8vh,12px)] mb-[clamp(0.4rem,1vh,1rem)]" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(14px,1.6vw,17px)', color: 'rgba(245,236,215,0.65)', lineHeight: 1.85 }}>
               <p>
                 With over <strong style={{ color: 'rgba(245,236,215,0.85)', fontWeight: 600 }}>15 years of dedicated practice</strong>, Acharya Sumit has guided thousands of individuals and families through life's most important crossroads — using the time-tested sciences of Vedic Astrology, Numerology, Vastu Shastra, and Tarot.
               </p>
@@ -186,7 +191,7 @@ export default function AboutSection() {
 
             {/* Stats strip */}
             <div
-              className="grid grid-cols-2 sm:grid-cols-4 gap-px mb-8 rounded-[4px] overflow-hidden"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-px mb-[clamp(0.4rem,1vh,1rem)] rounded-[4px] overflow-hidden"
               style={{ border: '1px solid rgba(201,168,76,0.15)', background: 'rgba(201,168,76,0.08)' }}
             >
               {STATS.map(({ value, label, labelMr }, i) => (
@@ -194,7 +199,7 @@ export default function AboutSection() {
                   key={i}
                   initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
-                  className="flex flex-col items-center justify-center py-5 px-3 text-center"
+                  className="flex flex-col items-center justify-center py-[clamp(0.5rem,1vh,1rem)] px-3 text-center"
                   style={{ background: 'rgba(5,5,16,0.7)', borderRight: i < 3 ? '1px solid rgba(201,168,76,0.1)' : 'none' }}
                 >
                   <div className="font-cinzel font-bold" style={{ fontSize: 'clamp(18px,2.2vw,26px)', color: '#C9A84C', lineHeight: 1 }}>{value}</div>
