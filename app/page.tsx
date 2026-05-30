@@ -34,8 +34,9 @@ export default function HomePage() {
       {/* ── HERO — full viewport height ── */}
       <div
         id="home"
-        className="relative w-screen h-screen overflow-hidden"
+        className="relative w-screen h-screen"
         style={{
+          overflow: 'clip',
           background: `
             radial-gradient(ellipse 80% 60% at 50% 40%, #1a0a3e 0%, transparent 70%),
             radial-gradient(ellipse 60% 80% at 20% 80%, #0a0a2e 0%, transparent 60%),

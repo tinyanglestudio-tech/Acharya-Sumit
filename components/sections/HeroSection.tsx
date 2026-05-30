@@ -5,7 +5,7 @@ const OM_SIZE = 'clamp(72px, 11vw, 130px)'
 
 export default function HeroSection() {
   return (
-    <div className="relative z-20 flex flex-col items-center justify-center text-center px-6 h-full pointer-events-none select-none pt-24 pb-40" style={{ minHeight: 0 }}>
+    <div className="relative z-20 flex flex-col items-center justify-center text-center px-6 h-full pointer-events-none select-none pt-24 pb-40">
 
       {/* ── Om symbol — circular aura ── */}
       <div className="relative flex flex-col items-center mb-4 anim-fade-in delay-200">
@@ -14,10 +14,10 @@ export default function HeroSection() {
           style={{
             top: '50%',
             left: '50%',
-            width: 'clamp(240px, 36vw, 480px)',
-            height: 'clamp(240px, 36vw, 480px)',
+            width: 'clamp(160px, 22vw, 260px)',
+            height: 'clamp(160px, 22vw, 260px)',
             borderRadius: '50%',
-            background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.55) 0%, rgba(201,168,76,0.25) 30%, rgba(201,168,76,0.08) 60%, transparent 75%)',
+            background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.50) 0%, rgba(201,168,76,0.22) 35%, rgba(201,168,76,0.06) 65%, transparent 80%)',
           }}
         />
         <span
