@@ -72,8 +72,8 @@ export default function TarotSection() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="tarot" ref={ref} className="relative overflow-hidden py-28 px-6"
-      style={{ background: 'linear-gradient(180deg, #050510 0%, #0D0205 60%, #050510 100%)' }}>
+    <section id="tarot" ref={ref} className="relative overflow-hidden px-6"
+      style={{ paddingTop: 'clamp(3rem,8vw,7rem)', paddingBottom: 'clamp(3rem,8vw,7rem)', background: 'linear-gradient(180deg, #050510 0%, #0D0205 60%, #050510 100%)' }}>
 
       {/* Crimson glow */}
       <div className="pointer-events-none absolute top-1/2 right-1/3 -translate-y-1/2 rounded-full"
@@ -86,7 +86,7 @@ export default function TarotSection() {
           <motion.div initial={{ opacity: 0, x: -50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, ease: 'easeOut' }}>
 
-            <p className="font-cinzel uppercase mb-1" style={{ fontSize: '11px', letterSpacing: '4px', color: 'rgba(208,53,53,0.98)' }}>
+            <p className="font-cinzel uppercase mb-1" style={{ fontSize: 'clamp(10px,1vw,12px)', letterSpacing: '4px', color: 'rgba(208,53,53,0.98)' }}>
               Ancient Wisdom Cards · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", letterSpacing: 0 }}>तारोट ज्ञान</span>
             </p>
             <h2 className="font-cinzel font-bold text-white mb-1" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', letterSpacing: '2px', lineHeight: 1.1 }}>
@@ -102,7 +102,7 @@ export default function TarotSection() {
               <p style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(17px,2vw,24px)', color: '#C9A84C', lineHeight: 1.4, marginBottom: '6px' }}>
                 दैवं बलवत् — सर्वस्य दैवमेव परायणम्
               </p>
-              <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.72)', fontStyle: 'italic' }}>
+              <p style={{ fontSize: 'clamp(11px,1.1vw,13px)', color: 'rgba(245,236,215,0.72)', fontStyle: 'italic' }}>
                 &ldquo;Destiny is powerful — all things depend upon it ultimately&rdquo; — Mahābhārata
               </p>
             </div>
@@ -119,22 +119,22 @@ export default function TarotSection() {
             transition={{ duration: 1, ease: 'easeOut', delay: 0.15 }}
             className="flex flex-col items-center">
 
-            <div className="relative flex items-center justify-center" style={{ width: '380px', height: '380px', maxWidth: '80vw' }}>
+            <div className="relative flex items-center justify-center" style={{ width: 'clamp(240px,42vw,380px)', height: 'clamp(240px,42vw,380px)' }}>
               <TarotVisual cards={CARDS} />
             </div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="mt-8 rounded-[4px] px-8 py-6 text-center w-full max-w-xs"
-              style={{ border: '1px solid rgba(139,26,26,0.45)', background: 'rgba(139,26,26,0.06)', boxShadow: '0 0 50px rgba(139,26,26,0.12)' }}>
+              className="rounded-[4px] px-8 py-6 text-center w-full max-w-xs"
+              style={{ border: '1px solid rgba(139,26,26,0.45)', background: 'rgba(139,26,26,0.06)', boxShadow: '0 0 50px rgba(139,26,26,0.12)', marginTop: 'clamp(0.75rem,2vw,2rem)' }}>
               <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(201,168,76,0.82)', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Consultation Fee · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सल्ला शुल्क</span>
               </p>
-              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: COLOR }}>₹800</div>
-              <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.65)', marginTop: '4px' }}>30 min · Online / In-person</p>
+              <div className="font-cinzel font-bold" style={{ fontSize: 'clamp(28px,3.5vw,44px)', color: COLOR }}>₹800</div>
+              <p style={{ fontSize: 'clamp(11px,1.1vw,13px)', color: 'rgba(245,236,215,0.65)', marginTop: '4px' }}>30 min · Online / In-person</p>
               <Link href="/booking"
                 className="mt-5 inline-block font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-125"
-                style={{ fontSize: '12px', letterSpacing: '2px', color: '#fff', background: `linear-gradient(135deg, ${COLOR2}, ${COLOR})`, padding: '12px 32px', borderRadius: '3px' }}>
+                style={{ fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '2px', color: '#fff', background: `linear-gradient(135deg, ${COLOR2}, ${COLOR})`, padding: 'clamp(8px,1.2vw,12px) clamp(20px,2.5vw,32px)', borderRadius: '3px' }}>
                 Book Session · बुक करा
               </Link>
             </motion.div>
