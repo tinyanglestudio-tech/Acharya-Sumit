@@ -86,7 +86,7 @@ function ServiceCard({ svc, index, inView }: { svc: Service; index: number; inVi
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: 0.2 + index * 0.14, ease: 'easeOut' }}
-      style={{ perspective: '1200px', height: '420px' }}
+      style={{ perspective: '1200px', height: 'clamp(260px, 36vh, 380px)' }}
     >
       {/* 3-D flip wrapper */}
       <div
@@ -345,8 +345,14 @@ export default function ServicesReveal() {
     <section
       id="services"
       ref={ref}
-      className="relative py-32 px-6 overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #050510 0%, #08082A 50%, #050510 100%)' }}
+      className="relative px-6 overflow-hidden"
+      style={{
+        height: '100dvh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        background: 'linear-gradient(180deg, #050510 0%, #08082A 50%, #050510 100%)',
+      }}
     >
       {/* Faint Om watermark */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center select-none" aria-hidden>
@@ -362,7 +368,7 @@ export default function ServicesReveal() {
           initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, ease: 'easeOut' }}
-          className="text-center mb-20"
+          className="text-center mb-[clamp(0.75rem,2vh,2rem)]"
         >
           <p
             className="font-cinzel uppercase mb-4"
@@ -399,7 +405,7 @@ export default function ServicesReveal() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="text-center mt-14"
+          className="text-center mt-[clamp(0.5rem,1.5vh,1.5rem)]"
           style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(245,236,215,0.25)', letterSpacing: '1.5px' }}
         >
           All consultations are by prior appointment only &middot; Paid sessions

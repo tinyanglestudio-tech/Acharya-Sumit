@@ -98,8 +98,14 @@ export default function VastuSection() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="vastu" ref={ref} className="relative overflow-hidden py-28 px-6"
-      style={{ background: 'linear-gradient(180deg, #050510 0%, #020D06 60%, #050510 100%)' }}>
+    <section id="vastu" ref={ref} className="relative overflow-hidden px-6"
+      style={{
+        height: '100dvh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        background: 'linear-gradient(180deg, #050510 0%, #020D06 60%, #050510 100%)',
+      }}>
 
       {/* Glow */}
       <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 rounded-full"
@@ -113,17 +119,17 @@ export default function VastuSection() {
           {/* LEFT — Visual */}
           <motion.div initial={{ opacity: 0, x: -50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1 }} className="flex flex-col items-center">
-            <div className="relative flex items-center justify-center" style={{ width: '340px', height: '340px', maxWidth: '80vw' }}>
+            <div className="relative flex items-center justify-center" style={{ width: 'clamp(200px, 30vh, 300px)', height: 'clamp(200px, 30vh, 300px)', maxWidth: '80vw' }}>
               <VastuMandala />
             </div>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="mt-8 rounded-[4px] px-8 py-6 text-center w-full max-w-xs"
+              className="mt-4 rounded-[4px] px-6 py-4 text-center w-full max-w-xs"
               style={{ border: '1px solid rgba(45,122,79,0.45)', background: 'rgba(45,122,79,0.06)', boxShadow: '0 0 50px rgba(45,122,79,0.12)' }}>
               <p style={{ fontSize: '13px', letterSpacing: '2.5px', color: 'rgba(201,168,76,0.55)', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Consultation Fee · <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सल्ला शुल्क</span>
               </p>
-              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: COLOR2 }}>₹2,500</div>
+              <div className="font-cinzel font-bold" style={{ fontSize: 'clamp(28px, 4vh, 40px)', color: COLOR2 }}>₹2,500</div>
               <p style={{ fontSize: '15px', color: 'rgba(245,236,215,0.5)', marginTop: '4px' }}>90 min · Site visit / Online</p>
               <Link href="/booking"
                 className="mt-5 inline-block font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-125"
@@ -132,7 +138,7 @@ export default function VastuSection() {
               </Link>
             </motion.div>
             {/* Watermark below fee box */}
-            <div className="mt-4 w-full max-w-xs overflow-hidden text-center select-none pointer-events-none" aria-hidden>
+            <div className="mt-2 w-full max-w-xs overflow-hidden text-center select-none pointer-events-none" aria-hidden>
               <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(36px,4.5vw,54px)', color: '#3d9963', opacity: 0.18, lineHeight: 1, display: 'block', letterSpacing: '-1px' }}>
                 वास्तुशास्त्र
               </span>

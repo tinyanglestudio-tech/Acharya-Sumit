@@ -65,8 +65,14 @@ export default function AstrologySection() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="astrology" ref={ref} className="relative overflow-hidden py-28 px-6"
-      style={{ background: 'linear-gradient(180deg, #050510 0%, #0D0520 60%, #050510 100%)' }}>
+    <section id="astrology" ref={ref} className="relative overflow-hidden px-6"
+      style={{
+        height: '100dvh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        background: 'linear-gradient(180deg, #050510 0%, #0D0520 60%, #050510 100%)',
+      }}>
 
       {/* Purple radial glow */}
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
@@ -84,23 +90,23 @@ export default function AstrologySection() {
           <motion.div initial={{ opacity: 0, x: -50 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1 }} className="flex flex-col items-center">
 
-            <div className="relative flex items-center justify-center" style={{ width: '340px', height: '340px', maxWidth: '80vw' }}>
-              <div className="absolute inset-0"><ZodiacRingSvg size={340} /></div>
+            <div className="relative flex items-center justify-center" style={{ width: 'clamp(200px, 30vh, 300px)', height: 'clamp(200px, 30vh, 300px)', maxWidth: '80vw' }}>
+              <div className="absolute inset-0"><ZodiacRingSvg size={300} /></div>
               <div className="relative z-10 flex flex-col items-center" style={{ filter: 'drop-shadow(0 0 40px rgba(123,63,212,0.7))' }}>
-                <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: '88px', color: '#C9A84C', lineHeight: 1 }}>ॐ</span>
+                <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(52px, 7vh, 80px)', color: '#C9A84C', lineHeight: 1 }}>ॐ</span>
                 <span className="font-cinzel uppercase mt-2" style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(201,168,76,0.82)' }}>Jyotish Shastra</span>
               </div>
             </div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="mt-8 rounded-[4px] px-8 py-6 text-center w-full max-w-xs"
+              className="mt-4 rounded-[4px] px-6 py-4 text-center w-full max-w-xs"
               style={{ border: '1px solid rgba(123,63,212,0.4)', background: 'rgba(123,63,212,0.07)', boxShadow: '0 0 50px rgba(123,63,212,0.12)' }}>
               <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(201,168,76,0.82)', textTransform: 'uppercase', marginBottom: '8px' }}>
                 Consultation Fee ·{' '}
                 <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif" }}>सल्लामसलत शुल्क</span>
               </p>
-              <div className="font-cinzel font-bold" style={{ fontSize: '44px', color: COLOR }}>₹1,500</div>
+              <div className="font-cinzel font-bold" style={{ fontSize: 'clamp(28px, 4vh, 40px)', color: COLOR }}>₹1,500</div>
               <p style={{ fontSize: '13px', color: 'rgba(245,236,215,0.65)', marginTop: '4px' }}>60 min · Online / In-person</p>
               <Link href="/booking"
                 className="mt-5 inline-block font-cinzel font-semibold uppercase transition-all duration-300 hover:brightness-125"
@@ -110,7 +116,7 @@ export default function AstrologySection() {
             </motion.div>
 
             {/* Watermark below fee box */}
-            <div className="mt-4 w-full max-w-xs overflow-hidden text-center select-none pointer-events-none" aria-hidden>
+            <div className="mt-2 w-full max-w-xs overflow-hidden text-center select-none pointer-events-none" aria-hidden>
               <span style={{ fontFamily: "'Tiro Devanagari Sanskrit', serif", fontSize: 'clamp(40px,5vw,60px)', color: '#7B3FD4', opacity: 0.18, lineHeight: 1, display: 'block', letterSpacing: '-1px' }}>
                 ज्योतिषशास्त्र
               </span>
